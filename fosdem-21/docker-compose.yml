@@ -1,0 +1,46 @@
+version: "3.9"
+
+services:
+  em-sancus:
+    image: gianlu33/event-manager-sancus:latest
+    expose:
+      - "6000"
+    environment:
+      - PORT=6000
+      - DEVICE=/dev/ttyUSB8
+    devices:
+      - "/dev/ttyUSB8:/dev/ttyUSB8"
+      - "/dev/ttyUSB9:/dev/ttyUSB9"
+  em-sgx:
+    image: gianlu33/reactive-event-manager:latest
+    expose:
+      - "5000-5010"
+    environment:
+      - EM_PORT=5000
+      - EM_LOG=info
+      - EM_THREADS=16
+      - EM_PERIODIC_TASKS=false
+      - EM_SGX=true
+    devices:
+      - "/dev/isgx:/dev/isgx"
+    volumes:
+      - "/var/run/aesmd:/var/run/aesmd"
+  aesm-client:
+    image: gianlu33/aesm-client:latest
+    expose:
+      - "13741"
+    environment:
+      - AESM_PORT=13741
+    volumes:
+      - "/var/run/aesmd:/var/run/aesmd"
+  deployer:
+    image: gianlu33/reactive-tools:latest
+    command: sleep 3600
+    depends_on:
+      - em-sancus
+      - em-sgx
+      - aesm-client
+    volumes:
+      - ".:/usr/src/app"
+      - "/usr/local/cargo/git:/usr/local/cargo/git" # for caching builds
+      - "/usr/local/cargo/registry:/usr/local/cargo/registry" # same

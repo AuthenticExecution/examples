@@ -1,0 +1,110 @@
+{
+    "manager": {
+      "host": "manager",
+      "port": 1234,
+      "key": [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16]
+    },
+    "nodes": [
+        {
+            "type": "sgx",
+            "name": "node1",
+            "ip_address": "em-sgx-1",
+            "reactive_port": 5000,
+            "aesm_host": "aesm-client"
+        },
+        {
+            "type": "sgx",
+            "name": "node2",
+            "ip_address": "em-sgx-2",
+            "reactive_port": 6000
+        }
+    ],
+    "modules" : [
+        {
+            "type": "sgx",
+            "name": "webserver",
+            "node": "node1",
+            "vendor_key": "<Insert path to your private key here>",
+            "ra_settings": "<Insert path to your settings JSON file here>"
+        },
+        {
+            "type": "sgx",
+            "name": "db",
+            "node": "node1",
+            "vendor_key": "<Insert path to your private key here>",
+            "ra_settings": "<Insert path to your settings JSON file here>"
+        },
+        {
+            "type": "sgx",
+            "name": "controller",
+            "node": "node1",
+            "vendor_key": "<Insert path to your private key here>",
+            "ra_settings": "<Insert path to your settings JSON file here>"
+        },
+        {
+            "type": "sgx",
+            "name": "button_driver",
+            "node": "node2",
+            "vendor_key": "<Insert path to your private key here>",
+            "ra_settings": "<Insert path to your settings JSON file here>"
+        },
+        {
+            "type": "sgx",
+            "name": "led_driver",
+            "node": "node2",
+            "vendor_key": "<Insert path to your private key here>",
+            "ra_settings": "<Insert path to your settings JSON file here>"
+        }
+    ],
+    "connections": [
+      {
+          "from_module": "button_driver",
+          "from_output": "button_pressed",
+          "to_module": "controller",
+          "to_input": "button_pressed",
+          "encryption": "aes"
+      },
+      {
+          "from_module": "controller",
+          "from_output": "toggle_led",
+          "to_module": "led_driver",
+          "to_input": "toggle_led",
+          "encryption": "aes"
+      },
+      {
+          "from_module": "controller",
+          "from_output": "increment_presses",
+          "to_module": "db",
+          "to_input": "increment_presses",
+          "encryption": "aes"
+      },
+      {
+          "from_module": "webserver",
+          "from_request": "get_presses",
+          "to_module": "db",
+          "to_handler": "get_presses",
+          "encryption": "aes"
+      },
+      {
+          "name": "init-server",
+          "direct": true,
+          "to_module": "webserver",
+          "to_input": "init",
+          "encryption": "aes"
+      },
+      {
+          "name": "trigger-btn",
+          "direct": true,
+          "to_module": "button_driver",
+          "to_input": "trigger_button_press",
+          "encryption": "aes"
+      },
+      {
+          "name": "get-presses",
+          "direct": true,
+          "to_module": "db",
+          "to_handler": "get_presses",
+          "encryption": "aes"
+      }
+    ]
+}
