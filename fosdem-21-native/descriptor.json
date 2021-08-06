@@ -1,59 +1,44 @@
 {
-    "manager": {
-      "host": "manager",
-      "port": 1234,
-      "key": [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16]
-    },
+    "manager": "manager.yaml",
     "nodes": [
         {
-            "type": "sgx",
+            "type": "native",
             "name": "node1",
-            "ip_address": "em-sgx-1",
-            "reactive_port": 5000,
-            "aesm_host": "aesm-client"
+            "ip_address": "em-native-1",
+            "reactive_port": 5000
         },
         {
-            "type": "sgx",
+            "type": "native",
             "name": "node2",
-            "ip_address": "em-sgx-2",
+            "ip_address": "em-native-2",
             "reactive_port": 6000
         }
     ],
     "modules" : [
         {
-            "type": "sgx",
+            "type": "native",
             "name": "webserver",
-            "node": "node1",
-            "vendor_key": "<Insert path to your private key here>",
-            "ra_settings": "<Insert path to your settings JSON file here>"
+            "node": "node1"
         },
         {
-            "type": "sgx",
+            "type": "native",
             "name": "db",
-            "node": "node1",
-            "vendor_key": "<Insert path to your private key here>",
-            "ra_settings": "<Insert path to your settings JSON file here>"
+            "node": "node1"
         },
         {
-            "type": "sgx",
+            "type": "native",
             "name": "controller",
-            "node": "node1",
-            "vendor_key": "<Insert path to your private key here>",
-            "ra_settings": "<Insert path to your settings JSON file here>"
+            "node": "node1"
         },
         {
-            "type": "sgx",
+            "type": "native",
             "name": "button_driver",
-            "node": "node2",
-            "vendor_key": "<Insert path to your private key here>",
-            "ra_settings": "<Insert path to your settings JSON file here>"
+            "node": "node2"
         },
         {
-            "type": "sgx",
+            "type": "native",
             "name": "led_driver",
-            "node": "node2",
-            "vendor_key": "<Insert path to your private key here>",
-            "ra_settings": "<Insert path to your settings JSON file here>"
+            "node": "node2"
         }
     ],
     "connections": [

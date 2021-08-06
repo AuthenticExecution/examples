@@ -33,13 +33,18 @@ services:
       - AESM_PORT=13741
     volumes:
       - "/var/run/aesmd:/var/run/aesmd"
+  manager:
+    image: gianlu33/attestation-manager:native
+    expose:
+      - "1234"
   deployer:
     image: gianlu33/reactive-tools:latest
-    command: sleep 3600
+    command: ./deployer.sh
     depends_on:
       - em-sancus
       - em-sgx
       - aesm-client
+      - manager
     volumes:
       - ".:/usr/src/app"
       - "/usr/local/cargo/git:/usr/local/cargo/git" # for caching builds

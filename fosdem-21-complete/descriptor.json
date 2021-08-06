@@ -1,48 +1,61 @@
 {
-    "manager": {
-      "host": "manager",
-      "port": 1234,
-      "key": [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16]
-    },
+    "manager": "manager.yaml",
     "nodes": [
         {
-            "type": "native",
-            "name": "node1",
-            "ip_address": "em-native-1",
-            "reactive_port": 5000
+            "type": "sgx",
+            "name": "node_sgx",
+            "ip_address": "em-sgx",
+            "reactive_port": 5000,
+            "aesm_host": "aesm-client"
         },
         {
-            "type": "native",
-            "name": "node2",
-            "ip_address": "em-native-2",
+            "type": "sancus",
+            "name": "node_sancus",
+            "ip_address": "em-sancus",
+            "vendor_id": 4660,
+            "vendor_key": "0b7bf3ae40880a8be430d0da34fb76f0",
             "reactive_port": 6000
         }
     ],
     "modules" : [
         {
-            "type": "native",
+            "type": "sgx",
             "name": "webserver",
-            "node": "node1"
+            "node": "node_sgx",
+            "vendor_key": "cred/vendor_key.pem",
+            "ra_settings": "cred/settings.json"
         },
         {
-            "type": "native",
+            "type": "sgx",
             "name": "db",
-            "node": "node1"
+            "node": "node_sgx",
+            "vendor_key": "cred/vendor_key.pem",
+            "ra_settings": "cred/settings.json"
         },
         {
-            "type": "native",
+            "type": "sgx",
             "name": "controller",
-            "node": "node1"
+            "node": "node_sgx",
+            "vendor_key": "cred/vendor_key.pem",
+            "ra_settings": "cred/settings.json"
         },
         {
-            "type": "native",
+            "type": "sancus",
             "name": "button_driver",
-            "node": "node2"
+            "files": ["button_driver.c"],
+            "node": "node_sancus"
         },
         {
-            "type": "native",
+            "type": "sancus",
             "name": "led_driver",
-            "node": "node2"
+            "node": "node_sancus",
+            "deployed": true,
+            "files": [],
+            "binary": "",
+            "id": 1,
+            "symtab": "",
+            "key": "c9dc7ac6fb1efced0a2152b75c1276c7",
+            "nonce": 0
         }
     ],
     "connections": [
@@ -51,14 +64,14 @@
           "from_output": "button_pressed",
           "to_module": "controller",
           "to_input": "button_pressed",
-          "encryption": "aes"
+          "encryption": "spongent"
       },
       {
           "from_module": "controller",
           "from_output": "toggle_led",
           "to_module": "led_driver",
-          "to_input": "toggle_led",
-          "encryption": "aes"
+          "to_input": 0,
+          "encryption": "spongent"
       },
       {
           "from_module": "controller",
@@ -86,7 +99,7 @@
           "direct": true,
           "to_module": "button_driver",
           "to_input": "trigger_button_press",
-          "encryption": "aes"
+          "encryption": "spongent"
       },
       {
           "name": "get-presses",
