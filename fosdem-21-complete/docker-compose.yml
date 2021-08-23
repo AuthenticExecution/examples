@@ -34,9 +34,13 @@ services:
     volumes:
       - "/var/run/aesmd:/var/run/aesmd"
   manager:
-    image: gianlu33/attestation-manager:native
+    image: gianlu33/attestation-manager:sgx
     expose:
       - "1234"
+    devices:
+      - "/dev/isgx:/dev/isgx"
+    volumes:
+      - "/var/run/aesmd:/var/run/aesmd"
   deployer:
     image: gianlu33/reactive-tools:latest
     command: ./deployer.sh

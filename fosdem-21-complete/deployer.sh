@@ -6,6 +6,10 @@ set -e
 echo "Waiting until all the EMs are ready.."
 sleep 10
 
+# Attesting the Attestation Manager
+echo "Attesting AM.."
+python3 run_attester.py manager.yaml
+
 # Initialize the Attestation Manager for the SGX attestation
 echo "Initializing AM.."
 attman-cli --config manager.yaml --request init-sgx --data init_sgx.yaml
