@@ -7,10 +7,9 @@ services:
       - "6000"
     environment:
       - PORT=6000
-      - DEVICE=/dev/ttyUSB8
     devices:
-      - "/dev/ttyUSB8:/dev/ttyUSB8"
-      - "/dev/ttyUSB9:/dev/ttyUSB9"
+      - "/dev/ttyUSB8:/dev/RIOT"
+      - "/dev/ttyUSB9:/dev/UART"
   em-sgx:
     image: gianlu33/reactive-event-manager:latest
     expose:
