@@ -1,0 +1,130 @@
+{
+    "manager": "manager.yaml",
+    "nodes": [
+        {
+            "type": "sgx",
+            "name": "node_sgx",
+            "ip_address": "node-sgx",
+            "reactive_port": 5000,
+            "aesm_host": "aesm-client"
+        },
+        {
+            "type": "sancus",
+            "name": "node_sancus_1",
+            "ip_address": "node-sancus-1",
+            "vendor_id": 4660,
+            "vendor_key": "0b7bf3ae40880a8be430d0da34fb76f0",
+            "reactive_port": 6000
+        },
+        {
+            "type": "sancus",
+            "name": "node_sancus_2",
+            "ip_address": "node-sancus-2",
+            "vendor_id": 4660,
+            "vendor_key": "0b7bf3ae40880a8be430d0da34fb76f0",
+            "reactive_port": 6000
+        },
+        {
+            "type": "trustzone",
+            "name": "node_trustzone",
+            "ip_address": "node-trustzone",
+            "reactive_port": 1236,
+            "node_key": "9a04aa182d039674708ce807ed914cd153cd9df7805e61742f0ae41294758dd3"
+        }
+    ],
+    "modules" : [
+        {
+            "type": "sgx",
+            "name": "webserver",
+            "node": "node_sgx",
+            "vendor_key": "cred/vendor_key.pem",
+            "ra_settings": "cred/settings.json"
+        },
+        {
+            "type": "sgx",
+            "name": "db",
+            "node": "node_sgx",
+            "vendor_key": "cred/vendor_key.pem",
+            "ra_settings": "cred/settings.json"
+        },
+        {
+            "type": "trustzone",
+            "name": "gateway",
+            "node": "node_trustzone",
+            "files_dir": ".",
+            "id": 1,
+            "uuid": 330315078004237493521607747927864613423,
+            "inputs": {"button_pressed": 0},
+            "outputs": {"toggle_led": 1 , "increment_presses": 2}
+        },
+        {
+            "type": "sancus",
+            "name": "led_driver",
+            "node": "node_sancus_1",
+            "deployed": true,
+            "files": [],
+            "binary": "",
+            "id": 1,
+            "symtab": "",
+            "key": "c9dc7ac6fb1efced0a2152b75c1276c7",
+            "nonce": 0
+        },
+        {
+            "type": "sancus",
+            "name": "button_driver",
+            "node": "node_sancus_2",
+            "files": ["button_driver.c"]
+        }
+    ],
+    "connections": [
+      {
+          "from_module": "button_driver",
+          "from_output": "button_pressed",
+          "to_module": "gateway",
+          "to_input": "button_pressed",
+          "encryption": "spongent"
+      },
+      {
+          "from_module": "gateway",
+          "from_output": "toggle_led",
+          "to_module": "led_driver",
+          "to_input": 0,
+          "encryption": "spongent"
+      },
+      {
+          "from_module": "gateway",
+          "from_output": "increment_presses",
+          "to_module": "db",
+          "to_input": "increment_presses",
+          "encryption": "aes"
+      },
+      {
+          "from_module": "webserver",
+          "from_request": "get_presses",
+          "to_module": "db",
+          "to_handler": "get_presses",
+          "encryption": "aes"
+      },
+      {
+          "name": "init-server",
+          "direct": true,
+          "to_module": "webserver",
+          "to_handler": "init_server",
+          "encryption": "aes"
+      },
+      {
+          "name": "trigger-btn",
+          "direct": true,
+          "to_module": "button_driver",
+          "to_input": "trigger_button_press",
+          "encryption": "spongent"
+      },
+      {
+          "name": "get-presses",
+          "direct": true,
+          "to_module": "db",
+          "to_handler": "get_presses",
+          "encryption": "aes"
+      }
+    ]
+}
