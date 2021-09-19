@@ -5,6 +5,10 @@ This example is analogous to [cosinet-demo](../cosinet-demo), but all the module
 - No TEE protections and no real I/O devices.
 - Instead of having physical Sancus/SGX/Trustzone nodes, we use virtual `Native` nodes
 
+## Prerequisites
+
+You only need [Docker](https://docs.docker.com/get-docker/) and [docker-compose](https://docs.docker.com/compose/install/) to run this example.
+
 ## Run the example
 
 ```bash
