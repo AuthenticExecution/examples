@@ -1,0 +1,60 @@
+version: "3.9"
+
+services:
+  node-sancus-1:
+    image: gianlu33/reactive-event-manager:latest
+    expose:
+      - "5000-5010"
+    environment:
+      - EM_PORT=5000
+      - EM_LOG=info
+      - EM_THREADS=16
+      - EM_PERIODIC_TASKS=false
+      - EM_SGX=false
+  node-sancus-2:
+    image: gianlu33/reactive-event-manager:latest
+    expose:
+      - "5000-5010"
+    environment:
+      - EM_PORT=5000
+      - EM_LOG=info
+      - EM_THREADS=16
+      - EM_PERIODIC_TASKS=false
+      - EM_SGX=false
+  node-sgx:
+    image: gianlu33/reactive-event-manager:latest
+    expose:
+      - "5000-5010"
+    environment:
+      - EM_PORT=5000
+      - EM_LOG=info
+      - EM_THREADS=16
+      - EM_PERIODIC_TASKS=false
+      - EM_SGX=false
+  node-trustzone:
+    image: gianlu33/reactive-event-manager:latest
+    expose:
+      - "5000-5010"
+    environment:
+      - EM_PORT=5000
+      - EM_LOG=info
+      - EM_THREADS=16
+      - EM_PERIODIC_TASKS=false
+      - EM_SGX=false
+  manager:
+    image: gianlu33/attestation-manager:native
+    expose:
+      - "1234"
+  admin:
+    image: gianlu33/reactive-tools:latest
+    command: ./deploy.sh
+    depends_on:
+      - node-sancus-1
+      - node-sancus-2
+      - node-sgx
+      - node-trustzone
+      - manager
+    volumes:
+      - ".:/usr/src/app"
+      - "/usr/local/cargo/git:/usr/local/cargo/git" # for caching builds
+      - "/usr/local/cargo/registry:/usr/local/cargo/registry" # same
