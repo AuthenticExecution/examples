@@ -54,7 +54,7 @@
             "binary": "",
             "id": 1,
             "symtab": "",
-            "key": "c9dc7ac6fb1efced0a2152b75c1276c7",
+            "key": "193b4d4331b20316ba03e867002e94aa",
             "nonce": 0
         }
     ],
@@ -70,7 +70,7 @@
           "from_module": "controller",
           "from_output": "toggle_led",
           "to_module": "led_driver",
-          "to_input": 0,
+          "to_input": 1,
           "encryption": "spongent"
       },
       {
@@ -93,6 +93,13 @@
           "to_module": "webserver",
           "to_input": "init",
           "encryption": "aes"
+      },
+      {
+          "name": "init-led",
+          "direct": true,
+          "to_module": "led_driver",
+          "to_input": 0,
+          "encryption": "spongent"
       },
       {
           "name": "trigger-btn",

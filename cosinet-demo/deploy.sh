@@ -30,5 +30,9 @@ reactive-tools --manager attest res.json
 echo "Establishing connections.."
 reactive-tools --manager connect res.json
 
+# init LED and attest pmodled
+echo "Initializing and attesting MMIO LED.."
+reactive-tools output res.json --connection init-led
+
 echo "Setup complete"
 sleep 3600
