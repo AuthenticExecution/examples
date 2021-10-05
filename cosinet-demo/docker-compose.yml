@@ -6,6 +6,7 @@ services:
     expose:
       - "6000"
     environment:
+      - ELF=reactive_led.elf
       - PORT=6000
     devices:
       - "/dev/ttyUSB6:/dev/RIOT"
@@ -15,6 +16,7 @@ services:
     expose:
       - "6000"
     environment:
+      - ELF=reactive.elf
       - PORT=6000
     devices:
       - "/dev/ttyUSB8:/dev/RIOT"
