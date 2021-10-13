@@ -36,35 +36,40 @@
             "name": "webserver",
             "node": "node_sgx_1",
             "vendor_key": "cred/vendor_key.pem",
-            "ra_settings": "cred/settings.json"
+            "ra_settings": "cred/settings.json",
+            "features": ["measure_time"]
         },
         {
             "type": "sgx",
             "name": "db",
             "node": "node_sgx_1",
             "vendor_key": "cred/vendor_key.pem",
-            "ra_settings": "cred/settings.json"
+            "ra_settings": "cred/settings.json",
+            "features": ["measure_time"]
         },
         {
             "type": "sgx",
             "name": "gateway",
             "node": "node_sgx_2",
             "vendor_key": "cred/vendor_key.pem",
-            "ra_settings": "cred/settings.json"
+            "ra_settings": "cred/settings.json",
+            "features": ["measure_time"]
         },
         {
             "type": "sgx",
             "name": "led_driver",
             "node": "node_sgx_3",
             "vendor_key": "cred/vendor_key.pem",
-            "ra_settings": "cred/settings.json"
+            "ra_settings": "cred/settings.json",
+            "features": ["measure_time"]
         },
         {
             "type": "sgx",
             "name": "button_driver",
             "node": "node_sgx_4",
             "vendor_key": "cred/vendor_key.pem",
-            "ra_settings": "cred/settings.json"
+            "ra_settings": "cred/settings.json",
+            "features": ["measure_time"]
         }
     ],
     "connections": [
