@@ -7,5 +7,5 @@ edition = "2018"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-mbedtls = { git = "https://github.com/gianlu33/rust-mbedtls.git", tag="fosdem-21", features = ["rdrand"] }
+mbedtls = { git = "https://github.com/gianlu33/rust-mbedtls.git", branch="psk", features = ["rdrand"] }
 anyhow = "1.0.44"
