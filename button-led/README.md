@@ -1,4 +1,4 @@
-# cosinet-demo
+# button-led
 
 [Video](https://drive.google.com/file/d/17507pl12mycp1ELxH8cLghydNJlxVawi/view?usp=sharing)
 
@@ -6,7 +6,7 @@
 
 Check the main [README](../README.md)
 
-- [Simulated version](../cosinet-demo-native) (only Docker and docker-compose needed)
+- [Simulated version](../button-led-native) (only Docker and docker-compose needed)
 
 ## Run the example
 
@@ -18,7 +18,7 @@ docker-compose up
 # The following commands should be launched from another terminal
 
 # Open a shell in the "admin" container
-docker exec -it cosinet-demo_admin_1 bash
+docker exec -it button-led_admin_1 bash
 
 # Initialize the web server and retrieve the self-signed certificate
 # You can actually use a different port than "beef" if you want
