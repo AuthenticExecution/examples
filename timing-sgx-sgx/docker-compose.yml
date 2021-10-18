@@ -13,7 +13,7 @@ services:
       - EM_SGX=true
       - EM_MEASURE_TIME=true
     devices:
-      - "/dev/isgx:/dev/isgx"
+      - "/dev/sgx/enclave:/dev/sgx/enclave"
     volumes:
       - "/var/run/aesmd:/var/run/aesmd"
   node-sgx-2:
@@ -28,7 +28,7 @@ services:
       - EM_SGX=true
       - EM_MEASURE_TIME=true
     devices:
-      - "/dev/isgx:/dev/isgx"
+      - "/dev/sgx/enclave:/dev/sgx/enclave"
     volumes:
       - "/var/run/aesmd:/var/run/aesmd"
   node-sgx-3:
@@ -43,7 +43,7 @@ services:
       - EM_SGX=true
       - EM_MEASURE_TIME=true
     devices:
-      - "/dev/isgx:/dev/isgx"
+      - "/dev/sgx/enclave:/dev/sgx/enclave"
     volumes:
       - "/var/run/aesmd:/var/run/aesmd"
   node-sgx-4:
@@ -58,7 +58,7 @@ services:
       - EM_SGX=true
       - EM_MEASURE_TIME=true
     devices:
-      - "/dev/isgx:/dev/isgx"
+      - "/dev/sgx/enclave:/dev/sgx/enclave"
     volumes:
       - "/var/run/aesmd:/var/run/aesmd"
   aesm-client:
@@ -74,7 +74,7 @@ services:
     expose:
       - "1234"
     devices:
-      - "/dev/isgx:/dev/isgx"
+      - "/dev/sgx/enclave:/dev/sgx/enclave"
     volumes:
       - "/var/run/aesmd:/var/run/aesmd"
   admin:
