@@ -1,5 +1,5 @@
 [package]
-name = "webserver"
+name = "ping"
 version = "0.1.0"
 authors = ["Gianluca Scopelliti <gianlu.1033@gmail.com>"]
 edition = "2018"
@@ -7,5 +7,3 @@ edition = "2018"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-mbedtls = { git = "https://github.com/gianlu33/rust-mbedtls.git", branch="psk", features = ["rdrand"] }
-anyhow = "1.0.44"
