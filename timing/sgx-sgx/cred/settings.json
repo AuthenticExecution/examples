@@ -1,0 +1,16 @@
+{
+    "debug": true,
+    "linkable": true,
+    "random_nonce": false,
+    "use_platform_service": false,
+    "spid": "<spid>",
+    "primary_subscription_key": "<primary_subscription_key>",
+    "secondary_subscription_key": "<secondary_subscription_key>",
+    "quote_trust_options": [
+        "GROUP_OUT_OF_DATE",
+        "CONFIGURATION_NEEDED"
+    ],
+    "sp_private_key_pem_path": "",
+    "ias_root_cert_pem_path": "",
+    "sigstruct_path": ""
+}
