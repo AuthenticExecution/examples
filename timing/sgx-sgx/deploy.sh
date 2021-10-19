@@ -2,10 +2,6 @@
 
 set -e
 
-# TODO: find a better way
-echo "Waiting until all the EMs are ready.."
-sleep 10
-
 # Attesting the Attestation Manager
 echo "Attesting AM.."
 python3 run_attester.py manager.yaml

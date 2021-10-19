@@ -14,6 +14,13 @@
             "ip_address": "node-sgx-2",
             "reactive_port": 5000,
             "aesm_host": "aesm-client"
+        },
+        {
+            "type": "sgx",
+            "name": "node_sgx_3",
+            "ip_address": "node-sgx-3",
+            "reactive_port": 5000,
+            "aesm_host": "aesm-client"
         }
     ],
     "modules" : [
@@ -27,8 +34,16 @@
         },
         {
             "type": "sgx",
-            "name": "pong",
+            "name": "router",
             "node": "node_sgx_2",
+            "vendor_key": "cred/vendor_key.pem",
+            "ra_settings": "cred/settings.json",
+            "features": ["measure_time"]
+        },
+        {
+            "type": "sgx",
+            "name": "pong",
+            "node": "node_sgx_3",
             "vendor_key": "cred/vendor_key.pem",
             "ra_settings": "cred/settings.json",
             "features": ["measure_time"]
@@ -38,6 +53,13 @@
       {
           "from_module": "ping",
           "from_output": "send_ping",
+          "to_module": "router",
+          "to_input": "send_int0",
+          "encryption": "aes"
+      },
+      {
+          "from_module": "router",
+          "from_output": "fw_int0",
           "to_module": "pong",
           "to_input": "recv_ping",
           "encryption": "aes"
@@ -45,15 +67,15 @@
       {
           "from_module": "pong",
           "from_output": "send_pong",
-          "to_module": "ping",
-          "to_input": "recv_pong",
+          "to_module": "router",
+          "to_input": "send_int1",
           "encryption": "aes"
       },
       {
-          "from_module": "ping",
-          "from_request": "send_ping_req",
-          "to_module": "pong",
-          "to_handler": "recv_ping_req",
+          "from_module": "router",
+          "from_output": "fw_int1",
+          "to_module": "ping",
+          "to_input": "recv_pong",
           "encryption": "aes"
       }
     ]
