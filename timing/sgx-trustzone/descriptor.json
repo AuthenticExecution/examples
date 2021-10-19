@@ -1,0 +1,84 @@
+{
+    "manager": "manager.yaml",
+    "nodes": [
+        {
+            "type": "sgx",
+            "name": "node_sgx_1",
+            "ip_address": "node-sgx-1",
+            "reactive_port": 5000,
+            "aesm_host": "aesm-client"
+        },
+        {
+            "type": "sgx",
+            "name": "node_sgx_2",
+            "ip_address": "node-sgx-2",
+            "reactive_port": 5000,
+            "aesm_host": "aesm-client"
+        },
+        {
+            "type": "trustzone",
+            "name": "node_trustzone",
+            "ip_address": "node-trustzone",
+            "reactive_port": 1236,
+            "node_key": "9a04aa182d039674708ce807ed914cd153cd9df7805e61742f0ae41294758dd3"
+        }
+    ],
+    "modules" : [
+        {
+            "type": "sgx",
+            "name": "ping",
+            "node": "node_sgx_1",
+            "vendor_key": "cred/vendor_key.pem",
+            "ra_settings": "cred/settings.json",
+            "features": ["measure_time"]
+        },
+        {
+            "type": "sgx",
+            "name": "pong",
+            "node": "node_sgx_2",
+            "vendor_key": "cred/vendor_key.pem",
+            "ra_settings": "cred/settings.json",
+            "features": ["measure_time"]
+        },
+        {
+            "type": "trustzone",
+            "name": "router",
+            "node": "node_trustzone",
+            "files_dir": ".",
+            "id": 2,
+            "uuid": 175194141668063048800749770465390128705,
+            "inputs": {"send_int0": 0 , "send_int1":1},
+            "outputs": {"fw_int0": 2 , "fw_int1": 3}
+        }
+    ],
+    "connections": [
+      {
+          "from_module": "ping",
+          "from_output": "send_ping",
+          "to_module": "router",
+          "to_input": "send_int0",
+          "encryption": "aes"
+      },
+      {
+          "from_module": "router",
+          "from_output": "fw_int0",
+          "to_module": "pong",
+          "to_input": "recv_ping",
+          "encryption": "aes"
+      },
+      {
+          "from_module": "pong",
+          "from_output": "send_pong",
+          "to_module": "router",
+          "to_input": "send_int1",
+          "encryption": "aes"
+      },
+      {
+          "from_module": "router",
+          "from_output": "fw_int1",
+          "to_module": "ping",
+          "to_input": "recv_pong",
+          "encryption": "aes"
+      }
+    ]
+}
