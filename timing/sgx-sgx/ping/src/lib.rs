@@ -10,6 +10,11 @@ pub fn recv_pong(_data : &[u8]) {
 
 //@ sm_entry
 pub fn start(data : &[u8]) -> ResultMessage {
+    if data.len() != 2 {
+        error!("input `start` needs 2 bytes as input (packet length)");
+        return failure(ResultCode::IllegalPayload, None);
+    }
+
     // number of bytes is stored in data
     let data_size = u16::from_le_bytes([data[0], data[1]]);
 
