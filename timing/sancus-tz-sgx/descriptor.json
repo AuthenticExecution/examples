@@ -4,7 +4,7 @@
         {
             "type": "sgx",
             "name": "node_sgx",
-            "ip_address": "node-sgx",
+            "ip_address": "icecream.experiments.cs.kuleuven.be",
             "reactive_port": 5000,
             "aesm_host": "aesm-client"
         },
@@ -19,7 +19,7 @@
         {
             "type": "trustzone",
             "name": "node_trustzone",
-            "ip_address": "node-trustzone",
+            "ip_address": "icecream.experiments.cs.kuleuven.be",
             "reactive_port": 1236,
             "node_key": "9a04aa182d039674708ce807ed914cd153cd9df7805e61742f0ae41294758dd3"
         }
