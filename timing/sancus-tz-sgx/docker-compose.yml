@@ -1,0 +1,54 @@
+version: "3.9"
+
+services:
+  node-sgx:
+    image: gianlu33/reactive-event-manager:latest
+    expose:
+      - "5000-5010"
+    environment:
+      - EM_PORT=5000
+      - EM_LOG=info
+      - EM_THREADS=16
+      - EM_PERIODIC_TASKS=false
+      - EM_SGX=true
+      - EM_MEASURE_TIME=true
+    devices:
+      - "/dev/sgx/enclave:/dev/sgx/enclave"
+    volumes:
+      - "/var/run/aesmd:/var/run/aesmd"
+  node-trustzone:
+    image: gianlu33/optee-deps:latest
+    expose:
+      - "1236"
+    environment:
+      - PORT=1236
+    volumes:
+      - "/opt/optee:/opt/optee"
+  aesm-client:
+    image: gianlu33/aesm-client:latest
+    expose:
+      - "13741"
+    environment:
+      - AESM_PORT=13741
+    volumes:
+      - "/var/run/aesmd:/var/run/aesmd"
+  manager:
+    image: gianlu33/attestation-manager:sgx
+    expose:
+      - "1234"
+    devices:
+      - "/dev/sgx/enclave:/dev/sgx/enclave"
+    volumes:
+      - "/var/run/aesmd:/var/run/aesmd"
+  admin:
+    image: gianlu33/reactive-tools:latest
+    command: ./deploy.sh
+    depends_on:
+      - node-sgx
+      - node-trustzone
+      - aesm-client
+      - manager
+    volumes:
+      - ".:/usr/src/app"
+      - "/usr/local/cargo/git:/usr/local/cargo/git" # for caching builds
+      - "/usr/local/cargo/registry:/usr/local/cargo/registry" # same
