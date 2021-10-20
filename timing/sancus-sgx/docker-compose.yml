@@ -3,8 +3,8 @@ version: "3.9"
 services:
   node-sgx:
     image: gianlu33/reactive-event-manager:latest
-    expose:
-      - "5000-5010"
+    ports:
+      - "5000-5010:5000-5010"
     environment:
       - EM_PORT=5000
       - EM_LOG=info
