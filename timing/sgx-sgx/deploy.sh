@@ -27,4 +27,22 @@ echo "Establishing connections.."
 reactive-tools --manager connect res.json
 
 echo "Setup complete"
-sleep 3600
+sleep 5
+
+echo "STARTING PING-PONG 8 BYTES"
+for i in {1..10}
+do
+   echo "STARTING NEW ITERATION: $i"
+   reactive-tools call res.json --module ping --entry start --arg 0800
+   sleep 5
+done
+
+echo "STARTING PING-PONG 32 BYTES"
+for i in {1..10}
+do
+   echo "STARTING NEW ITERATION: $i"
+   reactive-tools call res.json --module ping --entry start --arg 2000
+   sleep 5
+done
+
+echo "ALL DONE"

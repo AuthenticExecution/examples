@@ -46,3 +46,5 @@ do
    reactive-tools call res.json --module ping --entry start --arg 2000
    sleep 5
 done
+
+echo "ALL DONE"
