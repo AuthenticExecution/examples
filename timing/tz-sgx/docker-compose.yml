@@ -1,22 +1,7 @@
 version: "3.9"
 
 services:
-  node-sgx-1:
-    image: gianlu33/reactive-event-manager:latest
-    expose:
-      - "5000-5010"
-    environment:
-      - EM_PORT=5000
-      - EM_LOG=info
-      - EM_THREADS=16
-      - EM_PERIODIC_TASKS=false
-      - EM_SGX=true
-      - EM_MEASURE_TIME=true
-    devices:
-      - "/dev/sgx/enclave:/dev/sgx/enclave"
-    volumes:
-      - "/var/run/aesmd:/var/run/aesmd"
-  node-sgx-2:
+  node-sgx:
     image: gianlu33/reactive-event-manager:latest
     expose:
       - "5000-5010"
@@ -59,8 +44,7 @@ services:
     image: gianlu33/reactive-tools:latest
     command: ./deploy.sh
     depends_on:
-      - node-sgx-1
-      - node-sgx-2
+      - node-sgx
       - node-trustzone
       - aesm-client
       - manager
