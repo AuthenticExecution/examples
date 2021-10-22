@@ -6,11 +6,15 @@ set -e
 echo "Attesting AM.."
 python3 run_attester.py manager.yaml
 
+# Wait until AM is ready
 sleep 1
 
 # Initialize the Attestation Manager for the SGX attestation
 echo "Initializing AM.."
 attman-cli --config manager.yaml --request init-sgx --data init_sgx.yaml
+
+# Wait untill all EMs are up and running
+sleep 5
 
 # deploy
 echo "Deploying modules.."
