@@ -30,8 +30,8 @@ openssl x509 -inform der -in cert.der -out cert.pem
 # Try querying the web server to get the number of button presses (check the port)
 curl --cacert cert.pem https://node-sgx:48879 # returns 0
 
-# Simulate a button press
-reactive-tools --verbose output res.json --connection trigger-btn
+# Simulate a button press (giving a dummy argument due to a Sancus bug)
+reactive-tools --verbose output res.json --connection trigger-btn --arg 0000
 
 # Query the web server again
 curl --cacert cert.pem https://node-sgx:48879 # returns 1

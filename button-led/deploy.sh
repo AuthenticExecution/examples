@@ -31,8 +31,10 @@ echo "Establishing connections.."
 reactive-tools --manager connect res.json
 
 # init LED and attest pmodled
+# note: we give a dummy argument because led_driver would otherwise fail
+# due to a bug that makes sancus_unwrap fail if payload size is zero
 echo "Initializing and attesting MMIO LED.."
-reactive-tools output res.json --connection init-led
+reactive-tools output res.json --connection init-led --arg 0000
 
 echo "Setup complete"
 sleep 3600
