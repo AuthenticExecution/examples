@@ -2,7 +2,7 @@ version: "3.9"
 
 services:
   node-sancus-1:
-    image: gianlu33/reactive-event-manager:latest
+    image: authexec/event-manager-sgx:latest
     expose:
       - "5000-5010"
     environment:
@@ -12,7 +12,7 @@ services:
       - EM_PERIODIC_TASKS=false
       - EM_SGX=false
   node-sancus-2:
-    image: gianlu33/reactive-event-manager:latest
+    image: authexec/event-manager-sgx:latest
     expose:
       - "5000-5010"
     environment:
@@ -22,7 +22,7 @@ services:
       - EM_PERIODIC_TASKS=false
       - EM_SGX=false
   node-sgx:
-    image: gianlu33/reactive-event-manager:latest
+    image: authexec/event-manager-sgx:latest
     expose:
       - "5000-5010"
     environment:
@@ -32,7 +32,7 @@ services:
       - EM_PERIODIC_TASKS=false
       - EM_SGX=false
   node-trustzone:
-    image: gianlu33/reactive-event-manager:latest
+    image: authexec/event-manager-sgx:latest
     expose:
       - "5000-5010"
     environment:
@@ -42,11 +42,11 @@ services:
       - EM_PERIODIC_TASKS=false
       - EM_SGX=false
   manager:
-    image: gianlu33/attestation-manager:native
+    image: authexec/attestation-manager:native
     expose:
       - "1234"
   admin:
-    image: gianlu33/reactive-tools:latest
+    image: authexec/reactive-tools:latest
     command: ./deploy.sh
     depends_on:
       - node-sancus-1
