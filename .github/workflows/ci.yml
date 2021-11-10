@@ -40,7 +40,7 @@ jobs:
         cd button-led
         shopt -s expand_aliases
         alias REACTIVE_TOOLS="docker run --rm --network=host -v $(pwd):/usr/src/app/ ${{ env.ADMIN_IMAGE }} reactive-tools"
-        REACTIVE_TOOLS --verbose build descriptor-local.json
+        REACTIVE_TOOLS --debug build descriptor-local.json
         unalias REACTIVE_TOOLS
         touch completed
     -
