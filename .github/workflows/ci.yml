@@ -1,0 +1,76 @@
+name: Tests
+on:
+  schedule:
+    - cron: '0 0 * * 1' # Every week on Monday
+  workflow_dispatch: # Allow manual triggering
+
+env:
+  SGX_IMAGE: authexec/event-manager-sgx:latest
+  SANCUS_IMAGE: authexec/event-manager-sancus:latest
+  TRUSTZONE_IMAGE: authexec/event-manager-trustzone:latest
+  AESM_CLIENT_IMAGE: authexec/aesm-client:latest
+  MANAGER_IMAGE: authexec/attestation-manager
+  ADMIN_IMAGE: authexec/reactive-tools:latest
+
+jobs:
+  test-examples:
+    runs-on: ubuntu-latest
+    steps:
+    -
+      uses: actions/checkout@master
+    -
+      name: Pull images
+      run: |
+        docker pull ${{ env.ADMIN_IMAGE }}
+        docker pull ${{ env.SGX_IMAGE }}
+        docker pull ${{ env.MANAGER_IMAGE }}:native
+        ### Uncomment lines below if other Docker images are needed ###
+        #docker pull ${{ env.SANCUS_IMAGE }}
+        #docker pull ${{ env.TRUSTZONE_IMAGE }}
+        #docker pull ${{ env.AESM_CLIENT_IMAGE }}
+        #docker pull ${{ env.MANAGER_IMAGE }}:sgx
+    -
+      name: button-led (only build)
+      timeout-minutes: 10
+      run: |
+        cd button-led
+        shopt -s expand_aliases
+        alias REACTIVE_TOOLS="docker run --rm --network=host -v $(pwd):/usr/src/app/ ${{ env.ADMIN_IMAGE }} reactive-tools"
+        REACTIVE_TOOLS --verbose build descriptor-local.json
+        unalias REACTIVE_TOOLS
+        touch completed
+    -
+      name: button-led-native
+      timeout-minutes: 10
+      run: |
+        cd button-led-native
+        shopt -s expand_aliases
+        ADMIN_CONTAINER=button-led-native_admin_1
+        alias ADMIN="docker exec $ADMIN_CONTAINER"
+        alias REACTIVE_TOOLS="ADMIN reactive-tools"
+        docker-compose up -d
+        echo "Waiting until deployment is complete.."
+        until docker logs $ADMIN_CONTAINER 2> /dev/null | grep 'Setup complete' ; do sleep 1; done
+        ADMIN ./init-webserver.sh
+        sleep 2
+        [ $(ADMIN curl --cacert cert.pem https://node-sgx:48879) -eq 0 ]
+        REACTIVE_TOOLS --verbose output res.json --connection trigger-btn
+        sleep 2
+        [ $(ADMIN curl --cacert cert.pem https://node-sgx:48879) -eq 1 ]
+        REACTIVE_TOOLS --verbose output res.json --connection trigger-btn
+        sleep 2
+        [ $(ADMIN curl --cacert cert.pem https://node-sgx:48879) -eq 2 ]
+        docker-compose kill
+        docker-compose down
+        unalias REACTIVE_TOOLS  
+        unalias ADMIN
+        touch completed
+    -
+      name: Print logs if failure
+      if: ${{ failure() }}
+      run: |
+        if ! find button-led/completed; then 
+          echo "There are no additional logs for the button-led test."
+        elif ! find button-led-native/completed; then 
+          docker-compose -f button-led-native/docker-compose.yml logs
+        fi
