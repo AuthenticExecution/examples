@@ -1,5 +1,9 @@
 name: Tests
 on:
+  push:
+    branches:
+      - master
+      - main
   schedule:
     - cron: '0 0 * * 1' # Every week on Monday
   workflow_dispatch: # Allow manual triggering
