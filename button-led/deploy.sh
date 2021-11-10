@@ -16,7 +16,7 @@ attman-cli --config manager.yaml --request init-sgx --data init_sgx.yaml
 
 # deploy
 echo "Deploying modules.."
-reactive-tools --manager deploy descriptor.json --result res.json
+reactive-tools --verbose --manager deploy descriptor.json --result res.json
 
 # TODO: is it really necessary?
 echo "Waiting until all the modules are up and running.."
@@ -24,17 +24,17 @@ sleep 2
 
 # attest
 echo "Attesting modules.."
-reactive-tools --manager attest res.json
+reactive-tools --verbose --manager attest res.json
 
 # connect
 echo "Establishing connections.."
-reactive-tools --manager connect res.json
+reactive-tools --verbose --manager connect res.json
 
 # init LED and attest pmodled
 # note: we give a dummy argument because led_driver would otherwise fail
 # due to a bug that makes sancus_unwrap fail if payload size is zero
 echo "Initializing and attesting MMIO LED.."
-reactive-tools output res.json --connection init-led --arg 0000
+reactive-tools --verbose output res.json --connection init-led --arg 0000
 
 echo "Setup complete"
 sleep 3600

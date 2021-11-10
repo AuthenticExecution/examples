@@ -8,7 +8,7 @@ sleep 10
 
 # deploy
 echo "Deploying modules.."
-reactive-tools --manager deploy descriptor.json --result res.json
+reactive-tools --verbose --manager deploy descriptor.json --result res.json
 
 # TODO: is it really necessary?
 echo "Waiting until all the modules are up and running.."
@@ -16,11 +16,11 @@ sleep 2
 
 # attest
 echo "Attesting modules.."
-reactive-tools --manager attest res.json
+reactive-tools --verbose --manager attest res.json
 
 # connect
 echo "Establishing connections.."
-reactive-tools --manager connect res.json
+reactive-tools --verbose --manager connect res.json
 
 echo "Setup complete"
 sleep 3600
