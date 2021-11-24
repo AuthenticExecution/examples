@@ -1,0 +1,38 @@
+{
+    "nodes": [
+        {
+            "type": "native",
+            "name": "node_native",
+            "ip_address": "node-native",
+            "reactive_port": 5000
+        }
+    ],
+    "modules" : [
+        {
+            "type": "native",
+            "name": "webserver",
+            "node": "node_native"
+        },
+        {
+            "type": "native",
+            "name": "db",
+            "node": "node_native"
+        }
+    ],
+    "connections": [
+      {
+          "from_module": "webserver",
+          "from_output": "request_received",
+          "to_module": "db",
+          "to_input": "increment_requests",
+          "encryption": "aes"
+      },
+      {
+        "from_module": "webserver",
+        "from_request": "get_requests",
+        "to_module": "db",
+        "to_handler": "get_num_requests",
+        "encryption": "aes"
+    }
+    ]
+}
