@@ -2,7 +2,7 @@ version: "3.9"
 
 services:
   node-native-1:
-    image: gianlu33/reactive-event-manager:latest
+    image: authexec/event-manager-sgx:latest
     expose:
       - "5000-5010"
     environment:
@@ -13,7 +13,7 @@ services:
       - EM_SGX=false
       - EM_MEASURE_TIME=true
   node-native-2:
-    image: gianlu33/reactive-event-manager:latest
+    image: authexec/event-manager-sgx:latest
     expose:
       - "5000-5010"
     environment:
@@ -24,11 +24,11 @@ services:
       - EM_SGX=false
       - EM_MEASURE_TIME=true
   manager:
-    image: gianlu33/attestation-manager:native
+    image: authexec/attestation-manager:native
     expose:
       - "1234"
   admin:
-    image: gianlu33/reactive-tools:latest
+    image: authexec/reactive-tools:latest
     command: ./deploy.sh
     depends_on:
       - node-native-1

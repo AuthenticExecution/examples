@@ -2,7 +2,7 @@ version: "3.9"
 
 services:
   node-sgx:
-    image: gianlu33/reactive-event-manager:latest
+    image: authexec/event-manager-sgx:latest
     ports:
       - "5000-5010:5000-5010"
     environment:
@@ -17,7 +17,7 @@ services:
     volumes:
       - "/var/run/aesmd:/var/run/aesmd"
   aesm-client:
-    image: gianlu33/aesm-client:latest
+    image: authexec/aesm-client:latest
     expose:
       - "13741"
     environment:
@@ -25,7 +25,7 @@ services:
     volumes:
       - "/var/run/aesmd:/var/run/aesmd"
   manager:
-    image: gianlu33/attestation-manager:sgx
+    image: authexec/attestation-manager:sgx
     expose:
       - "1234"
     devices:
@@ -33,7 +33,7 @@ services:
     volumes:
       - "/var/run/aesmd:/var/run/aesmd"
   admin:
-    image: gianlu33/reactive-tools:latest
+    image: authexec/reactive-tools:latest
     command: ./deploy.sh
     depends_on:
       - node-sgx
