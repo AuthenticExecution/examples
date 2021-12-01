@@ -23,9 +23,9 @@
     ],
     "modules" : [
         {
-            "type": "native",
+            "type": "sgx",
             "name": "ping",
-            "node": "node_native",
+            "node": "node_sgx",
             "vendor_key": "cred/vendor_key.pem",
             "ra_settings": "cred/settings.json",
             "features": ["measure_time"]

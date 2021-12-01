@@ -12,6 +12,9 @@ services:
       - EM_PERIODIC_TASKS=false
       - EM_SGX=true
       - EM_MEASURE_TIME=true
+    devices:
+      - "/dev/sgx/enclave:/dev/sgx/enclave"
+      #- "/dev/isgx:/dev/isgx"
     volumes:
       - "/var/run/aesmd:/var/run/aesmd"
   node-native:
