@@ -2,10 +2,11 @@
     "manager": "manager.yaml",
     "nodes": [
         {
-            "type": "native",
+            "type": "sgx",
             "name": "node_sgx",
             "ip_address": "node-sgx",
-            "reactive_port": 5000
+            "reactive_port": 5000,
+            "aesm_host": "aesm-client"
         },
         {
             "type": "native",
@@ -17,28 +18,33 @@
             "type": "native",
             "name": "node_sancus_2",
             "ip_address": "node-sancus-2",
-            "reactive_port": 5000
+            "reactive_port": 6000
         },
         {
-            "type": "native",
+            "type": "trustzone",
             "name": "node_trustzone",
             "ip_address": "node-trustzone",
-            "reactive_port": 5000
+            "reactive_port": 1236,
+            "node_key": "9a04aa182d039674708ce807ed914cd153cd9df7805e61742f0ae41294758dd3"
         }
     ],
     "modules" : [
         {
-            "type": "native",
+            "type": "sgx",
             "name": "webserver",
-            "node": "node_sgx"
+            "node": "node_sgx",
+            "vendor_key": "cred/vendor_key.pem",
+            "ra_settings": "cred/settings.json"
         },
         {
-            "type": "native",
+            "type": "sgx",
             "name": "db",
-            "node": "node_sgx"
+            "node": "node_sgx",
+            "vendor_key": "cred/vendor_key.pem",
+            "ra_settings": "cred/settings.json"
         },
         {
-            "type": "native",
+            "type": "trustzone",
             "name": "gateway",
             "node": "node_trustzone"
         },
@@ -59,14 +65,14 @@
           "from_output": "button_pressed",
           "to_module": "gateway",
           "to_input": "button_pressed",
-          "encryption": "aes"
+          "encryption": "spongent"
       },
       {
           "from_module": "gateway",
           "from_output": "toggle_led",
           "to_module": "led_driver",
-          "to_input": "toggle_led",
-          "encryption": "aes"
+          "to_input": 1,
+          "encryption": "spongent"
       },
       {
           "from_module": "gateway",
@@ -94,7 +100,7 @@
           "direct": true,
           "to_module": "button_driver",
           "to_input": "trigger_button_press",
-          "encryption": "aes"
+          "encryption": "spongent"
       },
       {
           "name": "get-presses",
