@@ -15,10 +15,11 @@ env:
   AESM_CLIENT_IMAGE: authexec/aesm-client:latest
   MANAGER_IMAGE: authexec/attestation-manager
   ADMIN_IMAGE: authexec/reactive-tools:latest
+  DOCKER_COMPOSE_NAME: ci_github_runner__
 
 jobs:
   test-examples:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
     -
       uses: actions/checkout@master
@@ -27,14 +28,13 @@ jobs:
       run: |
         docker pull ${{ env.ADMIN_IMAGE }}
         docker pull ${{ env.SGX_IMAGE }}
+        docker pull ${{ env.SANCUS_IMAGE }}
+        docker pull ${{ env.TRUSTZONE_IMAGE }}
+        docker pull ${{ env.AESM_CLIENT_IMAGE }}
         docker pull ${{ env.MANAGER_IMAGE }}:native
-        ### Uncomment lines below if other Docker images are needed ###
-        #docker pull ${{ env.SANCUS_IMAGE }}
-        #docker pull ${{ env.TRUSTZONE_IMAGE }}
-        #docker pull ${{ env.AESM_CLIENT_IMAGE }}
-        #docker pull ${{ env.MANAGER_IMAGE }}:sgx
+        docker pull ${{ env.MANAGER_IMAGE }}:sgx
     -
-      name: button-led (only build)
+      name: button-led (build only)
       timeout-minutes: 10
       run: |
         cd button-led
@@ -44,14 +44,15 @@ jobs:
         unalias REACTIVE_TOOLS
         touch completed
     -
-      name: button-led-native
+      name: button-led-no-sancus
       timeout-minutes: 10
       run: |
-        cd button-led-native
+        cd button-led-no-sancus
+        cp /home/gianluca/settings.json cred/
         shopt -s expand_aliases
-        ADMIN_CONTAINER=button-led-native_admin_1
+        ADMIN_CONTAINER=${{ env.DOCKER_COMPOSE_NAME }}admin_1
         alias ADMIN="docker exec $ADMIN_CONTAINER"
-        docker-compose up -d
+        docker-compose -p ${{ env.DOCKER_COMPOSE_NAME }} up -d
         echo "Waiting until deployment is complete.."
         until docker logs $ADMIN_CONTAINER 2> /dev/null | grep 'Setup complete' ; do sleep 1; done
         ADMIN make init
@@ -63,8 +64,8 @@ jobs:
         ADMIN make press
         sleep 2
         [ $(ADMIN make request) -eq 2 ]
-        docker-compose kill
-        docker-compose down
+        docker-compose -p ${{ env.DOCKER_COMPOSE_NAME }} kill
+        docker-compose -p ${{ env.DOCKER_COMPOSE_NAME }} down
         unalias ADMIN
         touch completed
     -
@@ -73,6 +74,19 @@ jobs:
       run: |
         if ! find button-led/completed; then 
           echo "There are no additional logs for the button-led test."
-        elif ! find button-led-native/completed; then 
-          docker-compose -f button-led-native/docker-compose.yml logs
+        elif ! find button-led-no-sancus/completed; then 
+          docker-compose -p ${{ env.DOCKER_COMPOSE_NAME }} -f button-led-no-sancus/docker-compose.yml logs
         fi
+    -
+      name: Cleanup
+      if: ${{ always() }}
+      run: |
+        shopt -s expand_aliases
+        alias ADMIN="docker run --rm -v $(pwd)/..:/usr/src/app/ ${{ env.ADMIN_IMAGE }}"
+        ADMIN rm -rf examples/
+        unalias ADMIN
+        CONTAINERS=$(docker ps -a -q --filter name=${{ env.DOCKER_COMPOSE_NAME }})
+        NETWORKS=$(docker network ls -q --filter name=${{ env.DOCKER_COMPOSE_NAME }})
+        docker kill $CONTAINERS
+        docker rm $CONTAINERS
+        docker network rm $NETWORKS
