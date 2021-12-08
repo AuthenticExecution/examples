@@ -50,12 +50,7 @@
         {
             "type": "trustzone",
             "name": "gateway",
-            "node": "node_trustzone",
-            "files_dir": ".",
-            "id": 1,
-            "uuid": 330315078004237493521607747927864613423,
-            "inputs": {"button_pressed": 0},
-            "outputs": {"toggle_led": 1 , "increment_presses": 2}
+            "node": "node_trustzone"
         },
         {
             "type": "sancus",
