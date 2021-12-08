@@ -51,22 +51,20 @@ jobs:
         shopt -s expand_aliases
         ADMIN_CONTAINER=button-led-native_admin_1
         alias ADMIN="docker exec $ADMIN_CONTAINER"
-        alias REACTIVE_TOOLS="ADMIN reactive-tools"
         docker-compose up -d
         echo "Waiting until deployment is complete.."
         until docker logs $ADMIN_CONTAINER 2> /dev/null | grep 'Setup complete' ; do sleep 1; done
-        ADMIN ./init-webserver.sh
+        ADMIN make init
         sleep 2
-        [ $(ADMIN curl --cacert cert.pem https://node-sgx:48879) -eq 0 ]
-        REACTIVE_TOOLS --verbose output res.json --connection trigger-btn
+        [ $(ADMIN make request) -eq 0 ]
+        ADMIN make press
         sleep 2
-        [ $(ADMIN curl --cacert cert.pem https://node-sgx:48879) -eq 1 ]
-        REACTIVE_TOOLS --verbose output res.json --connection trigger-btn
+        [ $(ADMIN make request) -eq 1 ]
+        ADMIN make press
         sleep 2
-        [ $(ADMIN curl --cacert cert.pem https://node-sgx:48879) -eq 2 ]
+        [ $(ADMIN make request) -eq 2 ]
         docker-compose kill
         docker-compose down
-        unalias REACTIVE_TOOLS  
         unalias ADMIN
         touch completed
     -

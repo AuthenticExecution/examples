@@ -18,7 +18,7 @@
             "type": "native",
             "name": "node_sancus_2",
             "ip_address": "node-sancus-2",
-            "reactive_port": 6000
+            "reactive_port": 5000
         },
         {
             "type": "trustzone",
@@ -71,7 +71,7 @@
           "from_module": "gateway",
           "from_output": "toggle_led",
           "to_module": "led_driver",
-          "to_input": 1,
+          "to_input": "toggle_led",
           "encryption": "spongent"
       },
       {
