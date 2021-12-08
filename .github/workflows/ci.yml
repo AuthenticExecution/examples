@@ -50,7 +50,7 @@ jobs:
         cd button-led-no-sancus
         cp /home/gianluca/settings.json cred/
         shopt -s expand_aliases
-        ADMIN_CONTAINER=${{ env.DOCKER_COMPOSE_NAME }}admin_1
+        ADMIN_CONTAINER=${{ env.DOCKER_COMPOSE_NAME }}_admin_1
         alias ADMIN="docker exec $ADMIN_CONTAINER"
         docker-compose -p ${{ env.DOCKER_COMPOSE_NAME }} up -d
         echo "Waiting until deployment is complete.."
@@ -82,8 +82,9 @@ jobs:
       if: ${{ always() }}
       run: |
         shopt -s expand_aliases
-        alias ADMIN="docker run --rm -v $(pwd)/..:/usr/src/app/ ${{ env.ADMIN_IMAGE }}"
-        ADMIN rm -rf examples/
+        alias ADMIN="docker run --rm -v $(pwd)/:/usr/src/app/ ${{ env.ADMIN_IMAGE }}"
+        ADMIN rm -rf button-led/build
+        ADMIN rm -rf button-led-no-sancus/build
         unalias ADMIN
         CONTAINERS=$(docker ps -a -q --filter name=${{ env.DOCKER_COMPOSE_NAME }})
         NETWORKS=$(docker network ls -q --filter name=${{ env.DOCKER_COMPOSE_NAME }})
