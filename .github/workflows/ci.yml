@@ -88,6 +88,6 @@ jobs:
         unalias ADMIN
         CONTAINERS=$(docker ps -a -q --filter name=${{ env.DOCKER_COMPOSE_NAME }})
         NETWORKS=$(docker network ls -q --filter name=${{ env.DOCKER_COMPOSE_NAME }})
-        docker kill $CONTAINERS
-        docker rm $CONTAINERS
-        docker network rm $NETWORKS
+        docker kill $CONTAINERS || true
+        docker rm $CONTAINERS || true
+        docker network rm $NETWORKS || true
