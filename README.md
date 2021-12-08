@@ -1,6 +1,6 @@
 # Example Authentic Execution deployments
 
-[![Tests](https://github.com/AuthenticExecution/examples/actions/workflows/ci.yml/badge.svg)](https://github.com/AuthenticExecution/examples/actions/workflows/ci.yml)
+[![Tests](https://github.com/AuthenticExecution/examples/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/AuthenticExecution/examples/actions/workflows/ci.yml)
 
 Each folder contains a different example of Authentic Execution deployment. Each example uses different TEE technologies, some of them combine multiple TEEs together. Check the `docker-compose.yml` and `descriptor.json` files to find out the exact topology of a deployment.
 
