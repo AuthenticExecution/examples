@@ -29,5 +29,5 @@ get_root_ca:
 
 clean:
 	rm -rf __tmp__
-	find . -type 'd' -name cred -exec rm -rv {} +
-	find . -type 'd' -name build -exec rm -rv {} +
+	find . -maxdepth 2 -type 'd' -name cred -exec rm -rv {} + > /dev/null
+	find . -maxdepth 2 -type 'd' -name build -exec rm -rv {} + > /dev/null
