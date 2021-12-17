@@ -8,7 +8,7 @@ sleep 10
 
 # Attesting the Attestation Manager
 echo "Attesting AM.."
-python3 run_attester.py manager.yaml
+python3 run_attester.py
 
 # Initialize the Attestation Manager for the SGX attestation
 echo "Initializing AM.."
