@@ -1,3 +1,5 @@
 build
 res.json
 cert.*
+*.pem
+*.sig

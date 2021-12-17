@@ -34,6 +34,11 @@ jobs:
         docker pull ${{ env.MANAGER_IMAGE }}:native
         docker pull ${{ env.MANAGER_IMAGE }}:sgx
     -
+      name: Get credentials
+      run : |
+        make all
+        cp /home/gianluca/settings.json cred/
+    - 
       name: button-led (build only)
       timeout-minutes: 10
       run: |
@@ -48,7 +53,7 @@ jobs:
       timeout-minutes: 10
       run: |
         cd button-led-no-sancus
-        cp /home/gianluca/settings.json cred/
+        cp -r ../cred .
         shopt -s expand_aliases
         ADMIN_CONTAINER=${{ env.DOCKER_COMPOSE_NAME }}_admin_1
         alias ADMIN="docker exec $ADMIN_CONTAINER"
@@ -73,7 +78,7 @@ jobs:
       timeout-minutes: 10
       run: |
         cd db-webserver
-        cp /home/gianluca/settings.json cred/
+        cp -r ../cred .
         shopt -s expand_aliases
         ADMIN_CONTAINER=${{ env.DOCKER_COMPOSE_NAME }}_admin_1
         alias ADMIN="docker exec $ADMIN_CONTAINER"
@@ -108,9 +113,7 @@ jobs:
       run: |
         shopt -s expand_aliases
         alias ADMIN="docker run --rm -v $(pwd)/:/usr/src/app/ ${{ env.ADMIN_IMAGE }}"
-        ADMIN rm -rf button-led/build
-        ADMIN rm -rf button-led-no-sancus/build
-        ADMIN rm -rf db-webserver/build
+        ADMIN make clean
         unalias ADMIN
         CONTAINERS=$(docker ps -a -q --filter name=${{ env.DOCKER_COMPOSE_NAME }})
         NETWORKS=$(docker network ls -q --filter name=${{ env.DOCKER_COMPOSE_NAME }})
