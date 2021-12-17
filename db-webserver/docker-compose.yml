@@ -1,7 +1,7 @@
 version: "3.9"
 
 services:
-  node-native:
+  node-sgx:
     image: authexec/event-manager-sgx:latest
     expose:
       - "5000-5010"
@@ -10,12 +10,25 @@ services:
       - EM_LOG=info
       - EM_THREADS=16
       - EM_PERIODIC_TASKS=false
-      - EM_SGX=false
+      - EM_SGX=true
+    devices:
+      - "/dev/isgx:/dev/isgx"
+    volumes:
+      - "/var/run/aesmd:/var/run/aesmd"
+  aesm-client:
+    image: authexec/aesm-client:latest
+    expose:
+      - "13741"
+    environment:
+      - AESM_PORT=13741
+    volumes:
+      - "/var/run/aesmd:/var/run/aesmd"
   admin:
     image: authexec/reactive-tools:latest
     command: ./deploy.sh
     depends_on:
-      - node-native
+      - node-sgx
+      - aesm-client
     volumes:
       - ".:/usr/src/app"
       - "/usr/local/cargo/git:/usr/local/cargo/git" # for caching builds

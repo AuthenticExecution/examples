@@ -44,7 +44,7 @@ jobs:
         unalias REACTIVE_TOOLS
         touch completed
     -
-      name: button-led-no-sancus
+      name: button-led-no-sancus with AM
       timeout-minutes: 10
       run: |
         cd button-led-no-sancus
@@ -69,6 +69,29 @@ jobs:
         unalias ADMIN
         touch completed
     -
+      name: db-webserver without AM
+      timeout-minutes: 10
+      run: |
+        cd db-webserver
+        cp /home/gianluca/settings.json cred/
+        shopt -s expand_aliases
+        ADMIN_CONTAINER=${{ env.DOCKER_COMPOSE_NAME }}_admin_1
+        alias ADMIN="docker exec $ADMIN_CONTAINER"
+        docker-compose -p ${{ env.DOCKER_COMPOSE_NAME }} up -d
+        echo "Waiting until deployment is complete.."
+        until docker logs $ADMIN_CONTAINER 2> /dev/null | grep 'Setup complete' ; do sleep 1; done
+        ADMIN make init
+        sleep 2
+        [ $(ADMIN make request) -eq 0 ]
+        sleep 2
+        [ $(ADMIN make request) -eq 1 ]
+        sleep 2
+        [ $(ADMIN make request) -eq 2 ]
+        docker-compose -p ${{ env.DOCKER_COMPOSE_NAME }} kill
+        docker-compose -p ${{ env.DOCKER_COMPOSE_NAME }} down
+        unalias ADMIN
+        touch completed
+    -
       name: Print logs if failure
       if: ${{ failure() }}
       run: |
@@ -76,6 +99,8 @@ jobs:
           echo "There are no additional logs for the button-led test."
         elif ! find button-led-no-sancus/completed; then 
           docker-compose -p ${{ env.DOCKER_COMPOSE_NAME }} -f button-led-no-sancus/docker-compose.yml logs
+        elif ! find db-webserver/completed; then 
+          docker-compose -p ${{ env.DOCKER_COMPOSE_NAME }} -f db-webserver/docker-compose.yml logs
         fi
     -
       name: Cleanup
@@ -85,6 +110,7 @@ jobs:
         alias ADMIN="docker run --rm -v $(pwd)/:/usr/src/app/ ${{ env.ADMIN_IMAGE }}"
         ADMIN rm -rf button-led/build
         ADMIN rm -rf button-led-no-sancus/build
+        ADMIN rm -rf db-webserver/build
         unalias ADMIN
         CONTAINERS=$(docker ps -a -q --filter name=${{ env.DOCKER_COMPOSE_NAME }})
         NETWORKS=$(docker network ls -q --filter name=${{ env.DOCKER_COMPOSE_NAME }})

@@ -1,22 +1,27 @@
 {
     "nodes": [
         {
-            "type": "native",
-            "name": "node_native",
-            "ip_address": "node-native",
-            "reactive_port": 5000
+            "type": "sgx",
+            "name": "node_sgx",
+            "ip_address": "node-sgx",
+            "reactive_port": 5000,
+            "aesm_host": "aesm-client"
         }
     ],
     "modules" : [
         {
-            "type": "native",
+            "type": "sgx",
             "name": "webserver",
-            "node": "node_native"
+            "node": "node_sgx",
+            "vendor_key": "cred/vendor_key.pem",
+            "ra_settings": "cred/settings.json"
         },
         {
-            "type": "native",
+            "type": "sgx",
             "name": "db",
-            "node": "node_native"
+            "node": "node_sgx",
+            "vendor_key": "cred/vendor_key.pem",
+            "ra_settings": "cred/settings.json"
         }
     ],
     "connections": [

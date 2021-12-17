@@ -19,9 +19,14 @@ Two connections are needed:
 
 ## Try it out
 
-The example here runs natively, i.e., `db` and `webserver` run as simple
-processes. Hence, SGX is not required, and the example can be ran from a common
-Linux machine.
+The example here runs an SGX application, i.e., `db` and `webserver` run as
+enclave. However, if you want to try it out on a linux machine without SGX, do
+the following steps:
+
+- In `descriptor.json`, replace the type of nodes and modules
+from `sgx` to `native`;
+- In `docker-compose.yml`, remove any devices and volumes from `node-sgx` and
+  set `EM_SGX` to `false`.
 
 ```bash
 # deploy the application in detached mode
@@ -38,7 +43,7 @@ reactive-tools call res.json --module webserver --entry init
 
 # send requests to the web server
 # repeat this multiple times, noticing that the returned number increases each time
-curl node-native
+curl node-sgx
 
 # exit the shell using CTRL-D
 
