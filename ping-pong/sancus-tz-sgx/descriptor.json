@@ -41,25 +41,20 @@
         },
         {
             "type": "trustzone",
-            "name": "router",
-            "node": "node_trustzone",
-            "files_dir": ".",
-            "id": 2,
-            "uuid": 175194141668063048800749770465390128705,
-            "inputs": {"send_int0": 0 , "send_int1":1},
-            "outputs": {"fw_int0": 2 , "fw_int1": 3}
+            "name": "gateway",
+            "node": "node_trustzone"
         }
     ],
     "connections": [
       {
           "from_module": "ping",
           "from_output": "send_ping",
-          "to_module": "router",
+          "to_module": "gateway",
           "to_input": "send_int0",
           "encryption": "aes"
       },
       {
-          "from_module": "router",
+          "from_module": "gateway",
           "from_output": "fw_int0",
           "to_module": "pong",
           "to_input": "recv_ping",
@@ -68,12 +63,12 @@
       {
           "from_module": "pong",
           "from_output": "send_pong",
-          "to_module": "router",
+          "to_module": "gateway",
           "to_input": "send_int1",
           "encryption": "spongent"
       },
       {
-          "from_module": "router",
+          "from_module": "gateway",
           "from_output": "fw_int1",
           "to_module": "ping",
           "to_input": "recv_pong",

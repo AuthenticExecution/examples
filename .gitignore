@@ -3,3 +3,4 @@ res.json
 *.der
 *.pem
 *.sig
+cred

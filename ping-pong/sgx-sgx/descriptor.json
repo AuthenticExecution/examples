@@ -34,7 +34,7 @@
         },
         {
             "type": "sgx",
-            "name": "router",
+            "name": "gateway",
             "node": "node_sgx_2",
             "vendor_key": "cred/vendor_key.pem",
             "ra_settings": "cred/settings.json",
@@ -53,12 +53,12 @@
       {
           "from_module": "ping",
           "from_output": "send_ping",
-          "to_module": "router",
+          "to_module": "gateway",
           "to_input": "send_int0",
           "encryption": "aes"
       },
       {
-          "from_module": "router",
+          "from_module": "gateway",
           "from_output": "fw_int0",
           "to_module": "pong",
           "to_input": "recv_ping",
@@ -67,12 +67,12 @@
       {
           "from_module": "pong",
           "from_output": "send_pong",
-          "to_module": "router",
+          "to_module": "gateway",
           "to_input": "send_int1",
           "encryption": "aes"
       },
       {
-          "from_module": "router",
+          "from_module": "gateway",
           "from_output": "fw_int1",
           "to_module": "ping",
           "to_input": "recv_pong",
