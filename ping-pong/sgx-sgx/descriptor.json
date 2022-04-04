@@ -4,21 +4,21 @@
         {
             "type": "sgx",
             "name": "node_sgx_1",
-            "ip_address": "node-sgx-1",
+            "host": "node-sgx-1",
             "reactive_port": 5000,
             "aesm_host": "aesm-client"
         },
         {
             "type": "sgx",
             "name": "node_sgx_2",
-            "ip_address": "node-sgx-2",
+            "host": "node-sgx-2",
             "reactive_port": 5000,
             "aesm_host": "aesm-client"
         },
         {
             "type": "sgx",
             "name": "node_sgx_3",
-            "ip_address": "node-sgx-3",
+            "host": "node-sgx-3",
             "reactive_port": 5000,
             "aesm_host": "aesm-client"
         }

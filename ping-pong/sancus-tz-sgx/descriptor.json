@@ -4,14 +4,14 @@
         {
             "type": "sgx",
             "name": "node_sgx",
-            "ip_address": "icecream.experiments.cs.kuleuven.be",
+            "host": "icecream.experiments.cs.kuleuven.be",
             "reactive_port": 5000,
             "aesm_host": "aesm-client"
         },
         {
             "type": "sancus",
             "name": "node_sancus",
-            "ip_address": "skylake004.experiments.cs.kuleuven.be",
+            "host": "skylake004.experiments.cs.kuleuven.be",
             "vendor_id": 4660,
             "vendor_key": "0b7bf3ae40880a8be430d0da34fb76f0",
             "reactive_port": 6000
@@ -19,7 +19,7 @@
         {
             "type": "trustzone",
             "name": "node_trustzone",
-            "ip_address": "icecream.experiments.cs.kuleuven.be",
+            "host": "icecream.experiments.cs.kuleuven.be",
             "reactive_port": 1236,
             "node_key": "9a04aa182d039674708ce807ed914cd153cd9df7805e61742f0ae41294758dd3"
         }

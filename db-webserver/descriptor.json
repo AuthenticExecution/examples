@@ -3,7 +3,7 @@
         {
             "type": "sgx",
             "name": "node_sgx",
-            "ip_address": "node-sgx",
+            "host": "node-sgx",
             "reactive_port": 5000,
             "aesm_host": "aesm-client"
         }

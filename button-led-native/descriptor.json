@@ -4,25 +4,25 @@
         {
             "type": "native",
             "name": "node_sgx",
-            "ip_address": "node-sgx",
+            "host": "node-sgx",
             "reactive_port": 5000
         },
         {
             "type": "native",
             "name": "node_sancus_1",
-            "ip_address": "node-sancus-1",
+            "host": "node-sancus-1",
             "reactive_port": 5000
         },
         {
             "type": "native",
             "name": "node_sancus_2",
-            "ip_address": "node-sancus-2",
+            "host": "node-sancus-2",
             "reactive_port": 5000
         },
         {
             "type": "native",
             "name": "node_trustzone",
-            "ip_address": "node-trustzone",
+            "host": "node-trustzone",
             "reactive_port": 5000
         }
     ],
