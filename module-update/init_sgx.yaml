@@ -1,0 +1,3 @@
+sp_privkey: cred/sp_privkey.pem
+sp_pubkey: cred/sp_pubkey.pem
+ias_certificate: cred/ias_root_ca.pem

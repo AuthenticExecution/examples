@@ -1,0 +1,78 @@
+{
+    "manager": "manager.yaml",
+    "nodes": [
+        {
+            "type": "sgx",
+            "name": "node_sgx_1",
+            "host": "node-sgx-1",
+            "reactive_port": 5000,
+            "aesm_host": "aesm-client"
+        },
+        {
+            "type": "sgx",
+            "name": "node_sgx_2",
+            "host": "node-sgx-2",
+            "reactive_port": 5000,
+            "aesm_host": "aesm-client"
+        },
+        {
+            "type": "sancus",
+            "name": "node_sancus",
+            "host": "node-sancus",
+            "vendor_id": 4660,
+            "vendor_key": "0b7bf3ae40880a8be430d0da34fb76f0",
+            "reactive_port": 6000
+        },
+        {
+            "type": "trustzone",
+            "name": "node_trustzone_1",
+            "host": "node-trustzone-1",
+            "reactive_port": 1236,
+            "node_key": "9a04aa182d039674708ce807ed914cd153cd9df7805e61742f0ae41294758dd3"
+        },
+        {
+            "type": "trustzone",
+            "name": "node_trustzone_2",
+            "host": "node-trustzone-2",
+            "reactive_port": 1236,
+            "node_key": "9a04aa182d039674708ce807ed914cd153cd9df7805e61742f0ae41294758dd3"
+        }
+    ],
+    "modules" : [
+        {
+            "type": "sgx",
+            "name": "source",
+            "node": "node_sgx_1",
+            "vendor_key": "cred/vendor_key.pem",
+            "ra_settings": "cred/settings.json",
+            "features": ["measure_time"]
+        },
+        {
+            "type": "sancus",
+            "name": "sink",
+            "node": "node_sancus",
+            "files": ["sink.c"]
+        },
+        {
+            "type": "trustzone",
+            "name": "gw",
+            "node": "node_trustzone_1"
+        }
+    ],
+    "connections": [
+      {
+          "from_module": "source",
+          "from_output": "send",
+          "to_module": "gw",
+          "to_input": "receive",
+          "encryption": "aes"
+      },
+      {
+          "from_module": "gw",
+          "from_output": "forward",
+          "to_module": "sink",
+          "to_input": "receive",
+          "encryption": "spongent"
+      }
+    ]
+}
