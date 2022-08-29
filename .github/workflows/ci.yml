@@ -97,6 +97,14 @@ jobs:
         unalias ADMIN
         touch completed
     -
+      name: module update
+      timeout-minutes: 10
+      run: |
+        cd module-update
+        cp -r ../cred .
+        docker-compose -p ${{ env.DOCKER_COMPOSE_NAME }} up --abort-on-container-exit --exit-code-from admin
+        touch completed
+    -
       name: Print logs if failure
       if: ${{ failure() }}
       run: |

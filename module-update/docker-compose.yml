@@ -52,7 +52,7 @@ services:
     expose:
       - "6000"
     environment:
-      - ELF=reactive_debug.elf
+      - ELF=reactive.elf
       - PORT=6000
     devices:
       - "/dev/ttyUSB0:/dev/RIOT"

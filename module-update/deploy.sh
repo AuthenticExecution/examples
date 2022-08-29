@@ -41,17 +41,17 @@ sleep 5
 
 echo "Updating source.."
 python update.py res.json source node_sgx_2
-reactive-tools --manager --verbose update res.json --module source
+reactive-tools --manager --timing update res.json --module source
 sleep 5
 
 echo "Updating gw.."
 python update.py res.json gw node_trustzone_2
-reactive-tools --manager --verbose update res.json --module gw
+reactive-tools --manager --timing update res.json --module gw
 sleep 5
 
 echo "Updating sink.."
 #python update.py res.json sink node_sancus_2
-reactive-tools --manager --verbose update res.json --module sink
+reactive-tools --manager --timing update res.json --module sink
 sleep 5
 
 echo "Ping pong post-update"
