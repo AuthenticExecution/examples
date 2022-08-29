@@ -17,14 +17,12 @@ attman-cli --config manager.yaml --request init-sgx --data init_sgx.yaml
 # deploy
 echo "Deploying modules.."
 reactive-tools --verbose --manager deploy descriptor.json --result res.json
-
-# TODO: is it really necessary?
-echo "Waiting until all the modules are up and running.."
 sleep 2
 
 # attest
 echo "Attesting modules.."
 reactive-tools --verbose --manager attest res.json
+sleep 2
 
 # connect
 echo "Establishing connections.."

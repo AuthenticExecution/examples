@@ -29,11 +29,14 @@ def get_measurement_name(line):
 
 def __fetch_matches(sm, out):
     global RESULTS
-
-    for line in lines_time:
-        measurement = get_measurement_name(line)
-        value = float(re.findall(line.format(sm), out)[0])
-        RESULTS[sm][measurement] += value
+    try:
+        for line in lines_time:
+            measurement = get_measurement_name(line)
+            value = float(re.findall(line.format(sm), out)[0])
+            RESULTS[sm][measurement] += value
+    except:
+        print("__fetch_matches failed. Cannot continue.")
+        sys.exit(-1)
 
 def fetch_matches(out):
     for sm in SMs:
@@ -51,21 +54,33 @@ def compute_iteration(num):
         'admin'
         ], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
+    res = True
     try:
         out, err = proc.communicate()
 
         if proc.returncode != 0:
-            print("ERROR! return code: {}".format(proc.returncode))
-            return
-
-        print("Iteration ended, fetching data")
-        fetch_matches(out.decode('utf-8'))
-
-        print("Iteration complete")
+            #print(out.decode('utf-8'))
+            print("ERROR: {}".format(proc.returncode))
+            res = False
+        else:
+            print("Iteration ended, fetching data")
+            fetch_matches(out.decode('utf-8'))
+            print("Iteration complete")
     except Exception as e:
         print("Exception: {}".format(e))
         if proc.returncode == None:
             proc.terminate()
+        res = False
+    finally:
+        proc = subprocess.Popen([
+            'docker',
+            'compose',
+            'rm', 
+            '-f',
+            ], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        proc.wait()
+    
+    return res
 
 # init RESULTS
 for sm in SMs:
@@ -74,8 +89,13 @@ for sm in SMs:
         measurement = get_measurement_name(line)
         RESULTS[sm][measurement] = 0
 
-for i in range(NUM_MEASUREMENTS):
-    compute_iteration(i)
+successes = 0
+while successes < NUM_MEASUREMENTS:
+    res = compute_iteration(successes)
+    if res:
+        successes += 1
+    else:
+        print("Iteration {} failed. Retrying".format(successes))
 
 # compute average
 for sm in SMs:

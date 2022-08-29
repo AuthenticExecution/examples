@@ -27,6 +27,7 @@ sleep 2
 # attest
 echo "Attesting modules.."
 reactive-tools --manager attest res.json
+sleep 2
 
 # connect
 echo "Establishing connections.."
