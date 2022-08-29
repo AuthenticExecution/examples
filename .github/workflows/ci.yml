@@ -57,7 +57,7 @@ jobs:
         shopt -s expand_aliases
         ADMIN_CONTAINER=${{ env.DOCKER_COMPOSE_NAME }}_admin_1
         alias ADMIN="docker exec $ADMIN_CONTAINER"
-        docker-compose -p ${{ env.DOCKER_COMPOSE_NAME }} up -d
+        docker compose -p ${{ env.DOCKER_COMPOSE_NAME }} up -d
         echo "Waiting until deployment is complete.."
         until docker logs $ADMIN_CONTAINER 2> /dev/null | grep 'Setup complete' ; do sleep 1; done
         ADMIN make init
@@ -69,8 +69,7 @@ jobs:
         ADMIN make press
         sleep 2
         [ $(ADMIN make request) -eq 2 ]
-        docker-compose -p ${{ env.DOCKER_COMPOSE_NAME }} kill
-        docker-compose -p ${{ env.DOCKER_COMPOSE_NAME }} down
+        docker compose -p ${{ env.DOCKER_COMPOSE_NAME }} down
         unalias ADMIN
         touch completed
     -
@@ -82,7 +81,7 @@ jobs:
         shopt -s expand_aliases
         ADMIN_CONTAINER=${{ env.DOCKER_COMPOSE_NAME }}_admin_1
         alias ADMIN="docker exec $ADMIN_CONTAINER"
-        docker-compose -p ${{ env.DOCKER_COMPOSE_NAME }} up -d
+        docker compose -p ${{ env.DOCKER_COMPOSE_NAME }} up -d
         echo "Waiting until deployment is complete.."
         until docker logs $ADMIN_CONTAINER 2> /dev/null | grep 'Setup complete' ; do sleep 1; done
         ADMIN make init
@@ -92,8 +91,7 @@ jobs:
         [ $(ADMIN make request) -eq 1 ]
         sleep 2
         [ $(ADMIN make request) -eq 2 ]
-        docker-compose -p ${{ env.DOCKER_COMPOSE_NAME }} kill
-        docker-compose -p ${{ env.DOCKER_COMPOSE_NAME }} down
+        docker compose -p ${{ env.DOCKER_COMPOSE_NAME }} down
         unalias ADMIN
         touch completed
     -
@@ -102,7 +100,8 @@ jobs:
       run: |
         cd module-update
         cp -r ../cred .
-        docker-compose -p ${{ env.DOCKER_COMPOSE_NAME }} up --abort-on-container-exit --exit-code-from admin
+        docker compose -p ${{ env.DOCKER_COMPOSE_NAME }} up --abort-on-container-exit --exit-code-from admin
+        docker compose -p ${{ env.DOCKER_COMPOSE_NAME }} down
         touch completed
     -
       name: Print logs if failure
@@ -111,9 +110,9 @@ jobs:
         if ! find button-led/completed; then 
           echo "There are no additional logs for the button-led test."
         elif ! find button-led-no-sancus/completed; then 
-          docker-compose -p ${{ env.DOCKER_COMPOSE_NAME }} -f button-led-no-sancus/docker-compose.yml logs
+          docker compose -p ${{ env.DOCKER_COMPOSE_NAME }} -f button-led-no-sancus/docker-compose.yml logs
         elif ! find db-webserver/completed; then 
-          docker-compose -p ${{ env.DOCKER_COMPOSE_NAME }} -f db-webserver/docker-compose.yml logs
+          docker compose -p ${{ env.DOCKER_COMPOSE_NAME }} -f db-webserver/docker-compose.yml logs
         fi
     -
       name: Cleanup

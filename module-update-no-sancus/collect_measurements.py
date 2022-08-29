@@ -58,7 +58,7 @@ def compute_iteration(num):
             return
 
         print("Iteration ended, fetching data")
-        fetch_matches(out)
+        fetch_matches(out.decode('utf-8'))
 
         print("Iteration complete")
     except Exception as e:
