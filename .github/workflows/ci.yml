@@ -55,7 +55,7 @@ jobs:
         cd button-led-no-sancus
         cp -r ../cred .
         shopt -s expand_aliases
-        ADMIN_CONTAINER=${{ env.DOCKER_COMPOSE_NAME }}_admin_1
+        ADMIN_CONTAINER=${{ env.DOCKER_COMPOSE_NAME }}-admin-1
         alias ADMIN="docker exec $ADMIN_CONTAINER"
         docker compose -p ${{ env.DOCKER_COMPOSE_NAME }} up -d
         echo "Waiting until deployment is complete.."
@@ -79,7 +79,7 @@ jobs:
         cd db-webserver
         cp -r ../cred .
         shopt -s expand_aliases
-        ADMIN_CONTAINER=${{ env.DOCKER_COMPOSE_NAME }}_admin_1
+        ADMIN_CONTAINER=${{ env.DOCKER_COMPOSE_NAME }}-admin-1
         alias ADMIN="docker exec $ADMIN_CONTAINER"
         docker compose -p ${{ env.DOCKER_COMPOSE_NAME }} up -d
         echo "Waiting until deployment is complete.."
