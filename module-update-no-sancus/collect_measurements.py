@@ -46,6 +46,7 @@ def compute_iteration(num):
         'compose',
         'up', 
         '--abort-on-container-exit',
+        '--force-recreate',
         '--exit-code-from',
         'admin'
         ], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
