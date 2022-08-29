@@ -42,7 +42,8 @@ def fetch_matches(out):
 def compute_iteration(num):   
     print("Starting iteration {}".format(num))
     proc = subprocess.Popen([
-        'docker-compose',
+        'docker',
+        'compose',
         'up', 
         '--abort-on-container-exit',
         '--exit-code-from',
