@@ -16,14 +16,6 @@
             "aesm_host": "aesm-client"
         },
         {
-            "type": "sancus",
-            "name": "node_sancus",
-            "host": "node-sancus",
-            "vendor_id": 4660,
-            "vendor_key": "0b7bf3ae40880a8be430d0da34fb76f0",
-            "reactive_port": 6000
-        },
-        {
             "type": "trustzone",
             "name": "node_trustzone_1",
             "host": "node-trustzone-1",
@@ -47,10 +39,11 @@
             "ra_settings": "cred/settings.json"
         },
         {
-            "type": "sancus",
+            "type": "sgx",
             "name": "sink",
-            "node": "node_sancus",
-            "files": ["sink.c"]
+            "node": "node_sgx_2",
+            "vendor_key": "cred/vendor_key.pem",
+            "ra_settings": "cred/settings.json"
         },
         {
             "type": "trustzone",
@@ -71,7 +64,7 @@
           "from_output": "forward",
           "to_module": "sink",
           "to_input": "receive",
-          "encryption": "spongent"
+          "encryption": "aes"
       }
     ]
 }

@@ -13,7 +13,7 @@ services:
       - EM_SGX=true
       - EM_MEASURE_TIME=false
     devices:
-      - "/dev/isgx:/dev/isgx"
+      - "/dev/sgx/enclave:/dev/sgx/enclave"
     volumes:
       - "/var/run/aesmd:/var/run/aesmd"
   node-sgx-2:
@@ -28,7 +28,7 @@ services:
       - EM_SGX=true
       - EM_MEASURE_TIME=false
     devices:
-      - "/dev/isgx:/dev/isgx"
+      - "/dev/sgx/enclave:/dev/sgx/enclave"
     volumes:
       - "/var/run/aesmd:/var/run/aesmd"
   node-trustzone-1:
@@ -47,16 +47,6 @@ services:
       - PORT=1236
     volumes:
       - "/opt/optee:/opt/optee"
-  node-sancus:
-    image: authexec/event-manager-sancus:latest
-    expose:
-      - "6000"
-    environment:
-      - ELF=reactive.elf
-      - PORT=6000
-    devices:
-      - "/dev/ttyUSB0:/dev/RIOT"
-      - "/dev/ttyUSB3:/dev/UART"
   aesm-client:
     image: authexec/aesm-client:latest
     expose:
@@ -70,7 +60,7 @@ services:
     expose:
       - "1234"
     devices:
-      - "/dev/isgx:/dev/isgx"
+      - "/dev/sgx/enclave:/dev/sgx/enclave"
     volumes:
       - "/var/run/aesmd:/var/run/aesmd"
   admin:
@@ -81,7 +71,6 @@ services:
       - node-sgx-2
       - node-trustzone-1
       - node-trustzone-2
-      - node-sancus
       - aesm-client
       - manager
     volumes:
