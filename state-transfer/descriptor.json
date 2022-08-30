@@ -1,0 +1,37 @@
+{
+    "manager": "manager.yaml",
+    "nodes": [
+        {
+            "type": "sgx",
+            "name": "node_sgx_1",
+            "host": "node-sgx-1",
+            "reactive_port": 5000,
+            "aesm_host": "aesm-client"
+        },
+        {
+            "type": "sgx",
+            "name": "node_sgx_2",
+            "host": "node-sgx-2",
+            "reactive_port": 5000,
+            "aesm_host": "aesm-client"
+        }
+    ],
+    "modules" : [
+        {
+            "type": "sgx",
+            "name": "counter",
+            "node": "node_sgx_1",
+            "vendor_key": "cred/vendor_key.pem",
+            "ra_settings": "cred/settings.json"
+        }
+    ],
+    "connections": [
+        {
+            "name": "get-requests",
+            "direct": true,
+            "to_module": "counter",
+            "to_handler": "get_requests",
+            "encryption": "aes"
+        }
+    ]
+}

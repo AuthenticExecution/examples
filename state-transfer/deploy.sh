@@ -33,26 +33,21 @@ reactive-tools --manager connect res.json
 echo "Setup complete"
 sleep 5
 
-echo "Ping pong pre-update"
-reactive-tools call res.json --module source --entry start --arg 0800
-sleep 5
+echo "Curl before update"
+reactive-tools call res.json --module counter --entry init
+sleep 1
+[ $(curl node-sgx-1) -eq 0 ]
+reactive-tools --verbose request res.json --connection get-requests
 
 echo "Updating source.."
-python update.py res.json source node_sgx_2
-reactive-tools --manager --timing update res.json --module source
+python update.py res.json counter node_sgx_2
+reactive-tools --manager --timing update res.json --module counter --entry __save --output __transfer --input __restore
 sleep 5
 
-echo "Updating gw.."
-python update.py res.json gw node_trustzone_2
-reactive-tools --manager --timing update res.json --module gw
-sleep 5
-
-echo "Updating sink.."
-python update.py res.json sink node_sgx_1
-reactive-tools --manager --timing update res.json --module sink
-sleep 5
-
-echo "Ping pong post-update"
-reactive-tools call res.json --module source --entry start --arg 0800
+echo "Curl after update"
+reactive-tools call res.json --module counter --entry init
+sleep 1
+[ $(curl node-sgx-2) -eq 1 ]
+reactive-tools --verbose request res.json --connection get-requests
 
 echo "ALL DONE"

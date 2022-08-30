@@ -104,6 +104,15 @@ jobs:
         docker compose -p ${{ env.DOCKER_COMPOSE_NAME }} down
         touch completed
     -
+      name: state-transfer
+      timeout-minutes: 10
+      run: |
+        cd state-transfer
+        cp -r ../cred .
+        docker compose -p ${{ env.DOCKER_COMPOSE_NAME }} up --abort-on-container-exit --exit-code-from admin
+        docker compose -p ${{ env.DOCKER_COMPOSE_NAME }} down
+        touch completed
+    -
       name: Print logs if failure
       if: ${{ failure() }}
       run: |
