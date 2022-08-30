@@ -29,6 +29,7 @@
             "name": "node_trustzone",
             "host": "localhost",
             "reactive_port": 1236,
+            "vendor_id": 33,
             "node_key": "9a04aa182d039674708ce807ed914cd153cd9df7805e61742f0ae41294758dd3"
         }
     ],
