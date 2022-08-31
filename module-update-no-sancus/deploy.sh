@@ -48,7 +48,7 @@ reactive-tools --manager --timing update res.json --module gw
 sleep 5
 
 echo "Updating sink.."
-python update.py res.json sink node_sgx_1
+python update.py res.json sink node_native_2
 reactive-tools --manager --timing update res.json --module sink
 sleep 5
 

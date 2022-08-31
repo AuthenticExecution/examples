@@ -16,6 +16,20 @@
             "aesm_host": "aesm-client"
         },
         {
+            "type": "native",
+            "name": "node_native_1",
+            "host": "node-native-1",
+            "reactive_port": 5000,
+            "aesm_host": "aesm-client"
+        },
+        {
+            "type": "native",
+            "name": "node_native_2",
+            "host": "node-native-2",
+            "reactive_port": 5000,
+            "aesm_host": "aesm-client"
+        },
+        {
             "type": "trustzone",
             "name": "node_trustzone_1",
             "host": "node-trustzone-1",
@@ -41,11 +55,9 @@
             "ra_settings": "cred/settings.json"
         },
         {
-            "type": "sgx",
+            "type": "native",
             "name": "sink",
-            "node": "node_sgx_2",
-            "vendor_key": "cred/vendor_key.pem",
-            "ra_settings": "cred/settings.json"
+            "node": "node_native_1"
         },
         {
             "type": "trustzone",
