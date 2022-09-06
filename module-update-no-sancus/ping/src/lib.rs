@@ -1,4 +1,11 @@
-//@ sm_output(send)
+//@ sm_output(send_ping)
+//@ sm_request(send_ping_req)
+
+//@ sm_input
+pub fn recv_pong(_data : &[u8]) {
+    info!("received pong");
+    authentic_execution::measure_time("end");
+}
 
 //@ sm_entry
 pub fn start(data : &[u8]) -> ResultMessage {
@@ -12,8 +19,8 @@ pub fn start(data : &[u8]) -> ResultMessage {
     // number of bytes is stored in data
     let data_size = u16::from_le_bytes([data[0], data[1]]);
 
-    info!(&format!("starting data flow with data size: {}", data_size));
-    send(&vec![0; data_size as usize]);
+    info!(&format!("starting ping-pong with data size: {}", data_size));
+    send_ping(&vec![0; data_size as usize]);
 
     success(None)
 }

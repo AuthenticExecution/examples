@@ -17,8 +17,16 @@
         },
         {
             "type": "sancus",
-            "name": "node_sancus",
-            "host": "node-sancus",
+            "name": "node_sancus_1",
+            "host": "node-sancus-1",
+            "vendor_id": 4660,
+            "vendor_key": "0b7bf3ae40880a8be430d0da34fb76f0",
+            "reactive_port": 6000
+        },
+        {
+            "type": "sancus",
+            "name": "node_sancus_2",
+            "host": "node-sancus-2",
             "vendor_id": 4660,
             "vendor_key": "0b7bf3ae40880a8be430d0da34fb76f0",
             "reactive_port": 6000
@@ -29,7 +37,7 @@
             "host": "node-trustzone-1",
             "reactive_port": 1236,
             "vendor_id": 33,
-            "node_key": "9a04aa182d039674708ce807ed914cd153cd9df7805e61742f0ae41294758dd3"
+            "vendor_key": "a371f0411b82f9111745e8d505e42b1cdcd03cece045d9bbc35beae4f415d165"
         },
         {
             "type": "trustzone",
@@ -43,37 +51,51 @@
     "modules" : [
         {
             "type": "sgx",
-            "name": "source",
+            "name": "ping",
             "node": "node_sgx_1",
             "vendor_key": "cred/vendor_key.pem",
             "ra_settings": "cred/settings.json"
         },
         {
             "type": "sancus",
-            "name": "sink",
-            "node": "node_sancus",
-            "files": ["sink.c"]
+            "name": "pong",
+            "node": "node_sancus_1",
+            "files": ["pong.c"]
         },
         {
             "type": "trustzone",
-            "name": "gw",
+            "name": "gateway",
             "node": "node_trustzone_1"
         }
     ],
     "connections": [
       {
-          "from_module": "source",
-          "from_output": "send",
-          "to_module": "gw",
-          "to_input": "receive",
+          "from_module": "ping",
+          "from_output": "send_ping",
+          "to_module": "gateway",
+          "to_input": "send_int0",
           "encryption": "aes"
       },
       {
-          "from_module": "gw",
-          "from_output": "forward",
-          "to_module": "sink",
-          "to_input": "receive",
+          "from_module": "gateway",
+          "from_output": "fw_int0",
+          "to_module": "pong",
+          "to_input": "recv_ping",
           "encryption": "spongent"
+      },
+      {
+          "from_module": "pong",
+          "from_output": "send_pong",
+          "to_module": "gateway",
+          "to_input": "send_int1",
+          "encryption": "spongent"
+      },
+      {
+          "from_module": "gateway",
+          "from_output": "fw_int1",
+          "to_module": "ping",
+          "to_input": "recv_pong",
+          "encryption": "aes"
       }
     ]
 }

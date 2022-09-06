@@ -31,6 +31,22 @@ services:
       - "/dev/isgx:/dev/isgx"
     volumes:
       - "/var/run/aesmd:/var/run/aesmd"
+  node-trustzone-1:
+    image: authexec/event-manager-trustzone:latest
+    expose:
+      - "1236"
+    environment:
+      - PORT=1236
+    volumes:
+      - "/opt/optee:/opt/optee"
+  node-trustzone-2:
+    image: authexec/event-manager-trustzone:latest
+    expose:
+      - "1236"
+    environment:
+      - PORT=1236
+    volumes:
+      - "/opt/optee:/opt/optee"
   node-native-1:
     image: authexec/event-manager-sgx:latest
     expose:
@@ -53,22 +69,6 @@ services:
       - EM_PERIODIC_TASKS=false
       - EM_SGX=false
       - EM_MEASURE_TIME=false
-  node-trustzone-1:
-    image: authexec/event-manager-trustzone:latest
-    expose:
-      - "1236"
-    environment:
-      - PORT=1236
-    volumes:
-      - "/opt/optee:/opt/optee"
-  node-trustzone-2:
-    image: authexec/event-manager-trustzone:latest
-    expose:
-      - "1236"
-    environment:
-      - PORT=1236
-    volumes:
-      - "/opt/optee:/opt/optee"
   aesm-client:
     image: authexec/aesm-client:latest
     expose:
@@ -91,10 +91,10 @@ services:
     depends_on:
       - node-sgx-1
       - node-sgx-2
-      - node-native-1
-      - node-native-2
       - node-trustzone-1
       - node-trustzone-2
+      - node-native-1
+      - node-native-2
       - aesm-client
       - manager
     volumes:

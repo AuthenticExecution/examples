@@ -17,9 +17,9 @@ lines_time = [
 ]
 
 SMs = [
-    "source",
-    "gw",
-    "sink"
+    "ping",
+    "gateway",
+    "pong"
 ]
 
 RESULTS = {}

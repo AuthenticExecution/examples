@@ -47,7 +47,7 @@ services:
       - PORT=1236
     volumes:
       - "/opt/optee:/opt/optee"
-  node-sancus:
+  node-sancus-1:
     image: authexec/event-manager-sancus:latest
     expose:
       - "6000"
@@ -55,8 +55,18 @@ services:
       - ELF=reactive.elf
       - PORT=6000
     devices:
-      - "/dev/ttyUSB0:/dev/RIOT"
+      - "/dev/ttyUSB2:/dev/RIOT"
       - "/dev/ttyUSB3:/dev/UART"
+  node-sancus-2:
+    image: authexec/event-manager-sancus:latest
+    expose:
+      - "6000"
+    environment:
+      - ELF=reactive.elf
+      - PORT=6000
+    devices:
+      - "/dev/ttyUSB1:/dev/RIOT"
+      - "/dev/ttyUSB0:/dev/UART"
   aesm-client:
     image: authexec/aesm-client:latest
     expose:
@@ -81,7 +91,8 @@ services:
       - node-sgx-2
       - node-trustzone-1
       - node-trustzone-2
-      - node-sancus
+      - node-sancus-1
+      - node-sancus-2
       - aesm-client
       - manager
     volumes:
