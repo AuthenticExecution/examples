@@ -8,6 +8,23 @@ Check the main [README](../README.md)
 
 - [Simulated version](../button-led-native) (only Docker and docker-compose needed)
 
+## Before running the example
+
+### Check the key of `led_driver` in `descriptor.json`
+
+The module key of `led_driver` might change every time the event manager is
+re-built. Double check that the key is correct by following the instructions
+[here](https://github.com/AuthenticExecution/event-manager-sancus).
+
+### Sancus UART interfaces
+
+Sometimes the UART interfaces might change order. Check `docker-compose.yml` to
+ensure that:
+- The device mounted to `/dev/RIOT` is the one typically for loading binaries
+  into Sancus.
+- The device mounted to `/dev/UART` is the other one of the same Sancus board,
+  which will be used for sending and receiving data.
+
 ## Run the example
 
 ```bash

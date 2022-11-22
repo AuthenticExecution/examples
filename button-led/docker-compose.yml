@@ -9,8 +9,8 @@ services:
       - ELF=reactive_led.elf
       - PORT=6000
     devices:
-      - "/dev/ttyUSB6:/dev/RIOT"
-      - "/dev/ttyUSB7:/dev/UART"
+      - "/dev/ttyUSB1:/dev/RIOT"
+      - "/dev/ttyUSB0:/dev/UART"
   node-sancus-2:
     image: authexec/event-manager-sancus:latest
     expose:
@@ -19,8 +19,8 @@ services:
       - ELF=reactive.elf
       - PORT=6000
     devices:
-      - "/dev/ttyUSB8:/dev/RIOT"
-      - "/dev/ttyUSB9:/dev/UART"
+      - "/dev/ttyUSB2:/dev/RIOT"
+      - "/dev/ttyUSB3:/dev/UART"
   node-sgx:
     image: authexec/event-manager-sgx:latest
     expose:

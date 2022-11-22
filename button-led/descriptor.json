@@ -62,7 +62,7 @@
             "binary": "",
             "id": 1,
             "symtab": "",
-            "key": "92d858483a8c4a5ee6fd7dbf10e84e96",
+            "key": "757ac7bccbb32738ad49d90ac0859f6c",
             "nonce": 0
         },
         {
@@ -115,6 +115,13 @@
           "to_input": 0,
           "encryption": "spongent"
       },
+      {
+        "name": "toggle-led",
+        "direct": true,
+        "to_module": "led_driver",
+        "to_input": 1,
+        "encryption": "spongent"
+    },
       {
           "name": "trigger-btn",
           "direct": true,
