@@ -1,0 +1,59 @@
+{
+    "manager": "manager.yaml",
+    "nodes": [
+        {
+            "type": "sgx",
+            "name": "node_sgx",
+            "host": "node-sgx",
+            "reactive_port": 5000,
+            "aesm_host": "aesm-client"
+        },
+        {
+            "type": "sancus",
+            "name": "node_sancus",
+            "host": "node-sancus",
+            "vendor_id": 4660,
+            "vendor_key": "0b7bf3ae40880a8be430d0da34fb76f0",
+            "reactive_port": 6000
+        }
+    ],
+    "modules" : [
+        {
+            "type": "sgx",
+            "name": "gateway",
+            "node": "node_sgx",
+            "vendor_key": "cred/vendor_key.pem",
+            "ra_settings": "cred/settings.json",
+            "features": ["measure_time"]
+        },
+        {
+            "type": "sancus",
+            "name": "sensor",
+            "node": "node_sancus",
+            "files": ["sensor.c"]
+        }
+    ],
+    "connections": [
+      {
+        "from_module": "sensor",
+        "from_output": "start_shipment",
+        "to_module": "gateway",
+        "to_input": "start_shipment",
+        "encryption": "spongent"
+      },
+      {
+        "from_module": "sensor",
+        "from_output": "end_shipment",
+        "to_module": "gateway",
+        "to_input": "end_shipment",
+        "encryption": "spongent"
+      },
+      {
+        "from_module": "sensor",
+        "from_output": "send_sensor_data",
+        "to_module": "gateway",
+        "to_input": "receive_sensor_data",
+        "encryption": "spongent"
+    }
+    ]
+}
