@@ -23,8 +23,7 @@
             "name": "gateway",
             "node": "node_sgx",
             "vendor_key": "cred/vendor_key.pem",
-            "ra_settings": "cred/settings.json",
-            "features": ["measure_time"]
+            "ra_settings": "cred/settings.json"
         },
         {
             "type": "sancus",
