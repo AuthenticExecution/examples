@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define PART_SIZE 256
+#define PART_SIZE 128
 
 SM_OUTPUT({name}, start_shipment);
 SM_OUTPUT({name}, end_shipment);
@@ -44,9 +44,9 @@ SM_ENTRY({name}) void trigger_start_sensing(uint8_t* data, size_t len) {
     send_sensor_data((uint8_t *) &num_parts, 2);
 
     // send sensor data, one part at a time
-    //for(i=num_parts; i>0; i--) {
+    for(i=num_parts; i>0; i--) {
       send_sensor_data(sensor_data, PART_SIZE);
-    //}
+    }
 
     // notify that sensing has ended. i should be equal to zero
     send_sensor_data((uint8_t *) &i, 2);
