@@ -18,6 +18,10 @@ sleep 5
 # connect
 echo "Establishing connections.."
 reactive-tools --verbose connect res.json
+sleep 5
+
+echo "Initializing receiver.."
+reactive-tools call res.json --module receiver --entry init
 
 echo "Setup complete"
 sleep 360000000000
