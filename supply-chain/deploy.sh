@@ -7,7 +7,7 @@ sleep 10
 
 # deploy
 echo "Deploying modules.."
-reactive-tools --debug deploy descriptor.json --result res.json
+reactive-tools --verbose deploy descriptor.json --result res.json
 sleep 5
 
 # attest
@@ -17,7 +17,7 @@ sleep 5
 
 # connect
 echo "Establishing connections.."
-reactive-tools --debug connect res.json
+reactive-tools --verbose connect res.json
 
 echo "Setup complete"
 sleep 360000000000

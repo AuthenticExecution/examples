@@ -15,6 +15,14 @@
             "vendor_id": 4660,
             "vendor_key": "0b7bf3ae40880a8be430d0da34fb76f0",
             "reactive_port": 6000
+        },
+        {
+            "type": "trustzone",
+            "name": "node_trustzone",
+            "host": "node-trustzone",
+            "reactive_port": 1236,
+            "vendor_id": 33,
+            "vendor_key": "a371f0411b82f9111745e8d505e42b1cdcd03cece045d9bbc35beae4f415d165"
         }
     ],
     "modules" : [
@@ -30,29 +38,55 @@
             "name": "sensor",
             "node": "node_sancus",
             "files": ["sensor.c"]
+        },
+        {
+            "type": "trustzone",
+            "name": "gateway",
+            "node": "node_trustzone"
         }
     ],
     "connections": [
       {
         "from_module": "sensor",
         "from_output": "start_shipment",
+        "to_module": "gateway",
+        "to_input": "rcv_start_shipment",
+        "encryption": "spongent"
+      },
+      {
+        "from_module": "gateway",
+        "from_output": "fw_start_shipment",
         "to_module": "receiver",
         "to_input": "start_shipment",
-        "encryption": "spongent"
+        "encryption": "aes"
       },
       {
         "from_module": "sensor",
         "from_output": "end_shipment",
+        "to_module": "gateway",
+        "to_input": "rcv_end_shipment",
+        "encryption": "spongent"
+      },
+      {
+        "from_module": "gateway",
+        "from_output": "fw_end_shipment",
         "to_module": "receiver",
         "to_input": "end_shipment",
-        "encryption": "spongent"
+        "encryption": "aes"
       },
       {
         "from_module": "sensor",
         "from_output": "send_sensor_data",
+        "to_module": "gateway",
+        "to_input": "rcv_send_sensor_data",
+        "encryption": "spongent"
+      },
+      {
+        "from_module": "gateway",
+        "from_output": "fw_send_sensor_data",
         "to_module": "receiver",
         "to_input": "receive_sensor_data",
-        "encryption": "spongent"
-    }
+        "encryption": "aes"
+      }
     ]
 }

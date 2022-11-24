@@ -20,10 +20,12 @@ pub fn receive_sensor_data(data : &[u8]) {
             authentic_execution::measure_time_ms("START_SENSOR_DATA");
         } else {
             info!("Finished receiving sensor data.");
+            // TODO: re-encrypt, hash and sign data
             authentic_execution::measure_time_ms("END_SENSOR_DATA");
         }
     } else {
         // actual sensor data
+        // TODO: store data
         info!(&format!("Received sensor data part with size: {}", len));
     }
 }
