@@ -23,14 +23,13 @@
             "name": "receiver",
             "node": "node_sgx",
             "vendor_key": "cred/vendor_key.pem",
-            "ra_settings": "cred/settings.json",
-            "features": ["debug_prints"]
+            "ra_settings": "cred/settings.json"
         },
         {
             "type": "sancus",
             "name": "sensor",
             "node": "node_sancus",
-            "files": ["sensor.c"]
+            "files": ["sensor_1.c"]
         }
     ],
     "connections": [

@@ -2,9 +2,10 @@
 
 #include <stdio.h>
 
-#define PART_SIZE 128
+#define PART_SIZE 64
 
-SM_DATA({name}) uint16_t sensor_id = 440;
+// sensor data
+SM_DATA({name}) uint16_t sensor_id = 123;
 SM_DATA({name}) uint16_t shipment_id = 56;
 SM_DATA({name}) uint16_t data_id = 32;
 
@@ -31,7 +32,8 @@ SM_ENTRY({name}) void trigger_start_sensing(uint8_t* data, size_t len) {
     }
 
     // start sensing
-    start_sensing(data, len);
+    uint16_t msg[3] = { sensor_id, shipment_id, ++data_id };
+    start_sensing((uint8_t *) msg, 6);
 
     // compute number of parts of data, in bytes
     uint16_t num_parts = data_size * 1024 / PART_SIZE;
@@ -42,8 +44,5 @@ SM_ENTRY({name}) void trigger_start_sensing(uint8_t* data, size_t len) {
     }
 
     // end sensing
-    start_sensing(data, len);
-
-    // increment data ID
-    data_id++;
+    end_sensing(msg, 6);
 }

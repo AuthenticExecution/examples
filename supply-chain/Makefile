@@ -1,5 +1,6 @@
 KB			?= 0
 _DATA_SIZE	?= $(shell python -c "print('{:04x}'.format($(KB)))")
+DESCRIPTOR	?= descriptor_sensing.json
 
 start_shipment:
 	reactive-tools call res.json --module sensor --entry trigger_start_shipment --arg 0000
@@ -14,6 +15,7 @@ request:
 	@curl node-sgx
 
 run: clean
+	cp $(DESCRIPTOR) descriptor.json
 	docker compose up --remove-orphans --force-recreate
 
 shell:

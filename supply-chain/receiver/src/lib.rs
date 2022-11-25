@@ -35,15 +35,27 @@ pub fn init(_data : &[u8]) -> ResultMessage {
 }
 
 //@ sm_input
+pub fn start_shipment(data : &[u8]) {
+    authentic_execution::measure_time_ms("START_SHIPMENT");
+    debug!(&format!("Received: {:?}", data));
+}
+
+//@ sm_input
+pub fn end_shipment(data : &[u8]) {
+    authentic_execution::measure_time_ms("END_SHIPMENT");
+    debug!(&format!("Received: {:?}", data));
+}
+
+//@ sm_input
 pub fn start_sensing(data : &[u8]) {
     let mut sensor_data = SENSOR_DATA.lock().unwrap();
     let mut sensor_metadata = SENSOR_METADATA.lock().unwrap();
 
-    debug!(&format!("Received: {:?}", data));
+    authentic_execution::measure_time_ms("START_SENSING");
+    info!(&format!("Metadata: {:?}", data));
     sensor_data.clear();
     sensor_metadata.clear();
     sensor_metadata.extend_from_slice(data);
-    authentic_execution::measure_time_ms("START_SENSING");
 }
 
 //@ sm_input
@@ -112,6 +124,7 @@ pub fn end_sensing(data : &[u8]) {
     }
 
     sensor_data.clear();
+    sensor_metadata.clear();
     authentic_execution::measure_time_ms("END_SENSING");
 }
 
