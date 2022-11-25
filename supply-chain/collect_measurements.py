@@ -4,46 +4,55 @@ import re
 import json
 
 output_file = sys.argv[1]
-NUM_MEASUREMENTS = int(sys.argv[2])
+MAX_SIZE = int(sys.argv[2])
+ITERATIONS = int(sys.argv[3])
 
-NUM_REGEX = "([0-9\.]+)"
+start_line = ".*START_SENSING: ([0-9]+) ms"
+end_line = ".*END_SENSING: ([0-9]+) ms"
 
-lines_time = [
-    "Build time for {{}}: {}".format(NUM_REGEX),
-    "Deploy time for {{}}: {}".format(NUM_REGEX),
-    "Attest time for {{}}: {}".format(NUM_REGEX),
-    "Connect time for {{}}: {}".format(NUM_REGEX),
-    "Update time for {{}}: {}".format(NUM_REGEX)
-]
+results = {}
+sizes = range(1, MAX_SIZE+1)
 
-SMs = [
-    "ping",
-    "gateway",
-    "pong"
-]
+def set_env_file(collect, size=0):
+    env_file = [
+        "# Do not change. Will be updated automatically",
+        f"COLLECT_DATA={int(collect)}",
+        f"DATA_SIZE={size}",
+        f"ITERATIONS={ITERATIONS}"
+    ]
 
-RESULTS = {}
+    with open(".env", "w") as f:
+        f.write("\n".join(env_file))
 
-def get_measurement_name(line):
-    return line.split(" ")[0]
+def fetch_matches(size, out):
+    times = []
+    data_start = []
+    data_end = []
 
-def __fetch_matches(sm, out):
-    global RESULTS
-    try:
-        for line in lines_time:
-            measurement = get_measurement_name(line)
-            value = float(re.findall(line.format(sm), out)[0])
-            RESULTS[sm][measurement] += value
-    except:
-        print("__fetch_matches failed. Cannot continue.")
-        sys.exit(-1)
+    for line in out.split("\n"):
+        sl = re.findall(start_line, line)
+        el = re.findall(end_line, line)
 
-def fetch_matches(out):
-    for sm in SMs:
-        __fetch_matches(sm, out)
+        if sl:
+            data_start.append(int(sl[0]))
+        elif el:
+            data_end.append(int(el[0]))
 
-def compute_iteration(num):   
-    print("Starting iteration {}".format(num))
+    if len(data_start) != len(data_end) or len(data_start) != ITERATIONS:
+        raise Exception(
+            f"Missing data! Expected iterations: {ITERATIONS}" \
+                + f" found: {len(data_start)} {len(data_end)}"
+        )
+
+    for a,b in zip(data_start, data_end):
+        times.append(b - a)
+
+    results[size] = times
+
+def compute_iteration(size):
+    set_env_file(True, size)
+
+    print("Starting run with data size: {}".format(size))
     proc = subprocess.Popen([
         'docker',
         'compose',
@@ -56,7 +65,7 @@ def compute_iteration(num):
 
     res = True
     try:
-        out, err = proc.communicate()
+        out, _ = proc.communicate()
 
         if proc.returncode != 0:
             #print(out.decode('utf-8'))
@@ -64,7 +73,7 @@ def compute_iteration(num):
             res = False
         else:
             print("Iteration ended, fetching data")
-            fetch_matches(out.decode('utf-8'))
+            fetch_matches(size, out.decode('utf-8'))
             print("Iteration complete")
     except Exception as e:
         print("Exception: {}".format(e))
@@ -82,28 +91,13 @@ def compute_iteration(num):
     
     return res
 
-# init RESULTS
-for sm in SMs:
-    RESULTS[sm] = {}
-    for line in lines_time:
-        measurement = get_measurement_name(line)
-        RESULTS[sm][measurement] = 0
-
-successes = 0
-while successes < NUM_MEASUREMENTS:
-    res = compute_iteration(successes)
-    if res:
-        successes += 1
-    else:
-        print("Iteration {} failed. Retrying".format(successes))
-
-# compute average
-for sm in SMs:
-    for line in lines_time:
-        measurement = get_measurement_name(line)
-        RESULTS[sm][measurement] /= NUM_MEASUREMENTS
+for size in sizes:
+    res = False
+    while not res:
+        res = compute_iteration(size)
 
 with open(output_file, "w") as f:
-    json.dump(RESULTS, f, indent=4)
+    json.dump(results, f, indent=4)
 
+set_env_file(False, size)
 print("Done.")

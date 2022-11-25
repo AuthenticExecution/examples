@@ -11,9 +11,6 @@ end_shipment:
 sense:
 	reactive-tools call res.json --module sensor --entry trigger_start_sensing --arg $(_DATA_SIZE)
 
-request:
-	@curl node-sgx
-
 run: clean
 	cp $(DESCRIPTOR) descriptor.json
 	docker compose up --remove-orphans --force-recreate
