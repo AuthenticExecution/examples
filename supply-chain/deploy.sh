@@ -7,7 +7,7 @@ sleep 10
 
 # deploy
 echo "Deploying modules.."
-reactive-tools --verbose deploy descriptor.json --result res.json
+reactive-tools --debug deploy descriptor.json --result res.json
 sleep 5
 
 # attest

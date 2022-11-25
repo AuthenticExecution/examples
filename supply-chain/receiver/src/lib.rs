@@ -20,8 +20,8 @@ lazy_static! {
         Mutex::new(Vec::new())
     };
 
-    static ref SENSOR_INFO: Mutex<Vec<u8>> = {
-        Mutex::new(Vec::new())
+    static ref SENSOR_DATA_ID: Mutex<u16> = {
+        Mutex::new(0)
     };
 }
 
@@ -35,32 +35,36 @@ pub fn init(_data : &[u8]) -> ResultMessage {
 }
 
 //@ sm_input
-pub fn start_shipment(_data : &[u8]) {
+pub fn start_shipment(data : &[u8]) {
     authentic_execution::measure_time_ms("start_shipment");
+    debug!(&format!("Received: {:?}", data));
 }
 
 //@ sm_input
-pub fn end_shipment(_data : &[u8]) {
+pub fn end_shipment(data : &[u8]) {
     authentic_execution::measure_time_ms("end_shipment");
+    debug!(&format!("Received: {:?}", data));
 }
 
 //@ sm_input
 pub fn receive_sensor_data(data : &[u8]) {
     let mut sensor_data = SENSOR_DATA.lock().unwrap();
+    let mut data_id = SENSOR_DATA_ID.lock().unwrap();
     let len = data.len();
 
     if len == 2 {
+        debug!(&format!("Received: {:?}", data));
         let index = u16::from_le_bytes([data[0], data[1]]);
 
         if index > 0 {
-            debug!(&format!("Start receiving sensor data. Num parts: {}", index));
+            debug!(&format!("Start receiving sensor data. Data ID: {}", index));
+            *data_id = index;
             authentic_execution::measure_time_ms("START_SENSOR_DATA");
             sensor_data.clear();
         } else {
             debug!("Finished receiving sensor data.");
             let aes_key = AES_KEY.lock().unwrap();
             let mut rsa_key = RSA_KEY.lock().unwrap();
-            let sensor_info = SENSOR_INFO.lock().unwrap();
 
             debug!(&format!("Data len: {}", sensor_data.len()));
 
@@ -70,7 +74,7 @@ pub fn receive_sensor_data(data : &[u8]) {
             let cipher = match encrypt(
                 &sensor_data, 
                 &aes_key, 
-                &sensor_info, 
+                &data_id.to_be_bytes(), 
                 &Encryption::Aes
             ) {
                 Ok(c)   => c,

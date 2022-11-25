@@ -23,7 +23,8 @@
             "name": "receiver",
             "node": "node_sgx",
             "vendor_key": "cred/vendor_key.pem",
-            "ra_settings": "cred/settings.json"
+            "ra_settings": "cred/settings.json",
+            "features": ["debug_prints"]
         },
         {
             "type": "sancus",
