@@ -36,16 +36,16 @@
     "connections": [
       {
         "from_module": "sensor",
-        "from_output": "start_shipment",
+        "from_output": "start_sensing",
         "to_module": "receiver",
-        "to_input": "start_shipment",
+        "to_input": "start_sensing",
         "encryption": "spongent"
       },
       {
         "from_module": "sensor",
-        "from_output": "end_shipment",
+        "from_output": "end_sensing",
         "to_module": "receiver",
-        "to_input": "end_shipment",
+        "to_input": "end_sensing",
         "encryption": "spongent"
       },
       {
@@ -54,6 +54,6 @@
         "to_module": "receiver",
         "to_input": "receive_sensor_data",
         "encryption": "spongent"
-    }
+      }
     ]
 }
