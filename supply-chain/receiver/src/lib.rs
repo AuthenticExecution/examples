@@ -60,6 +60,7 @@ pub fn start_sensing(data : &[u8]) {
 
 //@ sm_input
 pub fn end_sensing(data : &[u8]) {
+    authentic_execution::measure_time_ms("END_TRANSMISSION");
     debug!(&format!("Received: {:?}", data));
     let mut sensor_data = SENSOR_DATA.lock().unwrap();
     let mut sensor_metadata = SENSOR_METADATA.lock().unwrap();

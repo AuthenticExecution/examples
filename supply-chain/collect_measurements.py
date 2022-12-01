@@ -1,16 +1,17 @@
 import sys
 import subprocess
 import re
-import json
+import pandas as pd
 
 output_file = sys.argv[1]
 MAX_SIZE = int(sys.argv[2])
 ITERATIONS = int(sys.argv[3])
 
 start_line = ".*START_SENSING: ([0-9]+) ms"
+transm_line = ".*END_TRANSMISSION: ([0-9]+) ms"
 end_line = ".*END_SENSING: ([0-9]+) ms"
 
-results = {}
+results = []
 sizes = range(1, MAX_SIZE+1)
 
 def set_env_file(collect, size=0):
@@ -25,29 +26,37 @@ def set_env_file(collect, size=0):
         f.write("\n".join(env_file))
 
 def fetch_matches(size, out):
-    times = []
     data_start = []
+    data_transm = []
     data_end = []
 
     for line in out.split("\n"):
         sl = re.findall(start_line, line)
+        etl = re.findall(transm_line, line)
         el = re.findall(end_line, line)
 
         if sl:
             data_start.append(int(sl[0]))
+        elif etl:
+            data_transm.append(int(etl[0]))
         elif el:
             data_end.append(int(el[0]))
 
-    if len(data_start) != len(data_end) or len(data_start) != ITERATIONS:
+    if len(data_start) != len(data_end) or \
+        len(data_start) != len(data_transm) or len(data_start) != ITERATIONS:
         raise Exception(
             f"Missing data! Expected iterations: {ITERATIONS}" \
-                + f" found: {len(data_start)} {len(data_end)}"
+                + f" found: {len(data_start)} {len(data_transm)} {len(data_end)}"
         )
 
-    for a,b in zip(data_start, data_end):
-        times.append(b - a)
-
-    results[size] = times
+    for a,b,c in zip(data_start, data_transm, data_end):
+        results.append(
+            {
+                "size": size,
+                "transmission": b - a,
+                "total": c - a
+            }
+        )
 
 def compute_iteration(size):
     set_env_file(True, size)
@@ -91,13 +100,16 @@ def compute_iteration(size):
     
     return res
 
+print(f"Starting simulation. Max size: {MAX_SIZE} iterations: {ITERATIONS}")
+
 for size in sizes:
     res = False
     while not res:
         res = compute_iteration(size)
 
-with open(output_file, "w") as f:
-    json.dump(results, f, indent=4)
+# create dataframe
+df = pd.DataFrame(results)
+df.to_csv(output_file)
 
 set_env_file(False, size)
 print("Done.")

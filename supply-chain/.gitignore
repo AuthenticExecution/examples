@@ -1,2 +1,5 @@
 descriptor.json
+out.csv
+.env
 out.json
+out.log

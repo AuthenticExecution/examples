@@ -15,6 +15,9 @@ run: clean
 	cp $(DESCRIPTOR) descriptor.json
 	docker compose up --remove-orphans --force-recreate
 
+run_simulation: clean
+	screen -A -m -d -S v2x-sims ./run_sim.sh  &
+
 shell:
 	docker exec -it supply-chain-admin-1 bash
 
