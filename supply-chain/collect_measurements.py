@@ -53,7 +53,8 @@ def fetch_matches(size, out):
         results.append(
             {
                 "size": size,
-                "transmission": b - a,
+                "sancus": b - a,
+                "sgx": c - b,
                 "total": c - a
             }
         )
