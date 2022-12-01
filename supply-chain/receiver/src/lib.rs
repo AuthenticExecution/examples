@@ -35,13 +35,13 @@ pub fn init(_data : &[u8]) -> ResultMessage {
 }
 
 //@ sm_input
-pub fn start_shipment(data : &[u8]) {
+pub fn start_shipment(_data : &[u8]) {
     authentic_execution::measure_time_ms("START_SHIPMENT");
     debug!(&format!("Received: {:?}", data));
 }
 
 //@ sm_input
-pub fn end_shipment(data : &[u8]) {
+pub fn end_shipment(_data : &[u8]) {
     authentic_execution::measure_time_ms("END_SHIPMENT");
     debug!(&format!("Received: {:?}", data));
 }
@@ -50,6 +50,23 @@ pub fn end_shipment(data : &[u8]) {
 pub fn start_sensing(data : &[u8]) {
     let mut sensor_data = SENSOR_DATA.lock().unwrap();
     let mut sensor_metadata = SENSOR_METADATA.lock().unwrap();
+    let mut aes_key = AES_KEY.lock().unwrap();
+    let mut rsa_key = RSA_KEY.lock().unwrap();
+
+    // for the sake of the experiment, change keys to have different outputs
+    // at each iteration (so that no cached values would be used)
+    if let Err(e) = getrandom::getrandom(&mut aes_key[..16]) {
+        error!("Failed to generate AES key");
+        panic!("{}", e);
+    }
+
+    *rsa_key = match Pk::generate_rsa(&mut Rng, RSA_BITS, EXPONENT) {
+        Ok(e)   => e,
+        Err(e)  => {
+            error!("Failed to generate RSA key");
+            panic!("{}", e);
+        }
+    };
 
     authentic_execution::measure_time_ms("START_SENSING");
     info!(&format!("Metadata: {:?}", data));
@@ -59,7 +76,7 @@ pub fn start_sensing(data : &[u8]) {
 }
 
 //@ sm_input
-pub fn end_sensing(data : &[u8]) {
+pub fn end_sensing(_data : &[u8]) {
     authentic_execution::measure_time_ms("END_TRANSMISSION");
     debug!(&format!("Received: {:?}", data));
     let mut sensor_data = SENSOR_DATA.lock().unwrap();

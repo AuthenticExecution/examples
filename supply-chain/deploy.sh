@@ -33,8 +33,9 @@ if [ $COLLECT_DATA -eq 1 ]; then
     echo "STARTING DATA SENSING"
     for (( i=1; i<=$ITERATIONS; i++ )); do
         echo "STARTING NEW ITERATION: $i"
+        sleep_time=`expr $DATA_SIZE + 1`
         make sense KB=$DATA_SIZE
-        sleep $DATA_SIZE
+        sleep $sleep_time
     done
 else
     echo "SLEEPING"

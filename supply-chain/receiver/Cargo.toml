@@ -9,3 +9,4 @@ edition = "2018"
 [dependencies]
 sha2 = "0.10.6"
 mbedtls = { git = "https://github.com/AuthenticExecution/rust-mbedtls.git", branch="psk", features = ["rdrand"] }
+getrandom = { version = "0.2.8", features = ["rdrand"] }
