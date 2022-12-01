@@ -55,7 +55,8 @@ pub fn start_shipment(data : &[u8]) {
     let shipment = object!{
         sensor_id: u16::from_le_bytes([data[0], data[1]]),
         shipment_id: u16::from_le_bytes([data[2], data[3]]),
-        data_id: u16::from_le_bytes([data[4], data[5]])
+        data_id: u16::from_le_bytes([data[4], data[5]]),
+        status: "start"
     };
 
     //info!(&format!("Shipment data: {:?}", json::stringify(shipment)));
