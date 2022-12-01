@@ -21,6 +21,7 @@
         {
             "type": "sgx",
             "name": "receiver",
+            "folder": "receiver_1",
             "node": "node_sgx",
             "vendor_key": "cred/vendor_key.pem",
             "ra_settings": "cred/settings.json"

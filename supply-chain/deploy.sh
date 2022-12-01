@@ -34,7 +34,7 @@ if [ $COLLECT_DATA -eq 1 ]; then
     for (( i=1; i<=$ITERATIONS; i++ )); do
         echo "STARTING NEW ITERATION: $i"
         sleep_time=`expr $DATA_SIZE + 1`
-        make sense KB=$DATA_SIZE
+        make start KB=$DATA_SIZE
         sleep $sleep_time
     done
 else

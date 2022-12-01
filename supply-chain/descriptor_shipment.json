@@ -21,6 +21,7 @@
       {
           "type": "sgx",
           "name": "receiver",
+          "folder": "receiver_2",
           "node": "node_sgx",
           "vendor_key": "cred/vendor_key.pem",
           "ra_settings": "cred/settings.json"
@@ -41,10 +42,17 @@
       "encryption": "spongent"
     },
     {
+      "from_module": "receiver",
+      "from_output": "send_ack",
+      "to_module": "sensor",
+      "to_input": "receive_ack",
+      "encryption": "spongent"
+    },
+    {
       "from_module": "sensor",
-      "from_output": "end_shipment",
+      "from_output": "ack_received",
       "to_module": "receiver",
-      "to_input": "end_shipment",
+      "to_input": "start_shipment_complete",
       "encryption": "spongent"
     }
   ]

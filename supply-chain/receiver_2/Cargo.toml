@@ -1,5 +1,5 @@
 [package]
-name = "receiver"
+name = "receiver_2"
 version = "0.1.0"
 authors = ["Gianluca Scopelliti <gianlu.1033@gmail.com>"]
 edition = "2018"
@@ -9,4 +9,4 @@ edition = "2018"
 [dependencies]
 sha2 = "0.10.6"
 mbedtls = { git = "https://github.com/AuthenticExecution/rust-mbedtls.git", branch="psk", features = ["rdrand"] }
-getrandom = { version = "0.2.8", features = ["rdrand"] }
+json = "0.12.4"

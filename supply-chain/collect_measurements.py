@@ -2,14 +2,24 @@ import sys
 import subprocess
 import re
 import pandas as pd
+import shutil
 
 output_file = sys.argv[1]
 MAX_SIZE = int(sys.argv[2])
 ITERATIONS = int(sys.argv[3])
 
-start_line = ".*START_SENSING: ([0-9]+) ms"
-transm_line = ".*END_TRANSMISSION: ([0-9]+) ms"
-end_line = ".*END_SENSING: ([0-9]+) ms"
+IS_SENSOR=False
+
+if IS_SENSOR:
+    start_line = ".*START_SENSING: ([0-9]+) ms"
+    transm_line = ".*END_TRANSMISSION: ([0-9]+) ms"
+    end_line = ".*END_SENSING: ([0-9]+) ms"
+    shutil.copyfile("descriptor_sensing.json", "descriptor.json")
+else:
+    start_line = ".*START_SHIPMENT: ([0-9]+) ms"
+    transm_line = ".*END_TRANSMISSION: ([0-9]+) ms"
+    end_line = ".*START_SHIPMENT_COMPLETE: ([0-9]+) ms"
+    shutil.copyfile("descriptor_shipment.json", "descriptor.json")
 
 results = []
 sizes = range(1, MAX_SIZE+1)

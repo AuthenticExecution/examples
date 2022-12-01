@@ -13,7 +13,7 @@ SM_OUTPUT({name}, start_sensing);
 SM_OUTPUT({name}, end_sensing);
 SM_OUTPUT({name}, send_sensor_data);
 
-SM_ENTRY({name}) void trigger_start_sensing(uint8_t* data, size_t len) {
+SM_ENTRY({name}) void start(uint8_t* data, size_t len) {
     uint16_t i = 0;
     uint8_t sensor_data[PART_SIZE]; // buffer that will contain sensor data
 
