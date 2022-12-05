@@ -1,8 +1,10 @@
 use std::sync::Mutex;
+use std::time::{SystemTime, UNIX_EPOCH};
 use mbedtls::pk::Pk;
 use mbedtls::rng::Rdrand as Rng;
 use sha2::{Sha256, Digest};
-use reactive_crypto::{encrypt, Encryption};
+use aes_gcm::Aes128Gcm as AesGcm;
+use aes_gcm::aead::{Aead, NewAead, generic_array::GenericArray, Payload};
 
 const RSA_BITS: u32 = 2048;
 const EXPONENT: u32 = 0x10001;
@@ -36,13 +38,13 @@ pub fn init(_data : &[u8]) -> ResultMessage {
 
 //@ sm_input
 pub fn start_shipment(_data : &[u8]) {
-    authentic_execution::measure_time_ms("START_SHIPMENT");
+    measure_time_ms("START_SHIPMENT");
     debug!(&format!("Received: {:?}", data));
 }
 
 //@ sm_input
 pub fn end_shipment(_data : &[u8]) {
-    authentic_execution::measure_time_ms("END_SHIPMENT");
+    measure_time_ms("END_SHIPMENT");
     debug!(&format!("Received: {:?}", data));
 }
 
@@ -68,7 +70,7 @@ pub fn start_sensing(data : &[u8]) {
         }
     };
 
-    authentic_execution::measure_time_ms("START_SENSING");
+    measure_time_ms("START_SENSING");
     info!(&format!("Metadata: {:?}", data));
     sensor_data.clear();
     sensor_metadata.clear();
@@ -77,7 +79,7 @@ pub fn start_sensing(data : &[u8]) {
 
 //@ sm_input
 pub fn end_sensing(_data : &[u8]) {
-    authentic_execution::measure_time_ms("END_TRANSMISSION");
+    measure_time_ms("END_TRANSMISSION");
     debug!(&format!("Received: {:?}", data));
     let mut sensor_data = SENSOR_DATA.lock().unwrap();
     let mut sensor_metadata = SENSOR_METADATA.lock().unwrap();
@@ -85,33 +87,29 @@ pub fn end_sensing(_data : &[u8]) {
     let mut rsa_key = RSA_KEY.lock().unwrap();
 
     debug!(&format!("Data len: {}", sensor_data.len()));
-
-    //authentic_execution::measure_time_ms("pre-encrypt");
     
-    // encrypt all with AES
-    let cipher = match encrypt(
-        &sensor_data, 
-        &aes_key, 
-        &sensor_metadata, 
-        &Encryption::Aes
+    // encrypt all using AES-GCM-128
+    let key_arr = GenericArray::clone_from_slice(&aes_key);
+    let nonce_arr = GenericArray::from_slice(&[0u8; 12]);
+    let aes = AesGcm::new(&key_arr);
+
+    let cipher = match aes.encrypt(
+        nonce_arr,
+        Payload{msg : &sensor_data, aad : &sensor_metadata}
     ) {
-        Ok(c)   => c,
-        Err(e)  => {
+        Ok(v) => v,
+        Err(e) => {
             error!(e);
             return;
         }
     };
-
-    //authentic_execution::measure_time_ms("pre-hash");
 
     // SHA-256 of the encrypted data
     let mut hasher = Sha256::new();
     hasher.update(&cipher);
     let result = hasher.finalize();
 
-    //authentic_execution::measure_time_ms("pre-sign");
-
-    // signature of the hash
+    // signature of the hash using RSA
     let mut signature = [0u8; RSA_BITS as usize / 8];
     match rsa_key.sign(
         mbedtls::hash::Type::Sha256,
@@ -126,8 +124,7 @@ pub fn end_sensing(_data : &[u8]) {
         }
     }
 
-    // symmetric key encryption
-    //TODO use a different key (does it matter?)
+    // symmetric key encryption using RSA
     let mut cipher = vec![0u8; RSA_BITS as usize / 8];
     match rsa_key.encrypt(
         &aes_key,
@@ -143,7 +140,7 @@ pub fn end_sensing(_data : &[u8]) {
 
     sensor_data.clear();
     sensor_metadata.clear();
-    authentic_execution::measure_time_ms("END_SENSING");
+    measure_time_ms("END_SENSING");
 }
 
 //@ sm_input
@@ -151,4 +148,12 @@ pub fn receive_sensor_data(data : &[u8]) {
     let mut sensor_data = SENSOR_DATA.lock().unwrap();
     debug!(&format!("Received sensor data part with size: {}", data.len()));
     sensor_data.extend_from_slice(data);
+}
+
+// function for printing time to stdout
+fn measure_time_ms(msg : &str) {
+    match SystemTime::now().duration_since(UNIX_EPOCH) {
+        Ok(d)   => info!(&format!("{}: {} ms", msg, d.as_millis())),
+        Err(_)  => info!(&format!("{}: ERROR", msg))
+    }
 }

@@ -7,8 +7,7 @@ import shutil
 output_file = sys.argv[1]
 MAX_SIZE = int(sys.argv[2])
 ITERATIONS = int(sys.argv[3])
-
-IS_SENSOR=False
+IS_SENSOR = True if int(sys.argv[4]) != 0 else False
 
 if IS_SENSOR:
     start_line = ".*START_SENSING: ([0-9]+) ms"

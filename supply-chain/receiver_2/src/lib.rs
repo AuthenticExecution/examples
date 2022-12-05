@@ -1,4 +1,5 @@
 use std::sync::Mutex;
+use std::time::{SystemTime, UNIX_EPOCH};
 use mbedtls::pk::Pk;
 use mbedtls::rng::Rdrand as Rng;
 use sha2::{Sha256, Digest};
@@ -48,7 +49,7 @@ pub fn start_shipment(data : &[u8]) {
         }
     };
 
-    authentic_execution::measure_time_ms("START_SHIPMENT");
+    measure_time_ms("START_SHIPMENT");
     shipment_data.clear();
 
     // parse data into a JSON file
@@ -72,16 +73,14 @@ pub fn start_shipment_complete(_data : &[u8]) {
     let mut rsa_key = RSA_KEY.lock().unwrap();
 
     debug!(&format!("Shipment data size: {}", shipment_data.len()));
-    authentic_execution::measure_time_ms("END_TRANSMISSION");
+    measure_time_ms("END_TRANSMISSION");
 
     // SHA-256 of the shipment data
     let mut hasher = Sha256::new();
     hasher.update(&*shipment_data);
     let result = hasher.finalize();
 
-    //authentic_execution::measure_time_ms("pre-sign");
-
-    // signature of the hash
+    // signature of the hash using RSA
     let mut signature = [0u8; RSA_BITS as usize / 8];
     match rsa_key.sign(
         mbedtls::hash::Type::Sha256,
@@ -97,5 +96,13 @@ pub fn start_shipment_complete(_data : &[u8]) {
     }
 
     shipment_data.clear();
-    authentic_execution::measure_time_ms("START_SHIPMENT_COMPLETE");
+    measure_time_ms("START_SHIPMENT_COMPLETE");
+}
+
+// function for printing time to stdout
+fn measure_time_ms(msg : &str) {
+    match SystemTime::now().duration_since(UNIX_EPOCH) {
+        Ok(d)   => info!(&format!("{}: {} ms", msg, d.as_millis())),
+        Err(_)  => info!(&format!("{}: ERROR", msg))
+    }
 }

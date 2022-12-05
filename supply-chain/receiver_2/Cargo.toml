@@ -1,12 +1,12 @@
 [package]
 name = "receiver_2"
 version = "0.1.0"
-authors = ["Gianluca Scopelliti <gianlu.1033@gmail.com>"]
+authors = ["Anonymous Author <anonymous@email.com>"]
 edition = "2018"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
 sha2 = "0.10.6"
-mbedtls = { git = "https://github.com/AuthenticExecution/rust-mbedtls.git", branch="psk", features = ["rdrand"] }
+mbedtls = { git = "https://github.com/fortanix/rust-mbedtls.git", features = ["rdrand"] }
 json = "0.12.4"
