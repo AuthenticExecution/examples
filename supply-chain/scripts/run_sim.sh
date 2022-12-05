@@ -1,0 +1,11 @@
+#!/bin/bash
+
+set -e
+
+SCRIPT=$1
+RES_FILE=$2
+MAX_SIZE=$3
+ITERATIONS=$4
+IS_SENSOR=$5
+
+python $SCRIPT $RES_FILE $MAX_SIZE $ITERATIONS $IS_SENSOR > out.log 2>&1

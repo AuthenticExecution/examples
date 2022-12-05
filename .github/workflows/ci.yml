@@ -9,11 +9,6 @@ on:
   workflow_dispatch: # Allow manual triggering
 
 env:
-  SGX_IMAGE: authexec/event-manager-sgx:latest
-  SANCUS_IMAGE: authexec/event-manager-sancus:latest
-  TRUSTZONE_IMAGE: authexec/event-manager-trustzone:latest
-  AESM_CLIENT_IMAGE: authexec/aesm-client:latest
-  MANAGER_IMAGE: authexec/attestation-manager
   ADMIN_IMAGE: authexec/reactive-tools:latest
   DOCKER_COMPOSE_NAME: ci_github_runner__
 
@@ -26,17 +21,11 @@ jobs:
     -
       name: Pull images
       run: |
-        docker pull ${{ env.ADMIN_IMAGE }}
-        docker pull ${{ env.SGX_IMAGE }}
-        docker pull ${{ env.SANCUS_IMAGE }}
-        docker pull ${{ env.TRUSTZONE_IMAGE }}
-        docker pull ${{ env.AESM_CLIENT_IMAGE }}
-        docker pull ${{ env.MANAGER_IMAGE }}:native
-        docker pull ${{ env.MANAGER_IMAGE }}:sgx
+        make update_images
     -
       name: Get credentials
       run : |
-        make all
+        make credentials
         cp /home/gianluca/settings.json cred/
     - 
       name: button-led (build only)
