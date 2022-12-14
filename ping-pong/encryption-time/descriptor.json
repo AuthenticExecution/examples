@@ -12,14 +12,6 @@
             "name": "node_native",
             "host": "node-native",
             "reactive_port": 5000
-        },
-        {
-            "type": "trustzone",
-            "name": "node_trustzone",
-            "host": "node-trustzone",
-            "reactive_port": 1236,
-            "vendor_id": 33,
-            "node_key": "9a04aa182d039674708ce807ed914cd153cd9df7805e61742f0ae41294758dd3"
         }
     ],
     "modules" : [
@@ -32,25 +24,26 @@
             "features": ["measure_time"]
         },
         {
-            "type": "trustzone",
-            "name": "router",
-            "node": "node_trustzone"
+            "type": "native",
+            "name": "pong",
+            "node": "node_native",
+            "features": ["measure_time"]
         }
     ],
     "connections": [
       {
           "from_module": "ping",
           "from_output": "send_ping",
-          "to_module": "router",
-          "to_input": "send_int0",
-          "encryption": "aes"
+          "to_module": "pong",
+          "to_input": "recv_ping",
+          "encryption": "spongent"
       },
       {
-          "from_module": "router",
-          "from_output": "fw_int0",
+          "from_module": "pong",
+          "from_output": "send_pong",
           "to_module": "ping",
           "to_input": "recv_pong",
-          "encryption": "aes"
+          "encryption": "spongent"
       }
     ]
 }
