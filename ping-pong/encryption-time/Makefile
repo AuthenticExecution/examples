@@ -2,7 +2,7 @@ PYTHON_SCRIPT      ?= collect.py
 ADMIN_CONTAINER    ?= encryption-time-admin-1
 
 IN                 ?= log.txt
-OUT                ?= log.csv
+OUT                ?= log.json
 
 collect:
 	docker compose up -d
