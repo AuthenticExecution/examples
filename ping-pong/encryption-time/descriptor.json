@@ -34,12 +34,7 @@
         {
             "type": "trustzone",
             "name": "router",
-            "node": "node_trustzone",
-            "files_dir": ".",
-            "id": 2,
-            "uuid": 175194141668063048800749770465390128705,
-            "inputs": {"send_int0": 0 , "send_int1":1},
-            "outputs": {"fw_int0": 2 , "fw_int1": 3}
+            "node": "node_trustzone"
         }
     ],
     "connections": [

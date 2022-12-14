@@ -3,7 +3,7 @@
 set -e
 
 # Wait untill all EMs are up and running
-sleep 5
+sleep 10
 
 # deploy
 echo "Deploying modules.."
