@@ -1,0 +1,50 @@
+{
+    "nodes": [
+        {
+            "type": "sgx",
+            "name": "node_sgx",
+            "host": "134.58.46.188",
+            "reactive_port": 5000,
+            "aesm_host": "aesm-client"
+        },
+        {
+            "type": "trustzone",
+            "name": "node_trustzone",
+            "host": "134.58.46.189",
+            "reactive_port": 1236,
+            "vendor_id": 33,
+            "node_key": "9a04aa182d039674708ce807ed914cd153cd9df7805e61742f0ae41294758dd3"
+        }
+    ],
+    "modules" : [
+        {
+            "type": "sgx",
+            "name": "ping",
+            "node": "node_sgx",
+            "vendor_key": "cred/vendor_key.pem",
+            "ra_settings": "cred/settings.json",
+            "features": ["measure_time"]
+        },
+        {
+            "type": "trustzone",
+            "name": "router",
+            "node": "node_trustzone"
+        }
+    ],
+    "connections": [
+      {
+          "from_module": "ping",
+          "from_output": "send_ping",
+          "to_module": "router",
+          "to_input": "send_int0",
+          "encryption": "aes"
+      },
+      {
+          "from_module": "router",
+          "from_output": "fw_int0",
+          "to_module": "ping",
+          "to_input": "recv_pong",
+          "encryption": "spongent"
+      }
+    ]
+}
