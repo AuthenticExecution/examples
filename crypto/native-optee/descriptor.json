@@ -1,11 +1,10 @@
 {
     "nodes": [
         {
-            "type": "sgx",
-            "name": "node_sgx",
-            "host": "node-sgx",
-            "reactive_port": 5000,
-            "aesm_host": "aesm-client"
+            "type": "native",
+            "name": "node_native",
+            "host": "node-native",
+            "reactive_port": 5000
         },
         {
             "type": "trustzone",
@@ -18,11 +17,9 @@
     ],
     "modules" : [
         {
-            "type": "sgx",
+            "type": "native",
             "name": "ping",
-            "node": "node_sgx",
-            "vendor_key": "cred/vendor_key.pem",
-            "ra_settings": "cred/settings.json",
+            "node": "node_native",
             "features": ["measure_time"]
         },
         {
@@ -37,14 +34,14 @@
           "from_output": "send_ping",
           "to_module": "router",
           "to_input": "send_int0",
-          "encryption": "spongent"
+          "encryption": "aes"
       },
       {
           "from_module": "router",
           "from_output": "fw_int0",
           "to_module": "ping",
           "to_input": "recv_pong",
-          "encryption": "spongent"
+          "encryption": "aes"
       }
     ]
 }

@@ -2,6 +2,8 @@
 
 set -e
 
+sleep 5
+
 # deploy
 echo "Deploying modules.."
 reactive-tools deploy descriptor.json --result res.json
@@ -22,12 +24,12 @@ echo "Setup complete"
 sleep 5
 
 echo "STARTING PING-PONG"
-# 8 bytes: 0800 | 32 bytes: 2000
+# 8B: 0800 | 64B: 4000 | 512B: 0002 | 4kB: 0010 | 32kB: 0080
 
 for i in {1..110}
 do
    echo "STARTING NEW ITERATION: $i"
-   reactive-tools call res.json --module ping --entry start --arg 2000 
+   reactive-tools call res.json --module ping --entry start --arg 4000 
    sleep 1
 done
 

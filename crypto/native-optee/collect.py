@@ -20,13 +20,13 @@ class MeasurementUnit(IntEnum):
 
 measurements_regexes = [
     (
-        "SGX encryption",
+        "Native encryption",
         "\[ping\] INFO: handle_output_before_encryption: ([0-9]+) us",
         "\[ping\] INFO: handle_output_after_encryption: ([0-9]+) us",
         MeasurementUnit.US
     ),
     (
-        "SGX decryption",
+        "Native decryption",
         "\[ping\] INFO: handle_input_before_decryption: ([0-9]+) us",
         "\[ping\] INFO: handle_input_after_decryption: ([0-9]+) us",
         MeasurementUnit.US
