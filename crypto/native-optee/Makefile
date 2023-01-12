@@ -1,5 +1,5 @@
 PYTHON_SCRIPT      ?= collect.py
-ADMIN_CONTAINER    ?= encryption-time-native-optee-admin-1
+ADMIN_CONTAINER    ?= native-optee-admin-1
 
 IN                 ?= log.txt
 OUT                ?= log.json
