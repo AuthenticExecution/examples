@@ -1,0 +1,2064 @@
+
+D/TC:? 0 tee_ta_init_pseudo_ta_session:299 Lookup pseudo TA bcadcdb5-1d4f-44ae-a1b1-3dd91a11d241
+D/TC:? 0 ldelf_load_ldelf:91 ldelf load address 0x104000
+D/LD:  ldelf:134 Loading TS bcadcdb5-1d4f-44ae-a1b1-3dd91a11d241
+F/TC:? 0 trace_syscall:151 syscall #3 (syscall_get_property)
+F/TC:? 0 trace_syscall:151 syscall #5 (syscall_open_ta_session)
+D/TC:? 0 ldelf_syscall_open_bin:142 Lookup user TA ELF bcadcdb5-1d4f-44ae-a1b1-3dd91a11d241 (Secure Storage TA)
+D/TC:? 0 ldelf_syscall_open_bin:146 res=0xffff0008
+D/TC:? 0 ldelf_syscall_open_bin:142 Lookup user TA ELF bcadcdb5-1d4f-44ae-a1b1-3dd91a11d241 (REE)
+D/TC:? 0 ldelf_syscall_open_bin:146 res=0
+F/TC:? 0 trace_syscall:151 syscall #7 (syscall_invoke_ta_command)
+F/TC:? 0 trace_syscall:151 syscall #11 (syscall_mask_cancellation)
+F/TC:? 0 trace_syscall:151 syscall #7 (syscall_invoke_ta_command)
+F/TC:? 0 trace_syscall:151 syscall #3 (syscall_get_property)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #6 (syscall_close_ta_session)
+F/TC:? 0 trace_syscall:151 syscall #3 (syscall_get_property)
+D/LD:  ldelf:168 ELF (bcadcdb5-1d4f-44ae-a1b1-3dd91a11d241) at 0x12b000
+D/TA:  TA_InvokeCommandEntryPoint:577 Calling attest
+D/TA:  attest:254 Retrieving module key from PTA
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #5 (syscall_open_ta_session)
+D/TC:? 0 tee_ta_init_session_with_context:607 Re-open TA a2b0b139-82dc-4ffc-a8a8-7d7c6366e984
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #5 (syscall_open_ta_session)
+D/TC:? 0 tee_ta_init_session_with_context:607 Re-open TA 3a2f8978-5dc0-11e8-9c2d-fa7ae01bbebc
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #7 (syscall_invoke_ta_command)
+F/TC:? 0 trace_syscall:151 syscall #7 (syscall_invoke_ta_command)
+D/TC:? 0 invoke_command:115 Attestation-PTA got called (cmd): 0
+D/TC:? 0 invoke_command:118  ATTESTATION_CMD_GET_MODULE_KEY has been called
+D/TC:? 0 attestation:106 ---- module key was issued! ----
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #7 (syscall_invoke_ta_command)
+F/TC:? 0 trace_syscall:151 syscall #6 (syscall_close_ta_session)
+D/TC:? 0 tee_ta_close_session:512 csess 0x4e07fc60 id 1
+D/TC:? 0 tee_ta_close_session:531 Destroy session
+D/TA:  attest:261 Generating response to the challenge
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #27 (syscall_cryp_obj_alloc)
+F/TC:? 0 trace_syscall:151 syscall #15 (syscall_cryp_state_alloc)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #27 (syscall_cryp_obj_alloc)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #24 (syscall_cryp_obj_get_info)
+F/TC:? 0 trace_syscall:151 syscall #30 (syscall_cryp_obj_populate)
+F/TC:? 0 trace_syscall:151 syscall #24 (syscall_cryp_obj_get_info)
+F/TC:? 0 trace_syscall:151 syscall #24 (syscall_cryp_obj_get_info)
+F/TC:? 0 trace_syscall:151 syscall #29 (syscall_cryp_obj_reset)
+F/TC:? 0 trace_syscall:151 syscall #24 (syscall_cryp_obj_get_info)
+F/TC:? 0 trace_syscall:151 syscall #24 (syscall_cryp_obj_get_info)
+F/TC:? 0 trace_syscall:151 syscall #31 (syscall_cryp_obj_copy)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #24 (syscall_cryp_obj_get_info)
+F/TC:? 0 trace_syscall:151 syscall #29 (syscall_cryp_obj_reset)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #24 (syscall_cryp_obj_get_info)
+F/TC:? 0 trace_syscall:151 syscall #30 (syscall_cryp_obj_populate)
+F/TC:? 0 trace_syscall:151 syscall #24 (syscall_cryp_obj_get_info)
+F/TC:? 0 trace_syscall:151 syscall #24 (syscall_cryp_obj_get_info)
+F/TC:? 0 trace_syscall:151 syscall #29 (syscall_cryp_obj_reset)
+F/TC:? 0 trace_syscall:151 syscall #24 (syscall_cryp_obj_get_info)
+F/TC:? 0 trace_syscall:151 syscall #24 (syscall_cryp_obj_get_info)
+F/TC:? 0 trace_syscall:151 syscall #31 (syscall_cryp_obj_copy)
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #37 (syscall_authenc_enc_final)
+F/TC:? 0 trace_syscall:151 syscall #17 (syscall_cryp_state_free)
+F/TC:? 0 trace_syscall:151 syscall #24 (syscall_cryp_obj_get_info)
+F/TC:? 0 trace_syscall:151 syscall #28 (syscall_cryp_obj_close)
+D/TA:  TA_InvokeCommandEntryPoint:574 Calling set_key
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #27 (syscall_cryp_obj_alloc)
+F/TC:? 0 trace_syscall:151 syscall #15 (syscall_cryp_state_alloc)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #27 (syscall_cryp_obj_alloc)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #24 (syscall_cryp_obj_get_info)
+F/TC:? 0 trace_syscall:151 syscall #30 (syscall_cryp_obj_populate)
+F/TC:? 0 trace_syscall:151 syscall #24 (syscall_cryp_obj_get_info)
+F/TC:? 0 trace_syscall:151 syscall #24 (syscall_cryp_obj_get_info)
+F/TC:? 0 trace_syscall:151 syscall #29 (syscall_cryp_obj_reset)
+F/TC:? 0 trace_syscall:151 syscall #24 (syscall_cryp_obj_get_info)
+F/TC:? 0 trace_syscall:151 syscall #24 (syscall_cryp_obj_get_info)
+F/TC:? 0 trace_syscall:151 syscall #31 (syscall_cryp_obj_copy)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #24 (syscall_cryp_obj_get_info)
+F/TC:? 0 trace_syscall:151 syscall #29 (syscall_cryp_obj_reset)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #24 (syscall_cryp_obj_get_info)
+F/TC:? 0 trace_syscall:151 syscall #30 (syscall_cryp_obj_populate)
+F/TC:? 0 trace_syscall:151 syscall #24 (syscall_cryp_obj_get_info)
+F/TC:? 0 trace_syscall:151 syscall #24 (syscall_cryp_obj_get_info)
+F/TC:? 0 trace_syscall:151 syscall #29 (syscall_cryp_obj_reset)
+F/TC:? 0 trace_syscall:151 syscall #24 (syscall_cryp_obj_get_info)
+F/TC:? 0 trace_syscall:151 syscall #24 (syscall_cryp_obj_get_info)
+F/TC:? 0 trace_syscall:151 syscall #31 (syscall_cryp_obj_copy)
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #38 (syscall_authenc_dec_final)
+F/TC:? 0 trace_syscall:151 syscall #17 (syscall_cryp_state_free)
+F/TC:? 0 trace_syscall:151 syscall #24 (syscall_cryp_obj_get_info)
+F/TC:? 0 trace_syscall:151 syscall #28 (syscall_cryp_obj_close)
+D/TA:  set_key:147 Adding connection
+D/TA:  TA_InvokeCommandEntryPoint:574 Calling set_key
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #27 (syscall_cryp_obj_alloc)
+F/TC:? 0 trace_syscall:151 syscall #15 (syscall_cryp_state_alloc)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #27 (syscall_cryp_obj_alloc)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #24 (syscall_cryp_obj_get_info)
+F/TC:? 0 trace_syscall:151 syscall #30 (syscall_cryp_obj_populate)
+F/TC:? 0 trace_syscall:151 syscall #24 (syscall_cryp_obj_get_info)
+F/TC:? 0 trace_syscall:151 syscall #24 (syscall_cryp_obj_get_info)
+F/TC:? 0 trace_syscall:151 syscall #29 (syscall_cryp_obj_reset)
+F/TC:? 0 trace_syscall:151 syscall #24 (syscall_cryp_obj_get_info)
+F/TC:? 0 trace_syscall:151 syscall #24 (syscall_cryp_obj_get_info)
+F/TC:? 0 trace_syscall:151 syscall #31 (syscall_cryp_obj_copy)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #24 (syscall_cryp_obj_get_info)
+F/TC:? 0 trace_syscall:151 syscall #29 (syscall_cryp_obj_reset)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #24 (syscall_cryp_obj_get_info)
+F/TC:? 0 trace_syscall:151 syscall #30 (syscall_cryp_obj_populate)
+F/TC:? 0 trace_syscall:151 syscall #24 (syscall_cryp_obj_get_info)
+F/TC:? 0 trace_syscall:151 syscall #24 (syscall_cryp_obj_get_info)
+F/TC:? 0 trace_syscall:151 syscall #29 (syscall_cryp_obj_reset)
+F/TC:? 0 trace_syscall:151 syscall #24 (syscall_cryp_obj_get_info)
+F/TC:? 0 trace_syscall:151 syscall #24 (syscall_cryp_obj_get_info)
+F/TC:? 0 trace_syscall:151 syscall #31 (syscall_cryp_obj_copy)
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #38 (syscall_authenc_dec_final)
+F/TC:? 0 trace_syscall:151 syscall #17 (syscall_cryp_state_free)
+F/TC:? 0 trace_syscall:151 syscall #24 (syscall_cryp_obj_get_info)
+F/TC:? 0 trace_syscall:151 syscall #28 (syscall_cryp_obj_close)
+D/TA:  set_key:147 Adding connection
+D/TC:? 0 tee_ta_close_session:512 csess 0x4e080b20 id 1
+D/TC:? 0 tee_ta_close_session:531 Destroy session
+D/TC:? 0 destroy_context:308 Destroy TA ctx (0x4e080ae0)
+D/TC:? 0 tee_ta_close_session:512 csess 0x4e07fb80 id 2
+D/TC:? 0 tee_ta_close_session:531 Destroy session
+D/TC:? 0 tee_ta_init_pseudo_ta_session:299 Lookup pseudo TA 33b11ea7-ed41-40fd-91f2-2f9121872740
+D/TC:? 0 ldelf_load_ldelf:91 ldelf load address 0x104000
+D/LD:  ldelf:134 Loading TS 33b11ea7-ed41-40fd-91f2-2f9121872740
+F/TC:? 0 trace_syscall:151 syscall #3 (syscall_get_property)
+F/TC:? 0 trace_syscall:151 syscall #5 (syscall_open_ta_session)
+D/TC:? 0 ldelf_syscall_open_bin:142 Lookup user TA ELF 33b11ea7-ed41-40fd-91f2-2f9121872740 (Secure Storage TA)
+D/TC:? 0 ldelf_syscall_open_bin:146 res=0xffff0008
+D/TC:? 0 ldelf_syscall_open_bin:142 Lookup user TA ELF 33b11ea7-ed41-40fd-91f2-2f9121872740 (REE)
+D/TC:? 0 ldelf_syscall_open_bin:146 res=0
+F/TC:? 0 trace_syscall:151 syscall #7 (syscall_invoke_ta_command)
+F/TC:? 0 trace_syscall:151 syscall #11 (syscall_mask_cancellation)
+F/TC:? 0 trace_syscall:151 syscall #7 (syscall_invoke_ta_command)
+F/TC:? 0 trace_syscall:151 syscall #3 (syscall_get_property)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #6 (syscall_close_ta_session)
+F/TC:? 0 trace_syscall:151 syscall #3 (syscall_get_property)
+D/LD:  ldelf:168 ELF (33b11ea7-ed41-40fd-91f2-2f9121872740) at 0x188000
+D/TA:  TA_InvokeCommandEntryPoint:577 Calling attest
+D/TA:  attest:254 Retrieving module key from PTA
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #5 (syscall_open_ta_session)
+D/TC:? 0 tee_ta_init_session_with_context:607 Re-open TA a2b0b139-82dc-4ffc-a8a8-7d7c6366e984
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #5 (syscall_open_ta_session)
+D/TC:? 0 tee_ta_init_session_with_context:607 Re-open TA 3a2f8978-5dc0-11e8-9c2d-fa7ae01bbebc
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #7 (syscall_invoke_ta_command)
+F/TC:? 0 trace_syscall:151 syscall #7 (syscall_invoke_ta_command)
+D/TC:? 0 invoke_command:115 Attestation-PTA got called (cmd): 0
+D/TC:? 0 invoke_command:118  ATTESTATION_CMD_GET_MODULE_KEY has been called
+D/TC:? 0 attestation:106 ---- module key was issued! ----
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #7 (syscall_invoke_ta_command)
+F/TC:? 0 trace_syscall:151 syscall #6 (syscall_close_ta_session)
+D/TC:? 0 tee_ta_close_session:512 csess 0x4e07f030 id 1
+D/TC:? 0 tee_ta_close_session:531 Destroy session
+D/TA:  attest:261 Generating response to the challenge
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #27 (syscall_cryp_obj_alloc)
+F/TC:? 0 trace_syscall:151 syscall #15 (syscall_cryp_state_alloc)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #27 (syscall_cryp_obj_alloc)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #24 (syscall_cryp_obj_get_info)
+F/TC:? 0 trace_syscall:151 syscall #30 (syscall_cryp_obj_populate)
+F/TC:? 0 trace_syscall:151 syscall #24 (syscall_cryp_obj_get_info)
+F/TC:? 0 trace_syscall:151 syscall #24 (syscall_cryp_obj_get_info)
+F/TC:? 0 trace_syscall:151 syscall #29 (syscall_cryp_obj_reset)
+F/TC:? 0 trace_syscall:151 syscall #24 (syscall_cryp_obj_get_info)
+F/TC:? 0 trace_syscall:151 syscall #24 (syscall_cryp_obj_get_info)
+F/TC:? 0 trace_syscall:151 syscall #31 (syscall_cryp_obj_copy)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #24 (syscall_cryp_obj_get_info)
+F/TC:? 0 trace_syscall:151 syscall #29 (syscall_cryp_obj_reset)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #24 (syscall_cryp_obj_get_info)
+F/TC:? 0 trace_syscall:151 syscall #30 (syscall_cryp_obj_populate)
+F/TC:? 0 trace_syscall:151 syscall #24 (syscall_cryp_obj_get_info)
+F/TC:? 0 trace_syscall:151 syscall #24 (syscall_cryp_obj_get_info)
+F/TC:? 0 trace_syscall:151 syscall #29 (syscall_cryp_obj_reset)
+F/TC:? 0 trace_syscall:151 syscall #24 (syscall_cryp_obj_get_info)
+F/TC:? 0 trace_syscall:151 syscall #24 (syscall_cryp_obj_get_info)
+F/TC:? 0 trace_syscall:151 syscall #31 (syscall_cryp_obj_copy)
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #37 (syscall_authenc_enc_final)
+F/TC:? 0 trace_syscall:151 syscall #17 (syscall_cryp_state_free)
+F/TC:? 0 trace_syscall:151 syscall #24 (syscall_cryp_obj_get_info)
+F/TC:? 0 trace_syscall:151 syscall #28 (syscall_cryp_obj_close)
+D/TA:  TA_InvokeCommandEntryPoint:574 Calling set_key
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #27 (syscall_cryp_obj_alloc)
+F/TC:? 0 trace_syscall:151 syscall #15 (syscall_cryp_state_alloc)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #27 (syscall_cryp_obj_alloc)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #24 (syscall_cryp_obj_get_info)
+F/TC:? 0 trace_syscall:151 syscall #30 (syscall_cryp_obj_populate)
+F/TC:? 0 trace_syscall:151 syscall #24 (syscall_cryp_obj_get_info)
+F/TC:? 0 trace_syscall:151 syscall #24 (syscall_cryp_obj_get_info)
+F/TC:? 0 trace_syscall:151 syscall #29 (syscall_cryp_obj_reset)
+F/TC:? 0 trace_syscall:151 syscall #24 (syscall_cryp_obj_get_info)
+F/TC:? 0 trace_syscall:151 syscall #24 (syscall_cryp_obj_get_info)
+F/TC:? 0 trace_syscall:151 syscall #31 (syscall_cryp_obj_copy)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #24 (syscall_cryp_obj_get_info)
+F/TC:? 0 trace_syscall:151 syscall #29 (syscall_cryp_obj_reset)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #24 (syscall_cryp_obj_get_info)
+F/TC:? 0 trace_syscall:151 syscall #30 (syscall_cryp_obj_populate)
+F/TC:? 0 trace_syscall:151 syscall #24 (syscall_cryp_obj_get_info)
+F/TC:? 0 trace_syscall:151 syscall #24 (syscall_cryp_obj_get_info)
+F/TC:? 0 trace_syscall:151 syscall #29 (syscall_cryp_obj_reset)
+F/TC:? 0 trace_syscall:151 syscall #24 (syscall_cryp_obj_get_info)
+F/TC:? 0 trace_syscall:151 syscall #24 (syscall_cryp_obj_get_info)
+F/TC:? 0 trace_syscall:151 syscall #31 (syscall_cryp_obj_copy)
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #38 (syscall_authenc_dec_final)
+F/TC:? 0 trace_syscall:151 syscall #17 (syscall_cryp_state_free)
+F/TC:? 0 trace_syscall:151 syscall #24 (syscall_cryp_obj_get_info)
+F/TC:? 0 trace_syscall:151 syscall #28 (syscall_cryp_obj_close)
+D/TA:  set_key:147 Adding connection
+D/TA:  TA_InvokeCommandEntryPoint:574 Calling set_key
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #27 (syscall_cryp_obj_alloc)
+F/TC:? 0 trace_syscall:151 syscall #15 (syscall_cryp_state_alloc)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #27 (syscall_cryp_obj_alloc)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #24 (syscall_cryp_obj_get_info)
+F/TC:? 0 trace_syscall:151 syscall #30 (syscall_cryp_obj_populate)
+F/TC:? 0 trace_syscall:151 syscall #24 (syscall_cryp_obj_get_info)
+F/TC:? 0 trace_syscall:151 syscall #24 (syscall_cryp_obj_get_info)
+F/TC:? 0 trace_syscall:151 syscall #29 (syscall_cryp_obj_reset)
+F/TC:? 0 trace_syscall:151 syscall #24 (syscall_cryp_obj_get_info)
+F/TC:? 0 trace_syscall:151 syscall #24 (syscall_cryp_obj_get_info)
+F/TC:? 0 trace_syscall:151 syscall #31 (syscall_cryp_obj_copy)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #24 (syscall_cryp_obj_get_info)
+F/TC:? 0 trace_syscall:151 syscall #29 (syscall_cryp_obj_reset)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #24 (syscall_cryp_obj_get_info)
+F/TC:? 0 trace_syscall:151 syscall #30 (syscall_cryp_obj_populate)
+F/TC:? 0 trace_syscall:151 syscall #24 (syscall_cryp_obj_get_info)
+F/TC:? 0 trace_syscall:151 syscall #24 (syscall_cryp_obj_get_info)
+F/TC:? 0 trace_syscall:151 syscall #29 (syscall_cryp_obj_reset)
+F/TC:? 0 trace_syscall:151 syscall #24 (syscall_cryp_obj_get_info)
+F/TC:? 0 trace_syscall:151 syscall #24 (syscall_cryp_obj_get_info)
+F/TC:? 0 trace_syscall:151 syscall #31 (syscall_cryp_obj_copy)
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #38 (syscall_authenc_dec_final)
+F/TC:? 0 trace_syscall:151 syscall #17 (syscall_cryp_state_free)
+F/TC:? 0 trace_syscall:151 syscall #24 (syscall_cryp_obj_get_info)
+F/TC:? 0 trace_syscall:151 syscall #28 (syscall_cryp_obj_close)
+D/TA:  set_key:147 Adding connection
+D/TA:  TA_InvokeCommandEntryPoint:583 Calling handle_input
+D/TA:  handle_input:407 Handling input of connection ID: 0
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_before_decryption: 603395000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_decryption: 603529000 us
+D/TA:  send_int0:11 Sending packet to interface 0
+D/TA:  handle_output:293 Handling output ID 16384. Data size: 8
+D/TA:  handle_output:320 Computing payload for connection 1
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_before_encryption: 603557000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_after_encryption: 603691000 us
+D/TA:  handle_output:369 handle_output completed
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_handler: 603707000 us
+D/TA:  TA_InvokeCommandEntryPoint:583 Calling handle_input
+D/TA:  handle_input:407 Handling input of connection ID: 0
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_before_decryption: 604727000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_decryption: 604861000 us
+D/TA:  send_int0:11 Sending packet to interface 0
+D/TA:  handle_output:293 Handling output ID 16384. Data size: 8
+D/TA:  handle_output:320 Computing payload for connection 1
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_before_encryption: 604889000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_after_encryption: 605022000 us
+D/TA:  handle_output:369 handle_output completed
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_handler: 605039000 us
+D/TA:  TA_InvokeCommandEntryPoint:583 Calling handle_input
+D/TA:  handle_input:407 Handling input of connection ID: 0
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_before_decryption: 606076000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_decryption: 606209000 us
+D/TA:  send_int0:11 Sending packet to interface 0
+D/TA:  handle_output:293 Handling output ID 16384. Data size: 8
+D/TA:  handle_output:320 Computing payload for connection 1
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_before_encryption: 606238000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_after_encryption: 606371000 us
+D/TA:  handle_output:369 handle_output completed
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_handler: 606388000 us
+D/TA:  TA_InvokeCommandEntryPoint:583 Calling handle_input
+D/TA:  handle_input:407 Handling input of connection ID: 0
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_before_decryption: 607405000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_decryption: 607538000 us
+D/TA:  send_int0:11 Sending packet to interface 0
+D/TA:  handle_output:293 Handling output ID 16384. Data size: 8
+D/TA:  handle_output:320 Computing payload for connection 1
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_before_encryption: 607567000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_after_encryption: 607701000 us
+D/TA:  handle_output:369 handle_output completed
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_handler: 607717000 us
+D/TA:  TA_InvokeCommandEntryPoint:583 Calling handle_input
+D/TA:  handle_input:407 Handling input of connection ID: 0
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_before_decryption: 608737000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_decryption: 608871000 us
+D/TA:  send_int0:11 Sending packet to interface 0
+D/TA:  handle_output:293 Handling output ID 16384. Data size: 8
+D/TA:  handle_output:320 Computing payload for connection 1
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_before_encryption: 608899000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_after_encryption: 609033000 us
+D/TA:  handle_output:369 handle_output completed
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_handler: 609050000 us
+D/TA:  TA_InvokeCommandEntryPoint:583 Calling handle_input
+D/TA:  handle_input:407 Handling input of connection ID: 0
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_before_decryption: 610065000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_decryption: 610199000 us
+D/TA:  send_int0:11 Sending packet to interface 0
+D/TA:  handle_output:293 Handling output ID 16384. Data size: 8
+D/TA:  handle_output:320 Computing payload for connection 1
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_before_encryption: 610228000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_after_encryption: 610361000 us
+D/TA:  handle_output:369 handle_output completed
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_handler: 610378000 us
+D/TA:  TA_InvokeCommandEntryPoint:583 Calling handle_input
+D/TA:  handle_input:407 Handling input of connection ID: 0
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_before_decryption: 611417000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_decryption: 611551000 us
+D/TA:  send_int0:11 Sending packet to interface 0
+D/TA:  handle_output:293 Handling output ID 16384. Data size: 8
+D/TA:  handle_output:320 Computing payload for connection 1
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_before_encryption: 611579000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_after_encryption: 611713000 us
+D/TA:  handle_output:369 handle_output completed
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_handler: 611729000 us
+D/TA:  TA_InvokeCommandEntryPoint:583 Calling handle_input
+D/TA:  handle_input:407 Handling input of connection ID: 0
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_before_decryption: 612751000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_decryption: 612884000 us
+D/TA:  send_int0:11 Sending packet to interface 0
+D/TA:  handle_output:293 Handling output ID 16384. Data size: 8
+D/TA:  handle_output:320 Computing payload for connection 1
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_before_encryption: 612913000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_after_encryption: 613046000 us
+D/TA:  handle_output:369 handle_output completed
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_handler: 613063000 us
+D/TA:  TA_InvokeCommandEntryPoint:583 Calling handle_input
+D/TA:  handle_input:407 Handling input of connection ID: 0
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_before_decryption: 614097000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_decryption: 614231000 us
+D/TA:  send_int0:11 Sending packet to interface 0
+D/TA:  handle_output:293 Handling output ID 16384. Data size: 8
+D/TA:  handle_output:320 Computing payload for connection 1
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_before_encryption: 614259000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_after_encryption: 614392000 us
+D/TA:  handle_output:369 handle_output completed
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_handler: 614409000 us
+D/TA:  TA_InvokeCommandEntryPoint:583 Calling handle_input
+D/TA:  handle_input:407 Handling input of connection ID: 0
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_before_decryption: 615455000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_decryption: 615588000 us
+D/TA:  send_int0:11 Sending packet to interface 0
+D/TA:  handle_output:293 Handling output ID 16384. Data size: 8
+D/TA:  handle_output:320 Computing payload for connection 1
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_before_encryption: 615616000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_after_encryption: 615749000 us
+D/TA:  handle_output:369 handle_output completed
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_handler: 615766000 us
+D/TA:  TA_InvokeCommandEntryPoint:583 Calling handle_input
+D/TA:  handle_input:407 Handling input of connection ID: 0
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_before_decryption: 616807000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_decryption: 616941000 us
+D/TA:  send_int0:11 Sending packet to interface 0
+D/TA:  handle_output:293 Handling output ID 16384. Data size: 8
+D/TA:  handle_output:320 Computing payload for connection 1
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_before_encryption: 616969000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_after_encryption: 617102000 us
+D/TA:  handle_output:369 handle_output completed
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_handler: 617119000 us
+D/TA:  TA_InvokeCommandEntryPoint:583 Calling handle_input
+D/TA:  handle_input:407 Handling input of connection ID: 0
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_before_decryption: 618157000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_decryption: 618291000 us
+D/TA:  send_int0:11 Sending packet to interface 0
+D/TA:  handle_output:293 Handling output ID 16384. Data size: 8
+D/TA:  handle_output:320 Computing payload for connection 1
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_before_encryption: 618319000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_after_encryption: 618453000 us
+D/TA:  handle_output:369 handle_output completed
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_handler: 618469000 us
+D/TA:  TA_InvokeCommandEntryPoint:583 Calling handle_input
+D/TA:  handle_input:407 Handling input of connection ID: 0
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_before_decryption: 619506000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_decryption: 619640000 us
+D/TA:  send_int0:11 Sending packet to interface 0
+D/TA:  handle_output:293 Handling output ID 16384. Data size: 8
+D/TA:  handle_output:320 Computing payload for connection 1
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_before_encryption: 619668000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_after_encryption: 619802000 us
+D/TA:  handle_output:369 handle_output completed
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_handler: 619818000 us
+D/TA:  TA_InvokeCommandEntryPoint:583 Calling handle_input
+D/TA:  handle_input:407 Handling input of connection ID: 0
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_before_decryption: 620854000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_decryption: 620987000 us
+D/TA:  send_int0:11 Sending packet to interface 0
+D/TA:  handle_output:293 Handling output ID 16384. Data size: 8
+D/TA:  handle_output:320 Computing payload for connection 1
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_before_encryption: 621016000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_after_encryption: 621149000 us
+D/TA:  handle_output:369 handle_output completed
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_handler: 621166000 us
+D/TA:  TA_InvokeCommandEntryPoint:583 Calling handle_input
+D/TA:  handle_input:407 Handling input of connection ID: 0
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_before_decryption: 622216000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_decryption: 622350000 us
+D/TA:  send_int0:11 Sending packet to interface 0
+D/TA:  handle_output:293 Handling output ID 16384. Data size: 8
+D/TA:  handle_output:320 Computing payload for connection 1
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_before_encryption: 622378000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_after_encryption: 622511000 us
+D/TA:  handle_output:369 handle_output completed
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_handler: 622528000 us
+D/TA:  TA_InvokeCommandEntryPoint:583 Calling handle_input
+D/TA:  handle_input:407 Handling input of connection ID: 0
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_before_decryption: 623546000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_decryption: 623679000 us
+D/TA:  send_int0:11 Sending packet to interface 0
+D/TA:  handle_output:293 Handling output ID 16384. Data size: 8
+D/TA:  handle_output:320 Computing payload for connection 1
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_before_encryption: 623707000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_after_encryption: 623841000 us
+D/TA:  handle_output:369 handle_output completed
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_handler: 623858000 us
+D/TA:  TA_InvokeCommandEntryPoint:583 Calling handle_input
+D/TA:  handle_input:407 Handling input of connection ID: 0
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_before_decryption: 624883000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_decryption: 625017000 us
+D/TA:  send_int0:11 Sending packet to interface 0
+D/TA:  handle_output:293 Handling output ID 16384. Data size: 8
+D/TA:  handle_output:320 Computing payload for connection 1
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_before_encryption: 625045000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_after_encryption: 625178000 us
+D/TA:  handle_output:369 handle_output completed
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_handler: 625195000 us
+D/TA:  TA_InvokeCommandEntryPoint:583 Calling handle_input
+D/TA:  handle_input:407 Handling input of connection ID: 0
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_before_decryption: 626216000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_decryption: 626350000 us
+D/TA:  send_int0:11 Sending packet to interface 0
+D/TA:  handle_output:293 Handling output ID 16384. Data size: 8
+D/TA:  handle_output:320 Computing payload for connection 1
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_before_encryption: 626378000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_after_encryption: 626511000 us
+D/TA:  handle_output:369 handle_output completed
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_handler: 626528000 us
+D/TA:  TA_InvokeCommandEntryPoint:583 Calling handle_input
+D/TA:  handle_input:407 Handling input of connection ID: 0
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_before_decryption: 627553000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_decryption: 627694000 us
+D/TA:  send_int0:11 Sending packet to interface 0
+D/TA:  handle_output:293 Handling output ID 16384. Data size: 8
+D/TA:  handle_output:320 Computing payload for connection 1
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_before_encryption: 627723000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_after_encryption: 627856000 us
+D/TA:  handle_output:369 handle_output completed
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_handler: 627873000 us
+D/TA:  TA_InvokeCommandEntryPoint:583 Calling handle_input
+D/TA:  handle_input:407 Handling input of connection ID: 0
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_before_decryption: 628888000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_decryption: 629021000 us
+D/TA:  send_int0:11 Sending packet to interface 0
+D/TA:  handle_output:293 Handling output ID 16384. Data size: 8
+D/TA:  handle_output:320 Computing payload for connection 1
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_before_encryption: 629049000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_after_encryption: 629183000 us
+D/TA:  handle_output:369 handle_output completed
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_handler: 629199000 us
+D/TA:  TA_InvokeCommandEntryPoint:583 Calling handle_input
+D/TA:  handle_input:407 Handling input of connection ID: 0
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_before_decryption: 630246000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_decryption: 630379000 us
+D/TA:  send_int0:11 Sending packet to interface 0
+D/TA:  handle_output:293 Handling output ID 16384. Data size: 8
+D/TA:  handle_output:320 Computing payload for connection 1
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_before_encryption: 630407000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_after_encryption: 630540000 us
+D/TA:  handle_output:369 handle_output completed
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_handler: 630557000 us
+D/TA:  TA_InvokeCommandEntryPoint:583 Calling handle_input
+D/TA:  handle_input:407 Handling input of connection ID: 0
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_before_decryption: 631597000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_decryption: 631730000 us
+D/TA:  send_int0:11 Sending packet to interface 0
+D/TA:  handle_output:293 Handling output ID 16384. Data size: 8
+D/TA:  handle_output:320 Computing payload for connection 1
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_before_encryption: 631758000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_after_encryption: 631892000 us
+D/TA:  handle_output:369 handle_output completed
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_handler: 631908000 us
+D/TA:  TA_InvokeCommandEntryPoint:583 Calling handle_input
+D/TA:  handle_input:407 Handling input of connection ID: 0
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_before_decryption: 632927000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_decryption: 633061000 us
+D/TA:  send_int0:11 Sending packet to interface 0
+D/TA:  handle_output:293 Handling output ID 16384. Data size: 8
+D/TA:  handle_output:320 Computing payload for connection 1
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_before_encryption: 633089000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_after_encryption: 633222000 us
+D/TA:  handle_output:369 handle_output completed
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_handler: 633239000 us
+D/TA:  TA_InvokeCommandEntryPoint:583 Calling handle_input
+D/TA:  handle_input:407 Handling input of connection ID: 0
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_before_decryption: 634264000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_decryption: 634397000 us
+D/TA:  send_int0:11 Sending packet to interface 0
+D/TA:  handle_output:293 Handling output ID 16384. Data size: 8
+D/TA:  handle_output:320 Computing payload for connection 1
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_before_encryption: 634426000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_after_encryption: 634559000 us
+D/TA:  handle_output:369 handle_output completed
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_handler: 634576000 us
+D/TA:  TA_InvokeCommandEntryPoint:583 Calling handle_input
+D/TA:  handle_input:407 Handling input of connection ID: 0
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_before_decryption: 635616000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_decryption: 635750000 us
+D/TA:  send_int0:11 Sending packet to interface 0
+D/TA:  handle_output:293 Handling output ID 16384. Data size: 8
+D/TA:  handle_output:320 Computing payload for connection 1
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_before_encryption: 635778000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_after_encryption: 635912000 us
+D/TA:  handle_output:369 handle_output completed
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_handler: 635928000 us
+D/TA:  TA_InvokeCommandEntryPoint:583 Calling handle_input
+D/TA:  handle_input:407 Handling input of connection ID: 0
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_before_decryption: 636972000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_decryption: 637105000 us
+D/TA:  send_int0:11 Sending packet to interface 0
+D/TA:  handle_output:293 Handling output ID 16384. Data size: 8
+D/TA:  handle_output:320 Computing payload for connection 1
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_before_encryption: 637133000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_after_encryption: 637266000 us
+D/TA:  handle_output:369 handle_output completed
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_handler: 637283000 us
+D/TA:  TA_InvokeCommandEntryPoint:583 Calling handle_input
+D/TA:  handle_input:407 Handling input of connection ID: 0
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_before_decryption: 638301000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_decryption: 638435000 us
+D/TA:  send_int0:11 Sending packet to interface 0
+D/TA:  handle_output:293 Handling output ID 16384. Data size: 8
+D/TA:  handle_output:320 Computing payload for connection 1
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_before_encryption: 638463000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_after_encryption: 638596000 us
+D/TA:  handle_output:369 handle_output completed
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_handler: 638613000 us
+D/TA:  TA_InvokeCommandEntryPoint:583 Calling handle_input
+D/TA:  handle_input:407 Handling input of connection ID: 0
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_before_decryption: 639633000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_decryption: 639766000 us
+D/TA:  send_int0:11 Sending packet to interface 0
+D/TA:  handle_output:293 Handling output ID 16384. Data size: 8
+D/TA:  handle_output:320 Computing payload for connection 1
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_before_encryption: 639795000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_after_encryption: 639929000 us
+D/TA:  handle_output:369 handle_output completed
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_handler: 639946000 us
+D/TA:  TA_InvokeCommandEntryPoint:583 Calling handle_input
+D/TA:  handle_input:407 Handling input of connection ID: 0
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_before_decryption: 640968000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_decryption: 641102000 us
+D/TA:  send_int0:11 Sending packet to interface 0
+D/TA:  handle_output:293 Handling output ID 16384. Data size: 8
+D/TA:  handle_output:320 Computing payload for connection 1
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_before_encryption: 641130000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_after_encryption: 641263000 us
+D/TA:  handle_output:369 handle_output completed
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_handler: 641280000 us
+D/TA:  TA_InvokeCommandEntryPoint:583 Calling handle_input
+D/TA:  handle_input:407 Handling input of connection ID: 0
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_before_decryption: 642316000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_decryption: 642449000 us
+D/TA:  send_int0:11 Sending packet to interface 0
+D/TA:  handle_output:293 Handling output ID 16384. Data size: 8
+D/TA:  handle_output:320 Computing payload for connection 1
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_before_encryption: 642478000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_after_encryption: 642611000 us
+D/TA:  handle_output:369 handle_output completed
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_handler: 642628000 us
+D/TA:  TA_InvokeCommandEntryPoint:583 Calling handle_input
+D/TA:  handle_input:407 Handling input of connection ID: 0
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_before_decryption: 643653000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_decryption: 643786000 us
+D/TA:  send_int0:11 Sending packet to interface 0
+D/TA:  handle_output:293 Handling output ID 16384. Data size: 8
+D/TA:  handle_output:320 Computing payload for connection 1
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_before_encryption: 643815000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_after_encryption: 643948000 us
+D/TA:  handle_output:369 handle_output completed
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_handler: 643965000 us
+D/TA:  TA_InvokeCommandEntryPoint:583 Calling handle_input
+D/TA:  handle_input:407 Handling input of connection ID: 0
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_before_decryption: 644989000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_decryption: 645122000 us
+D/TA:  send_int0:11 Sending packet to interface 0
+D/TA:  handle_output:293 Handling output ID 16384. Data size: 8
+D/TA:  handle_output:320 Computing payload for connection 1
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_before_encryption: 645151000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_after_encryption: 645284000 us
+D/TA:  handle_output:369 handle_output completed
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_handler: 645301000 us
+D/TA:  TA_InvokeCommandEntryPoint:583 Calling handle_input
+D/TA:  handle_input:407 Handling input of connection ID: 0
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_before_decryption: 646341000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_decryption: 646474000 us
+D/TA:  send_int0:11 Sending packet to interface 0
+D/TA:  handle_output:293 Handling output ID 16384. Data size: 8
+D/TA:  handle_output:320 Computing payload for connection 1
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_before_encryption: 646503000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_after_encryption: 646636000 us
+D/TA:  handle_output:369 handle_output completed
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_handler: 646653000 us
+D/TA:  TA_InvokeCommandEntryPoint:583 Calling handle_input
+D/TA:  handle_input:407 Handling input of connection ID: 0
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_before_decryption: 647672000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_decryption: 647805000 us
+D/TA:  send_int0:11 Sending packet to interface 0
+D/TA:  handle_output:293 Handling output ID 16384. Data size: 8
+D/TA:  handle_output:320 Computing payload for connection 1
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_before_encryption: 647834000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_after_encryption: 647967000 us
+D/TA:  handle_output:369 handle_output completed
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_handler: 647984000 us
+D/TA:  TA_InvokeCommandEntryPoint:583 Calling handle_input
+D/TA:  handle_input:407 Handling input of connection ID: 0
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_before_decryption: 649003000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_decryption: 649136000 us
+D/TA:  send_int0:11 Sending packet to interface 0
+D/TA:  handle_output:293 Handling output ID 16384. Data size: 8
+D/TA:  handle_output:320 Computing payload for connection 1
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_before_encryption: 649165000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_after_encryption: 649298000 us
+D/TA:  handle_output:369 handle_output completed
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_handler: 649315000 us
+D/TA:  TA_InvokeCommandEntryPoint:583 Calling handle_input
+D/TA:  handle_input:407 Handling input of connection ID: 0
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_before_decryption: 650348000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_decryption: 650482000 us
+D/TA:  send_int0:11 Sending packet to interface 0
+D/TA:  handle_output:293 Handling output ID 16384. Data size: 8
+D/TA:  handle_output:320 Computing payload for connection 1
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_before_encryption: 650511000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_after_encryption: 650644000 us
+D/TA:  handle_output:369 handle_output completed
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_handler: 650660000 us
+D/TA:  TA_InvokeCommandEntryPoint:583 Calling handle_input
+D/TA:  handle_input:407 Handling input of connection ID: 0
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_before_decryption: 651697000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_decryption: 651830000 us
+D/TA:  send_int0:11 Sending packet to interface 0
+D/TA:  handle_output:293 Handling output ID 16384. Data size: 8
+D/TA:  handle_output:320 Computing payload for connection 1
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_before_encryption: 651859000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_after_encryption: 651992000 us
+D/TA:  handle_output:369 handle_output completed
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_handler: 652009000 us
+D/TA:  TA_InvokeCommandEntryPoint:583 Calling handle_input
+D/TA:  handle_input:407 Handling input of connection ID: 0
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_before_decryption: 653055000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_decryption: 653188000 us
+D/TA:  send_int0:11 Sending packet to interface 0
+D/TA:  handle_output:293 Handling output ID 16384. Data size: 8
+D/TA:  handle_output:320 Computing payload for connection 1
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_before_encryption: 653217000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_after_encryption: 653350000 us
+D/TA:  handle_output:369 handle_output completed
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_handler: 653367000 us
+D/TA:  TA_InvokeCommandEntryPoint:583 Calling handle_input
+D/TA:  handle_input:407 Handling input of connection ID: 0
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_before_decryption: 654395000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_decryption: 654528000 us
+D/TA:  send_int0:11 Sending packet to interface 0
+D/TA:  handle_output:293 Handling output ID 16384. Data size: 8
+D/TA:  handle_output:320 Computing payload for connection 1
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_before_encryption: 654557000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_after_encryption: 654690000 us
+D/TA:  handle_output:369 handle_output completed
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_handler: 654707000 us
+D/TA:  TA_InvokeCommandEntryPoint:583 Calling handle_input
+D/TA:  handle_input:407 Handling input of connection ID: 0
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_before_decryption: 655743000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_decryption: 655876000 us
+D/TA:  send_int0:11 Sending packet to interface 0
+D/TA:  handle_output:293 Handling output ID 16384. Data size: 8
+D/TA:  handle_output:320 Computing payload for connection 1
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_before_encryption: 655905000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_after_encryption: 656038000 us
+D/TA:  handle_output:369 handle_output completed
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_handler: 656054000 us
+D/TA:  TA_InvokeCommandEntryPoint:583 Calling handle_input
+D/TA:  handle_input:407 Handling input of connection ID: 0
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_before_decryption: 657076000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_decryption: 657209000 us
+D/TA:  send_int0:11 Sending packet to interface 0
+D/TA:  handle_output:293 Handling output ID 16384. Data size: 8
+D/TA:  handle_output:320 Computing payload for connection 1
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_before_encryption: 657238000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_after_encryption: 657371000 us
+D/TA:  handle_output:369 handle_output completed
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_handler: 657388000 us
+D/TA:  TA_InvokeCommandEntryPoint:583 Calling handle_input
+D/TA:  handle_input:407 Handling input of connection ID: 0
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_before_decryption: 658412000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_decryption: 658546000 us
+D/TA:  send_int0:11 Sending packet to interface 0
+D/TA:  handle_output:293 Handling output ID 16384. Data size: 8
+D/TA:  handle_output:320 Computing payload for connection 1
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_before_encryption: 658574000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_after_encryption: 658707000 us
+D/TA:  handle_output:369 handle_output completed
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_handler: 658725000 us
+D/TA:  TA_InvokeCommandEntryPoint:583 Calling handle_input
+D/TA:  handle_input:407 Handling input of connection ID: 0
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_before_decryption: 659757000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_decryption: 659890000 us
+D/TA:  send_int0:11 Sending packet to interface 0
+D/TA:  handle_output:293 Handling output ID 16384. Data size: 8
+D/TA:  handle_output:320 Computing payload for connection 1
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_before_encryption: 659919000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_after_encryption: 660052000 us
+D/TA:  handle_output:369 handle_output completed
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_handler: 660068000 us
+D/TA:  TA_InvokeCommandEntryPoint:583 Calling handle_input
+D/TA:  handle_input:407 Handling input of connection ID: 0
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_before_decryption: 661087000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_decryption: 661220000 us
+D/TA:  send_int0:11 Sending packet to interface 0
+D/TA:  handle_output:293 Handling output ID 16384. Data size: 8
+D/TA:  handle_output:320 Computing payload for connection 1
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_before_encryption: 661249000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_after_encryption: 661382000 us
+D/TA:  handle_output:369 handle_output completed
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_handler: 661398000 us
+D/TA:  TA_InvokeCommandEntryPoint:583 Calling handle_input
+D/TA:  handle_input:407 Handling input of connection ID: 0
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_before_decryption: 662437000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_decryption: 662570000 us
+D/TA:  send_int0:11 Sending packet to interface 0
+D/TA:  handle_output:293 Handling output ID 16384. Data size: 8
+D/TA:  handle_output:320 Computing payload for connection 1
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_before_encryption: 662599000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_after_encryption: 662732000 us
+D/TA:  handle_output:369 handle_output completed
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_handler: 662749000 us
+D/TA:  TA_InvokeCommandEntryPoint:583 Calling handle_input
+D/TA:  handle_input:407 Handling input of connection ID: 0
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_before_decryption: 663767000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_decryption: 663900000 us
+D/TA:  send_int0:11 Sending packet to interface 0
+D/TA:  handle_output:293 Handling output ID 16384. Data size: 8
+D/TA:  handle_output:320 Computing payload for connection 1
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_before_encryption: 663929000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_after_encryption: 664062000 us
+D/TA:  handle_output:369 handle_output completed
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_handler: 664079000 us
+D/TA:  TA_InvokeCommandEntryPoint:583 Calling handle_input
+D/TA:  handle_input:407 Handling input of connection ID: 0
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_before_decryption: 665098000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_decryption: 665231000 us
+D/TA:  send_int0:11 Sending packet to interface 0
+D/TA:  handle_output:293 Handling output ID 16384. Data size: 8
+D/TA:  handle_output:320 Computing payload for connection 1
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_before_encryption: 665260000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_after_encryption: 665393000 us
+D/TA:  handle_output:369 handle_output completed
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_handler: 665409000 us
+D/TA:  TA_InvokeCommandEntryPoint:583 Calling handle_input
+D/TA:  handle_input:407 Handling input of connection ID: 0
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_before_decryption: 666452000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_decryption: 666585000 us
+D/TA:  send_int0:11 Sending packet to interface 0
+D/TA:  handle_output:293 Handling output ID 16384. Data size: 8
+D/TA:  handle_output:320 Computing payload for connection 1
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_before_encryption: 666613000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_after_encryption: 666746000 us
+D/TA:  handle_output:369 handle_output completed
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_handler: 666763000 us
+D/TA:  TA_InvokeCommandEntryPoint:583 Calling handle_input
+D/TA:  handle_input:407 Handling input of connection ID: 0
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_before_decryption: 667781000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_decryption: 667913000 us
+D/TA:  send_int0:11 Sending packet to interface 0
+D/TA:  handle_output:293 Handling output ID 16384. Data size: 8
+D/TA:  handle_output:320 Computing payload for connection 1
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_before_encryption: 667942000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_after_encryption: 668075000 us
+D/TA:  handle_output:369 handle_output completed
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_handler: 668092000 us
+D/TA:  TA_InvokeCommandEntryPoint:583 Calling handle_input
+D/TA:  handle_input:407 Handling input of connection ID: 0
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_before_decryption: 669114000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_decryption: 669248000 us
+D/TA:  send_int0:11 Sending packet to interface 0
+D/TA:  handle_output:293 Handling output ID 16384. Data size: 8
+D/TA:  handle_output:320 Computing payload for connection 1
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_before_encryption: 669276000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_after_encryption: 669409000 us
+D/TA:  handle_output:369 handle_output completed
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_handler: 669426000 us
+D/TA:  TA_InvokeCommandEntryPoint:583 Calling handle_input
+D/TA:  handle_input:407 Handling input of connection ID: 0
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_before_decryption: 670482000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_decryption: 670617000 us
+D/TA:  send_int0:11 Sending packet to interface 0
+D/TA:  handle_output:293 Handling output ID 16384. Data size: 8
+D/TA:  handle_output:320 Computing payload for connection 1
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_before_encryption: 670646000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_after_encryption: 670783000 us
+D/TA:  handle_output:369 handle_output completed
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_handler: 670799000 us
+D/TA:  TA_InvokeCommandEntryPoint:583 Calling handle_input
+D/TA:  handle_input:407 Handling input of connection ID: 0
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_before_decryption: 671833000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_decryption: 671969000 us
+D/TA:  send_int0:11 Sending packet to interface 0
+D/TA:  handle_output:293 Handling output ID 16384. Data size: 8
+D/TA:  handle_output:320 Computing payload for connection 1
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_before_encryption: 671998000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_after_encryption: 672135000 us
+D/TA:  handle_output:369 handle_output completed
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_handler: 672151000 us
+D/TA:  TA_InvokeCommandEntryPoint:583 Calling handle_input
+D/TA:  handle_input:407 Handling input of connection ID: 0
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_before_decryption: 673173000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_decryption: 673309000 us
+D/TA:  send_int0:11 Sending packet to interface 0
+D/TA:  handle_output:293 Handling output ID 16384. Data size: 8
+D/TA:  handle_output:320 Computing payload for connection 1
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_before_encryption: 673338000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_after_encryption: 673474000 us
+D/TA:  handle_output:369 handle_output completed
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_handler: 673491000 us
+D/TA:  TA_InvokeCommandEntryPoint:583 Calling handle_input
+D/TA:  handle_input:407 Handling input of connection ID: 0
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_before_decryption: 674529000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_decryption: 674666000 us
+D/TA:  send_int0:11 Sending packet to interface 0
+D/TA:  handle_output:293 Handling output ID 16384. Data size: 8
+D/TA:  handle_output:320 Computing payload for connection 1
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_before_encryption: 674694000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_after_encryption: 674831000 us
+D/TA:  handle_output:369 handle_output completed
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_handler: 674848000 us
+D/TA:  TA_InvokeCommandEntryPoint:583 Calling handle_input
+D/TA:  handle_input:407 Handling input of connection ID: 0
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_before_decryption: 675883000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_decryption: 676019000 us
+D/TA:  send_int0:11 Sending packet to interface 0
+D/TA:  handle_output:293 Handling output ID 16384. Data size: 8
+D/TA:  handle_output:320 Computing payload for connection 1
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_before_encryption: 676048000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_after_encryption: 676185000 us
+D/TA:  handle_output:369 handle_output completed
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_handler: 676202000 us
+D/TA:  TA_InvokeCommandEntryPoint:583 Calling handle_input
+D/TA:  handle_input:407 Handling input of connection ID: 0
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_before_decryption: 677249000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_decryption: 677386000 us
+D/TA:  send_int0:11 Sending packet to interface 0
+D/TA:  handle_output:293 Handling output ID 16384. Data size: 8
+D/TA:  handle_output:320 Computing payload for connection 1
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_before_encryption: 677415000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_after_encryption: 677551000 us
+D/TA:  handle_output:369 handle_output completed
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_handler: 677568000 us
+D/TA:  TA_InvokeCommandEntryPoint:583 Calling handle_input
+D/TA:  handle_input:407 Handling input of connection ID: 0
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_before_decryption: 678586000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_decryption: 678723000 us
+D/TA:  send_int0:11 Sending packet to interface 0
+D/TA:  handle_output:293 Handling output ID 16384. Data size: 8
+D/TA:  handle_output:320 Computing payload for connection 1
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_before_encryption: 678752000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_after_encryption: 678888000 us
+D/TA:  handle_output:369 handle_output completed
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_handler: 678905000 us
+D/TA:  TA_InvokeCommandEntryPoint:583 Calling handle_input
+D/TA:  handle_input:407 Handling input of connection ID: 0
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_before_decryption: 679939000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_decryption: 680075000 us
+D/TA:  send_int0:11 Sending packet to interface 0
+D/TA:  handle_output:293 Handling output ID 16384. Data size: 8
+D/TA:  handle_output:320 Computing payload for connection 1
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_before_encryption: 680104000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_after_encryption: 680241000 us
+D/TA:  handle_output:369 handle_output completed
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_handler: 680257000 us
+D/TA:  TA_InvokeCommandEntryPoint:583 Calling handle_input
+D/TA:  handle_input:407 Handling input of connection ID: 0
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_before_decryption: 681318000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_decryption: 681457000 us
+D/TA:  send_int0:11 Sending packet to interface 0
+D/TA:  handle_output:293 Handling output ID 16384. Data size: 8
+D/TA:  handle_output:320 Computing payload for connection 1
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_before_encryption: 681485000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_after_encryption: 681622000 us
+D/TA:  handle_output:369 handle_output completed
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_handler: 681639000 us
+D/TA:  TA_InvokeCommandEntryPoint:583 Calling handle_input
+D/TA:  handle_input:407 Handling input of connection ID: 0
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_before_decryption: 682839000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_decryption: 682976000 us
+D/TA:  send_int0:11 Sending packet to interface 0
+D/TA:  handle_output:293 Handling output ID 16384. Data size: 8
+D/TA:  handle_output:320 Computing payload for connection 1
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_before_encryption: 683005000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_after_encryption: 683141000 us
+D/TA:  handle_output:369 handle_output completed
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_handler: 683158000 us
+D/TA:  TA_InvokeCommandEntryPoint:583 Calling handle_input
+D/TA:  handle_input:407 Handling input of connection ID: 0
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_before_decryption: 684209000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_decryption: 684345000 us
+D/TA:  send_int0:11 Sending packet to interface 0
+D/TA:  handle_output:293 Handling output ID 16384. Data size: 8
+D/TA:  handle_output:320 Computing payload for connection 1
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_before_encryption: 684374000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_after_encryption: 684511000 us
+D/TA:  handle_output:369 handle_output completed
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_handler: 684527000 us
+D/TA:  TA_InvokeCommandEntryPoint:583 Calling handle_input
+D/TA:  handle_input:407 Handling input of connection ID: 0
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_before_decryption: 685543000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_decryption: 685679000 us
+D/TA:  send_int0:11 Sending packet to interface 0
+D/TA:  handle_output:293 Handling output ID 16384. Data size: 8
+D/TA:  handle_output:320 Computing payload for connection 1
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_before_encryption: 685708000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_after_encryption: 685845000 us
+D/TA:  handle_output:369 handle_output completed
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_handler: 685862000 us
+D/TA:  TA_InvokeCommandEntryPoint:583 Calling handle_input
+D/TA:  handle_input:407 Handling input of connection ID: 0
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_before_decryption: 686874000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_decryption: 687011000 us
+D/TA:  send_int0:11 Sending packet to interface 0
+D/TA:  handle_output:293 Handling output ID 16384. Data size: 8
+D/TA:  handle_output:320 Computing payload for connection 1
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_before_encryption: 687040000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_after_encryption: 687176000 us
+D/TA:  handle_output:369 handle_output completed
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_handler: 687193000 us
+D/TA:  TA_InvokeCommandEntryPoint:583 Calling handle_input
+D/TA:  handle_input:407 Handling input of connection ID: 0
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_before_decryption: 688207000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_decryption: 688344000 us
+D/TA:  send_int0:11 Sending packet to interface 0
+D/TA:  handle_output:293 Handling output ID 16384. Data size: 8
+D/TA:  handle_output:320 Computing payload for connection 1
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_before_encryption: 688372000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_after_encryption: 688509000 us
+D/TA:  handle_output:369 handle_output completed
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_handler: 688526000 us
+D/TA:  TA_InvokeCommandEntryPoint:583 Calling handle_input
+D/TA:  handle_input:407 Handling input of connection ID: 0
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_before_decryption: 689558000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_decryption: 689696000 us
+D/TA:  send_int0:11 Sending packet to interface 0
+D/TA:  handle_output:293 Handling output ID 16384. Data size: 8
+D/TA:  handle_output:320 Computing payload for connection 1
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_before_encryption: 689724000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_after_encryption: 689861000 us
+D/TA:  handle_output:369 handle_output completed
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_handler: 689877000 us
+D/TA:  TA_InvokeCommandEntryPoint:583 Calling handle_input
+D/TA:  handle_input:407 Handling input of connection ID: 0
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_before_decryption: 690907000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_decryption: 691044000 us
+D/TA:  send_int0:11 Sending packet to interface 0
+D/TA:  handle_output:293 Handling output ID 16384. Data size: 8
+D/TA:  handle_output:320 Computing payload for connection 1
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_before_encryption: 691073000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_after_encryption: 691209000 us
+D/TA:  handle_output:369 handle_output completed
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_handler: 691226000 us
+D/TA:  TA_InvokeCommandEntryPoint:583 Calling handle_input
+D/TA:  handle_input:407 Handling input of connection ID: 0
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_before_decryption: 692237000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_decryption: 692370000 us
+D/TA:  send_int0:11 Sending packet to interface 0
+D/TA:  handle_output:293 Handling output ID 16384. Data size: 8
+D/TA:  handle_output:320 Computing payload for connection 1
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_before_encryption: 692398000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_after_encryption: 692532000 us
+D/TA:  handle_output:369 handle_output completed
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_handler: 692548000 us
+D/TA:  TA_InvokeCommandEntryPoint:583 Calling handle_input
+D/TA:  handle_input:407 Handling input of connection ID: 0
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_before_decryption: 693566000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_decryption: 693699000 us
+D/TA:  send_int0:11 Sending packet to interface 0
+D/TA:  handle_output:293 Handling output ID 16384. Data size: 8
+D/TA:  handle_output:320 Computing payload for connection 1
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_before_encryption: 693728000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_after_encryption: 693862000 us
+D/TA:  handle_output:369 handle_output completed
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_handler: 693878000 us
+D/TA:  TA_InvokeCommandEntryPoint:583 Calling handle_input
+D/TA:  handle_input:407 Handling input of connection ID: 0
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_before_decryption: 694919000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_decryption: 695053000 us
+D/TA:  send_int0:11 Sending packet to interface 0
+D/TA:  handle_output:293 Handling output ID 16384. Data size: 8
+D/TA:  handle_output:320 Computing payload for connection 1
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_before_encryption: 695081000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_after_encryption: 695215000 us
+D/TA:  handle_output:369 handle_output completed
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_handler: 695232000 us
+D/TA:  TA_InvokeCommandEntryPoint:583 Calling handle_input
+D/TA:  handle_input:407 Handling input of connection ID: 0
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_before_decryption: 696254000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_decryption: 696387000 us
+D/TA:  send_int0:11 Sending packet to interface 0
+D/TA:  handle_output:293 Handling output ID 16384. Data size: 8
+D/TA:  handle_output:320 Computing payload for connection 1
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_before_encryption: 696415000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_after_encryption: 696548000 us
+D/TA:  handle_output:369 handle_output completed
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_handler: 696565000 us
+D/TA:  TA_InvokeCommandEntryPoint:583 Calling handle_input
+D/TA:  handle_input:407 Handling input of connection ID: 0
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_before_decryption: 697603000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_decryption: 697736000 us
+D/TA:  send_int0:11 Sending packet to interface 0
+D/TA:  handle_output:293 Handling output ID 16384. Data size: 8
+D/TA:  handle_output:320 Computing payload for connection 1
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_before_encryption: 697765000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_after_encryption: 697898000 us
+D/TA:  handle_output:369 handle_output completed
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_handler: 697915000 us
+D/TA:  TA_InvokeCommandEntryPoint:583 Calling handle_input
+D/TA:  handle_input:407 Handling input of connection ID: 0
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_before_decryption: 698931000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_decryption: 699064000 us
+D/TA:  send_int0:11 Sending packet to interface 0
+D/TA:  handle_output:293 Handling output ID 16384. Data size: 8
+D/TA:  handle_output:320 Computing payload for connection 1
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_before_encryption: 699093000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_after_encryption: 699226000 us
+D/TA:  handle_output:369 handle_output completed
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_handler: 699243000 us
+D/TA:  TA_InvokeCommandEntryPoint:583 Calling handle_input
+D/TA:  handle_input:407 Handling input of connection ID: 0
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_before_decryption: 700278000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_decryption: 700411000 us
+D/TA:  send_int0:11 Sending packet to interface 0
+D/TA:  handle_output:293 Handling output ID 16384. Data size: 8
+D/TA:  handle_output:320 Computing payload for connection 1
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_before_encryption: 700440000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_after_encryption: 700573000 us
+D/TA:  handle_output:369 handle_output completed
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_handler: 700590000 us
+D/TA:  TA_InvokeCommandEntryPoint:583 Calling handle_input
+D/TA:  handle_input:407 Handling input of connection ID: 0
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_before_decryption: 701633000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_decryption: 701766000 us
+D/TA:  send_int0:11 Sending packet to interface 0
+D/TA:  handle_output:293 Handling output ID 16384. Data size: 8
+D/TA:  handle_output:320 Computing payload for connection 1
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_before_encryption: 701795000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_after_encryption: 701927000 us
+D/TA:  handle_output:369 handle_output completed
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_handler: 701944000 us
+D/TA:  TA_InvokeCommandEntryPoint:583 Calling handle_input
+D/TA:  handle_input:407 Handling input of connection ID: 0
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_before_decryption: 702965000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_decryption: 703100000 us
+D/TA:  send_int0:11 Sending packet to interface 0
+D/TA:  handle_output:293 Handling output ID 16384. Data size: 8
+D/TA:  handle_output:320 Computing payload for connection 1
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_before_encryption: 703129000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_after_encryption: 703262000 us
+D/TA:  handle_output:369 handle_output completed
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_handler: 703279000 us
+D/TA:  TA_InvokeCommandEntryPoint:583 Calling handle_input
+D/TA:  handle_input:407 Handling input of connection ID: 0
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_before_decryption: 704298000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_decryption: 704432000 us
+D/TA:  send_int0:11 Sending packet to interface 0
+D/TA:  handle_output:293 Handling output ID 16384. Data size: 8
+D/TA:  handle_output:320 Computing payload for connection 1
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_before_encryption: 704460000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_after_encryption: 704593000 us
+D/TA:  handle_output:369 handle_output completed
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_handler: 704610000 us
+D/TA:  TA_InvokeCommandEntryPoint:583 Calling handle_input
+D/TA:  handle_input:407 Handling input of connection ID: 0
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_before_decryption: 705646000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_decryption: 705779000 us
+D/TA:  send_int0:11 Sending packet to interface 0
+D/TA:  handle_output:293 Handling output ID 16384. Data size: 8
+D/TA:  handle_output:320 Computing payload for connection 1
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_before_encryption: 705808000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_after_encryption: 705941000 us
+D/TA:  handle_output:369 handle_output completed
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_handler: 705958000 us
+D/TA:  TA_InvokeCommandEntryPoint:583 Calling handle_input
+D/TA:  handle_input:407 Handling input of connection ID: 0
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_before_decryption: 706993000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_decryption: 707126000 us
+D/TA:  send_int0:11 Sending packet to interface 0
+D/TA:  handle_output:293 Handling output ID 16384. Data size: 8
+D/TA:  handle_output:320 Computing payload for connection 1
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_before_encryption: 707155000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_after_encryption: 707288000 us
+D/TA:  handle_output:369 handle_output completed
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_handler: 707305000 us
+D/TA:  TA_InvokeCommandEntryPoint:583 Calling handle_input
+D/TA:  handle_input:407 Handling input of connection ID: 0
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_before_decryption: 708324000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_decryption: 708457000 us
+D/TA:  send_int0:11 Sending packet to interface 0
+D/TA:  handle_output:293 Handling output ID 16384. Data size: 8
+D/TA:  handle_output:320 Computing payload for connection 1
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_before_encryption: 708486000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_after_encryption: 708619000 us
+D/TA:  handle_output:369 handle_output completed
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_handler: 708636000 us
+D/TA:  TA_InvokeCommandEntryPoint:583 Calling handle_input
+D/TA:  handle_input:407 Handling input of connection ID: 0
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_before_decryption: 709657000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_decryption: 709791000 us
+D/TA:  send_int0:11 Sending packet to interface 0
+D/TA:  handle_output:293 Handling output ID 16384. Data size: 8
+D/TA:  handle_output:320 Computing payload for connection 1
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_before_encryption: 709819000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_after_encryption: 709953000 us
+D/TA:  handle_output:369 handle_output completed
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_handler: 709969000 us
+D/TA:  TA_InvokeCommandEntryPoint:583 Calling handle_input
+D/TA:  handle_input:407 Handling input of connection ID: 0
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_before_decryption: 710993000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_decryption: 711126000 us
+D/TA:  send_int0:11 Sending packet to interface 0
+D/TA:  handle_output:293 Handling output ID 16384. Data size: 8
+D/TA:  handle_output:320 Computing payload for connection 1
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_before_encryption: 711154000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_after_encryption: 711288000 us
+D/TA:  handle_output:369 handle_output completed
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_handler: 711305000 us
+D/TA:  TA_InvokeCommandEntryPoint:583 Calling handle_input
+D/TA:  handle_input:407 Handling input of connection ID: 0
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_before_decryption: 712326000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_decryption: 712459000 us
+D/TA:  send_int0:11 Sending packet to interface 0
+D/TA:  handle_output:293 Handling output ID 16384. Data size: 8
+D/TA:  handle_output:320 Computing payload for connection 1
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_before_encryption: 712488000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_after_encryption: 712621000 us
+D/TA:  handle_output:369 handle_output completed
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_handler: 712637000 us
+D/TA:  TA_InvokeCommandEntryPoint:583 Calling handle_input
+D/TA:  handle_input:407 Handling input of connection ID: 0
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_before_decryption: 713653000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_decryption: 713786000 us
+D/TA:  send_int0:11 Sending packet to interface 0
+D/TA:  handle_output:293 Handling output ID 16384. Data size: 8
+D/TA:  handle_output:320 Computing payload for connection 1
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_before_encryption: 713815000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_after_encryption: 713948000 us
+D/TA:  handle_output:369 handle_output completed
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_handler: 713965000 us
+D/TA:  TA_InvokeCommandEntryPoint:583 Calling handle_input
+D/TA:  handle_input:407 Handling input of connection ID: 0
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_before_decryption: 714987000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_decryption: 715121000 us
+D/TA:  send_int0:11 Sending packet to interface 0
+D/TA:  handle_output:293 Handling output ID 16384. Data size: 8
+D/TA:  handle_output:320 Computing payload for connection 1
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_before_encryption: 715149000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_after_encryption: 715283000 us
+D/TA:  handle_output:369 handle_output completed
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_handler: 715299000 us
+D/TA:  TA_InvokeCommandEntryPoint:583 Calling handle_input
+D/TA:  handle_input:407 Handling input of connection ID: 0
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_before_decryption: 716325000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_decryption: 716458000 us
+D/TA:  send_int0:11 Sending packet to interface 0
+D/TA:  handle_output:293 Handling output ID 16384. Data size: 8
+D/TA:  handle_output:320 Computing payload for connection 1
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_before_encryption: 716486000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_after_encryption: 716619000 us
+D/TA:  handle_output:369 handle_output completed
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_handler: 716636000 us
+D/TA:  TA_InvokeCommandEntryPoint:583 Calling handle_input
+D/TA:  handle_input:407 Handling input of connection ID: 0
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_before_decryption: 717669000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_decryption: 717803000 us
+D/TA:  send_int0:11 Sending packet to interface 0
+D/TA:  handle_output:293 Handling output ID 16384. Data size: 8
+D/TA:  handle_output:320 Computing payload for connection 1
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_before_encryption: 717832000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_after_encryption: 717965000 us
+D/TA:  handle_output:369 handle_output completed
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_handler: 717982000 us
+D/TA:  TA_InvokeCommandEntryPoint:583 Calling handle_input
+D/TA:  handle_input:407 Handling input of connection ID: 0
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_before_decryption: 719015000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_decryption: 719148000 us
+D/TA:  send_int0:11 Sending packet to interface 0
+D/TA:  handle_output:293 Handling output ID 16384. Data size: 8
+D/TA:  handle_output:320 Computing payload for connection 1
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_before_encryption: 719177000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_after_encryption: 719310000 us
+D/TA:  handle_output:369 handle_output completed
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_handler: 719327000 us
+D/TA:  TA_InvokeCommandEntryPoint:583 Calling handle_input
+D/TA:  handle_input:407 Handling input of connection ID: 0
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_before_decryption: 720361000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_decryption: 720494000 us
+D/TA:  send_int0:11 Sending packet to interface 0
+D/TA:  handle_output:293 Handling output ID 16384. Data size: 8
+D/TA:  handle_output:320 Computing payload for connection 1
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_before_encryption: 720523000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_after_encryption: 720656000 us
+D/TA:  handle_output:369 handle_output completed
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_handler: 720673000 us
+D/TA:  TA_InvokeCommandEntryPoint:583 Calling handle_input
+D/TA:  handle_input:407 Handling input of connection ID: 0
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_before_decryption: 721715000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_decryption: 721849000 us
+D/TA:  send_int0:11 Sending packet to interface 0
+D/TA:  handle_output:293 Handling output ID 16384. Data size: 8
+D/TA:  handle_output:320 Computing payload for connection 1
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_before_encryption: 721877000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_after_encryption: 722011000 us
+D/TA:  handle_output:369 handle_output completed
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_handler: 722027000 us
+D/TA:  TA_InvokeCommandEntryPoint:583 Calling handle_input
+D/TA:  handle_input:407 Handling input of connection ID: 0
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_before_decryption: 723044000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_decryption: 723177000 us
+D/TA:  send_int0:11 Sending packet to interface 0
+D/TA:  handle_output:293 Handling output ID 16384. Data size: 8
+D/TA:  handle_output:320 Computing payload for connection 1
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_before_encryption: 723206000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_after_encryption: 723339000 us
+D/TA:  handle_output:369 handle_output completed
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_handler: 723356000 us
+D/TA:  TA_InvokeCommandEntryPoint:583 Calling handle_input
+D/TA:  handle_input:407 Handling input of connection ID: 0
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_before_decryption: 724392000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_decryption: 724525000 us
+D/TA:  send_int0:11 Sending packet to interface 0
+D/TA:  handle_output:293 Handling output ID 16384. Data size: 8
+D/TA:  handle_output:320 Computing payload for connection 1
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_before_encryption: 724554000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_after_encryption: 724687000 us
+D/TA:  handle_output:369 handle_output completed
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_handler: 724704000 us
+D/TA:  TA_InvokeCommandEntryPoint:583 Calling handle_input
+D/TA:  handle_input:407 Handling input of connection ID: 0
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_before_decryption: 725756000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_decryption: 725889000 us
+D/TA:  send_int0:11 Sending packet to interface 0
+D/TA:  handle_output:293 Handling output ID 16384. Data size: 8
+D/TA:  handle_output:320 Computing payload for connection 1
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_before_encryption: 725918000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_after_encryption: 726051000 us
+D/TA:  handle_output:369 handle_output completed
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_handler: 726068000 us
+D/TA:  TA_InvokeCommandEntryPoint:583 Calling handle_input
+D/TA:  handle_input:407 Handling input of connection ID: 0
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_before_decryption: 727088000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_decryption: 727221000 us
+D/TA:  send_int0:11 Sending packet to interface 0
+D/TA:  handle_output:293 Handling output ID 16384. Data size: 8
+D/TA:  handle_output:320 Computing payload for connection 1
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_before_encryption: 727250000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_after_encryption: 727383000 us
+D/TA:  handle_output:369 handle_output completed
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_handler: 727400000 us
+D/TA:  TA_InvokeCommandEntryPoint:583 Calling handle_input
+D/TA:  handle_input:407 Handling input of connection ID: 0
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_before_decryption: 728424000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_decryption: 728557000 us
+D/TA:  send_int0:11 Sending packet to interface 0
+D/TA:  handle_output:293 Handling output ID 16384. Data size: 8
+D/TA:  handle_output:320 Computing payload for connection 1
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_before_encryption: 728586000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_after_encryption: 728719000 us
+D/TA:  handle_output:369 handle_output completed
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_handler: 728736000 us
+D/TA:  TA_InvokeCommandEntryPoint:583 Calling handle_input
+D/TA:  handle_input:407 Handling input of connection ID: 0
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_before_decryption: 729767000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_decryption: 729900000 us
+D/TA:  send_int0:11 Sending packet to interface 0
+D/TA:  handle_output:293 Handling output ID 16384. Data size: 8
+D/TA:  handle_output:320 Computing payload for connection 1
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_before_encryption: 729929000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_after_encryption: 730062000 us
+D/TA:  handle_output:369 handle_output completed
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_handler: 730078000 us
+D/TA:  TA_InvokeCommandEntryPoint:583 Calling handle_input
+D/TA:  handle_input:407 Handling input of connection ID: 0
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_before_decryption: 731099000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_decryption: 731232000 us
+D/TA:  send_int0:11 Sending packet to interface 0
+D/TA:  handle_output:293 Handling output ID 16384. Data size: 8
+D/TA:  handle_output:320 Computing payload for connection 1
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_before_encryption: 731261000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_after_encryption: 731393000 us
+D/TA:  handle_output:369 handle_output completed
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_handler: 731410000 us
+D/TA:  TA_InvokeCommandEntryPoint:583 Calling handle_input
+D/TA:  handle_input:407 Handling input of connection ID: 0
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_before_decryption: 732452000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_decryption: 732585000 us
+D/TA:  send_int0:11 Sending packet to interface 0
+D/TA:  handle_output:293 Handling output ID 16384. Data size: 8
+D/TA:  handle_output:320 Computing payload for connection 1
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_before_encryption: 732614000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_after_encryption: 732746000 us
+D/TA:  handle_output:369 handle_output completed
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_handler: 732763000 us
+D/TA:  TA_InvokeCommandEntryPoint:583 Calling handle_input
+D/TA:  handle_input:407 Handling input of connection ID: 0
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_before_decryption: 733802000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_decryption: 733935000 us
+D/TA:  send_int0:11 Sending packet to interface 0
+D/TA:  handle_output:293 Handling output ID 16384. Data size: 8
+D/TA:  handle_output:320 Computing payload for connection 1
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_before_encryption: 733964000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_after_encryption: 734097000 us
+D/TA:  handle_output:369 handle_output completed
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_handler: 734114000 us
+D/TA:  TA_InvokeCommandEntryPoint:583 Calling handle_input
+D/TA:  handle_input:407 Handling input of connection ID: 0
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_before_decryption: 735134000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_decryption: 735267000 us
+D/TA:  send_int0:11 Sending packet to interface 0
+D/TA:  handle_output:293 Handling output ID 16384. Data size: 8
+D/TA:  handle_output:320 Computing payload for connection 1
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_before_encryption: 735295000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_after_encryption: 735428000 us
+D/TA:  handle_output:369 handle_output completed
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_handler: 735445000 us
+D/TA:  TA_InvokeCommandEntryPoint:583 Calling handle_input
+D/TA:  handle_input:407 Handling input of connection ID: 0
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_before_decryption: 736467000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_decryption: 736601000 us
+D/TA:  send_int0:11 Sending packet to interface 0
+D/TA:  handle_output:293 Handling output ID 16384. Data size: 8
+D/TA:  handle_output:320 Computing payload for connection 1
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_before_encryption: 736629000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_after_encryption: 736763000 us
+D/TA:  handle_output:369 handle_output completed
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_handler: 736779000 us
+D/TA:  TA_InvokeCommandEntryPoint:583 Calling handle_input
+D/TA:  handle_input:407 Handling input of connection ID: 0
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_before_decryption: 737815000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_decryption: 737948000 us
+D/TA:  send_int0:11 Sending packet to interface 0
+D/TA:  handle_output:293 Handling output ID 16384. Data size: 8
+D/TA:  handle_output:320 Computing payload for connection 1
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_before_encryption: 737977000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_after_encryption: 738109000 us
+D/TA:  handle_output:369 handle_output completed
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_handler: 738126000 us
+D/TA:  TA_InvokeCommandEntryPoint:583 Calling handle_input
+D/TA:  handle_input:407 Handling input of connection ID: 0
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_before_decryption: 739147000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_decryption: 739280000 us
+D/TA:  send_int0:11 Sending packet to interface 0
+D/TA:  handle_output:293 Handling output ID 16384. Data size: 8
+D/TA:  handle_output:320 Computing payload for connection 1
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_before_encryption: 739309000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_after_encryption: 739442000 us
+D/TA:  handle_output:369 handle_output completed
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_handler: 739459000 us
+D/TA:  TA_InvokeCommandEntryPoint:583 Calling handle_input
+D/TA:  handle_input:407 Handling input of connection ID: 0
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_before_decryption: 740487000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_decryption: 740621000 us
+D/TA:  send_int0:11 Sending packet to interface 0
+D/TA:  handle_output:293 Handling output ID 16384. Data size: 8
+D/TA:  handle_output:320 Computing payload for connection 1
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_before_encryption: 740649000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_after_encryption: 740782000 us
+D/TA:  handle_output:369 handle_output completed
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_handler: 740799000 us
+D/TA:  TA_InvokeCommandEntryPoint:583 Calling handle_input
+D/TA:  handle_input:407 Handling input of connection ID: 0
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_before_decryption: 741817000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_decryption: 741951000 us
+D/TA:  send_int0:11 Sending packet to interface 0
+D/TA:  handle_output:293 Handling output ID 16384. Data size: 8
+D/TA:  handle_output:320 Computing payload for connection 1
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_before_encryption: 741980000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_after_encryption: 742113000 us
+D/TA:  handle_output:369 handle_output completed
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_handler: 742129000 us
+D/TA:  TA_InvokeCommandEntryPoint:583 Calling handle_input
+D/TA:  handle_input:407 Handling input of connection ID: 0
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_before_decryption: 743176000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_decryption: 743309000 us
+D/TA:  send_int0:11 Sending packet to interface 0
+D/TA:  handle_output:293 Handling output ID 16384. Data size: 8
+D/TA:  handle_output:320 Computing payload for connection 1
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_before_encryption: 743338000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_after_encryption: 743471000 us
+D/TA:  handle_output:369 handle_output completed
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_handler: 743488000 us
+D/TA:  TA_InvokeCommandEntryPoint:583 Calling handle_input
+D/TA:  handle_input:407 Handling input of connection ID: 0
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_before_decryption: 744527000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_decryption: 744660000 us
+D/TA:  send_int0:11 Sending packet to interface 0
+D/TA:  handle_output:293 Handling output ID 16384. Data size: 8
+D/TA:  handle_output:320 Computing payload for connection 1
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_before_encryption: 744689000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_after_encryption: 744822000 us
+D/TA:  handle_output:369 handle_output completed
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_handler: 744839000 us
+D/TA:  TA_InvokeCommandEntryPoint:583 Calling handle_input
+D/TA:  handle_input:407 Handling input of connection ID: 0
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_before_decryption: 745877000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_decryption: 746011000 us
+D/TA:  send_int0:11 Sending packet to interface 0
+D/TA:  handle_output:293 Handling output ID 16384. Data size: 8
+D/TA:  handle_output:320 Computing payload for connection 1
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_before_encryption: 746039000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_after_encryption: 746173000 us
+D/TA:  handle_output:369 handle_output completed
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_handler: 746189000 us
+D/TA:  TA_InvokeCommandEntryPoint:583 Calling handle_input
+D/TA:  handle_input:407 Handling input of connection ID: 0
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_before_decryption: 747231000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_decryption: 747364000 us
+D/TA:  send_int0:11 Sending packet to interface 0
+D/TA:  handle_output:293 Handling output ID 16384. Data size: 8
+D/TA:  handle_output:320 Computing payload for connection 1
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_before_encryption: 747393000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_after_encryption: 747525000 us
+D/TA:  handle_output:369 handle_output completed
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_handler: 747542000 us
+D/TA:  TA_InvokeCommandEntryPoint:583 Calling handle_input
+D/TA:  handle_input:407 Handling input of connection ID: 0
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_before_decryption: 748565000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_decryption: 748699000 us
+D/TA:  send_int0:11 Sending packet to interface 0
+D/TA:  handle_output:293 Handling output ID 16384. Data size: 8
+D/TA:  handle_output:320 Computing payload for connection 1
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_before_encryption: 748727000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_after_encryption: 748861000 us
+D/TA:  handle_output:369 handle_output completed
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_handler: 748877000 us
+D/TA:  TA_InvokeCommandEntryPoint:583 Calling handle_input
+D/TA:  handle_input:407 Handling input of connection ID: 0
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_before_decryption: 749923000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_decryption: 750056000 us
+D/TA:  send_int0:11 Sending packet to interface 0
+D/TA:  handle_output:293 Handling output ID 16384. Data size: 8
+D/TA:  handle_output:320 Computing payload for connection 1
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_before_encryption: 750084000 us
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_output_after_encryption: 750218000 us
+D/TA:  handle_output:369 handle_output completed
+F/TC:? 0 trace_syscall:151 syscall #13 (syscall_get_time)
+D/TA:  measure_time:28 tz_handle_input_after_handler: 750234000 us

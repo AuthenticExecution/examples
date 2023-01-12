@@ -3,14 +3,14 @@
         {
             "type": "sgx",
             "name": "node_sgx",
-            "host": "134.58.46.188",
+            "host": "node-sgx",
             "reactive_port": 5000,
-            "aesm_host": "134.58.46.188"
+            "aesm_host": "aesm-client"
         },
         {
             "type": "trustzone",
             "name": "node_trustzone",
-            "host": "134.58.46.189",
+            "host": "node-trustzone",
             "reactive_port": 1236,
             "vendor_id": 33,
             "node_key": "9a04aa182d039674708ce807ed914cd153cd9df7805e61742f0ae41294758dd3"
@@ -37,14 +37,14 @@
           "from_output": "send_ping",
           "to_module": "router",
           "to_input": "send_int0",
-          "encryption": "aes"
+          "encryption": "spongent"
       },
       {
           "from_module": "router",
           "from_output": "fw_int0",
           "to_module": "ping",
           "to_input": "recv_pong",
-          "encryption": "aes"
+          "encryption": "spongent"
       }
     ]
 }
