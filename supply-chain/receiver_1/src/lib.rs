@@ -39,13 +39,13 @@ pub fn init(_data : &[u8]) -> ResultMessage {
 //@ sm_input
 pub fn start_shipment(_data : &[u8]) {
     measure_time_ms("START_SHIPMENT");
-    debug!(&format!("Received: {:?}", data));
+    debug!("Received: {:?}", data);
 }
 
 //@ sm_input
 pub fn end_shipment(_data : &[u8]) {
     measure_time_ms("END_SHIPMENT");
-    debug!(&format!("Received: {:?}", data));
+    debug!("Received: {:?}", data);
 }
 
 //@ sm_input
@@ -71,7 +71,7 @@ pub fn start_sensing(data : &[u8]) {
     };
 
     measure_time_ms("START_SENSING");
-    info!(&format!("Metadata: {:?}", data));
+    info!("Metadata: {:?}", data);
     sensor_data.clear();
     sensor_metadata.clear();
     sensor_metadata.extend_from_slice(data);
@@ -80,13 +80,13 @@ pub fn start_sensing(data : &[u8]) {
 //@ sm_input
 pub fn end_sensing(_data : &[u8]) {
     measure_time_ms("END_TRANSMISSION");
-    debug!(&format!("Received: {:?}", data));
+    debug!("Received: {:?}", data);
     let mut sensor_data = SENSOR_DATA.lock().unwrap();
     let mut sensor_metadata = SENSOR_METADATA.lock().unwrap();
     let aes_key = AES_KEY.lock().unwrap();
     let mut rsa_key = RSA_KEY.lock().unwrap();
 
-    debug!(&format!("Data len: {}", sensor_data.len()));
+    debug!("Data len: {}", sensor_data.len());
     
     // encrypt all using AES-GCM-128
     let key_arr = GenericArray::clone_from_slice(&aes_key);
@@ -146,14 +146,14 @@ pub fn end_sensing(_data : &[u8]) {
 //@ sm_input
 pub fn receive_sensor_data(data : &[u8]) {
     let mut sensor_data = SENSOR_DATA.lock().unwrap();
-    debug!(&format!("Received sensor data part with size: {}", data.len()));
+    debug!("Received sensor data part with size: {}", data.len());
     sensor_data.extend_from_slice(data);
 }
 
 // function for printing time to stdout
 fn measure_time_ms(msg : &str) {
     match SystemTime::now().duration_since(UNIX_EPOCH) {
-        Ok(d)   => info!(&format!("{}: {} ms", msg, d.as_millis())),
-        Err(_)  => info!(&format!("{}: ERROR", msg))
+        Ok(d)   => info!("{}: {} ms", msg, d.as_millis()),
+        Err(_)  => info!("{}: ERROR", msg)
     }
 }

@@ -12,5 +12,5 @@ pub fn toggle_led(_data : &[u8]) {
     let mut led = LED_STATE.lock().unwrap();
     *led = !(*led);
 
-    info!(&format!("New LED state: {}", *led));
+    info!("New LED state: {}", *led);
 }

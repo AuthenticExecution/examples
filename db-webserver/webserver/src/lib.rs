@@ -12,7 +12,7 @@ pub fn init(_data : &[u8]) -> ResultMessage {
     let listener = match TcpListener::bind("0.0.0.0:80") {
         Ok(l)   => l,
         Err(e)  => {
-            error!(&format!("Fatal error: {}", e));
+            error!("Fatal error: {}", e);
             return failure(ResultCode::InternalError, None);
         }
     };
@@ -32,7 +32,7 @@ fn handle_client(mut conn : TcpStream) {
     let mut buffer = [0; 1024];
 
     if let Err(e) = conn.read(&mut buffer) {
-        warning!(&format!("Client error: {}", e));
+        warning!("Client error: {}", e);
         return;
     }
 
@@ -47,7 +47,7 @@ fn handle_client(mut conn : TcpStream) {
     };
 
     if let Err(e) = conn.write(response.as_bytes()) {
-        warning!(&format!("Client error: {}", e));
+        warning!("Client error: {}", e);
         return;
     }
 

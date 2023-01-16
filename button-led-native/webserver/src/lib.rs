@@ -51,7 +51,7 @@ pub fn init_server(data : &[u8]) -> Vec<u8> {
     let listener = match TcpListener::bind(host) {
         Ok(l)   => l,
         Err(e)  => {
-            error!(&format!("Fatal error: {}", e));
+            error!("Fatal error: {}", e);
             return vec!();
         }
     };
@@ -59,12 +59,12 @@ pub fn init_server(data : &[u8]) -> Vec<u8> {
     let (key, cert) = match init_credentials() {
         Ok((k, c))      => (k,c),
         Err(e)          => {
-            error!(&format!("Error with credentials: {}", e));
+            error!("Error with credentials: {}", e);
             return vec!();
         }
     };
 
-    info!(&format!("Web server listening on 0.0.0.0:{}", port));
+    info!("Web server listening on 0.0.0.0:{}", port);
     thread::spawn(move || { start_server(listener, key, cert) });
     *is_init = true;
 
@@ -88,7 +88,7 @@ fn start_server(listener : TcpListener, key : Pk, cert : CertList<Certificate>) 
     for stream in listener.incoming() {
         if let Ok(s) = stream {
             if let Err(e) = handle_client(s, rc_config.clone()) {
-                warning!(&format!("Client error: {}", e));
+                warning!("Client error: {}", e);
             }
         }
     }

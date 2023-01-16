@@ -30,7 +30,7 @@ pub fn init(_data : &[u8]) -> ResultMessage {
 
 //@ sm_input
 pub fn start_shipment(data : &[u8]) {
-    debug!(&format!("Received: {:?}", data));
+    debug!("Received: {:?}", data);
     let mut shipment_data = SHIPMENT_DATA.lock().unwrap();
     let mut rsa_key = RSA_KEY.lock().unwrap();
 
@@ -60,7 +60,7 @@ pub fn start_shipment(data : &[u8]) {
         status: "start"
     };
 
-    //info!(&format!("Shipment data: {:?}", json::stringify(shipment)));
+    //info!("Shipment data: {:?}", json::stringify(shipment));
 
     shipment_data.extend_from_slice(json::stringify(shipment).as_bytes());
     send_ack(data);
@@ -68,11 +68,11 @@ pub fn start_shipment(data : &[u8]) {
 
 //@ sm_input
 pub fn start_shipment_complete(_data : &[u8]) {
-    debug!(&format!("Received: {:?}", _data));
+    debug!("Received: {:?}", _data);
     let mut shipment_data = SHIPMENT_DATA.lock().unwrap();
     let mut rsa_key = RSA_KEY.lock().unwrap();
 
-    debug!(&format!("Shipment data size: {}", shipment_data.len()));
+    debug!("Shipment data size: {}", shipment_data.len());
     measure_time_ms("END_TRANSMISSION");
 
     // SHA-256 of the shipment data
@@ -102,7 +102,7 @@ pub fn start_shipment_complete(_data : &[u8]) {
 // function for printing time to stdout
 fn measure_time_ms(msg : &str) {
     match SystemTime::now().duration_since(UNIX_EPOCH) {
-        Ok(d)   => info!(&format!("{}: {} ms", msg, d.as_millis())),
-        Err(_)  => info!(&format!("{}: ERROR", msg))
+        Ok(d)   => info!("{}: {} ms", msg, d.as_millis()),
+        Err(_)  => info!("{}: ERROR", msg)
     }
 }
