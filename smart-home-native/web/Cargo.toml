@@ -9,3 +9,4 @@ edition = "2018"
 [dependencies]
 mbedtls = { git = "https://github.com/fortanix/rust-mbedtls.git", features = ["rdrand"] }
 anyhow = "1.0.44"
+httparse = "1.8.0"

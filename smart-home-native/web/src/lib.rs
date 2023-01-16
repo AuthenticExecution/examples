@@ -13,6 +13,8 @@ use mbedtls::hash::Type as MdType;
 use mbedtls::rng::Rdrand as Rng;
 use std::sync::Arc;
 
+use httparse::{EMPTY_HEADER, Request};
+
 lazy_static! {
     static ref INIT: Mutex<bool> = {
         Mutex::new(false)
@@ -138,6 +140,13 @@ fn handle_client(conn : TcpStream, config : Arc<Config>) -> anyhow::Result<()> {
 
     let mut buffer = [0; 1024];
     ctx.read(&mut buffer)?;
+
+    // parse HTTP request
+    let mut headers = [EMPTY_HEADER; 256];
+    let mut req = Request::new(&mut headers);
+    let req_status = req.parse(&buffer)?;
+
+    info!(&format!("Request: {:?} path: {:?} status: {:?}", req.method, req.path, req_status));
 
     let response = String::from("HTTP/1.1 200 OK\r\n\r\nHello!\n");
 
