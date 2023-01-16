@@ -14,7 +14,7 @@ echo "Initializing AM.."
 attman-cli --config manager.yaml --request init-sgx --data init_sgx.yaml
 
 # Wait untill all EMs are up and running
-sleep 5
+sleep 20
 
 # deploy
 echo "Deploying modules.."

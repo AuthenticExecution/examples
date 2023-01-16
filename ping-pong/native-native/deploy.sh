@@ -8,7 +8,7 @@ reactive-tools --manager deploy descriptor.json --result res.json
 
 # TODO: is it really necessary?
 echo "Waiting until all the modules are up and running.."
-sleep 2
+sleep 10
 
 # attest
 echo "Attesting modules.."

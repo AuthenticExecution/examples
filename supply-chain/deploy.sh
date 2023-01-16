@@ -7,7 +7,7 @@ DATA_SIZE=$2
 ITERATIONS=$3
 
 # Wait untill all EMs are up and running
-sleep 10
+sleep 20
 
 # deploy
 echo "Deploying modules.."

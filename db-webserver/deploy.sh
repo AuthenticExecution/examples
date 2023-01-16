@@ -2,9 +2,8 @@
 
 set -e
 
-# TODO: find a better way
 echo "Waiting until all the EMs are ready.."
-sleep 2
+sleep 10
 
 # deploy
 echo "Deploying modules.."
