@@ -20,6 +20,8 @@ use tls::{CERTIFICATE};
 mod error;
 use error::ClientError;
 
+mod webpage;
+
 lazy_static! {
     static ref INIT: Mutex<bool> = {
         Mutex::new(false)
@@ -98,20 +100,23 @@ fn start_server(listener : TcpListener, key : Pk, cert : CertList<Certificate>) 
     for stream in listener.incoming() {
         if let Ok(s) = stream {
             if let Err(e) = handle_client(s, rc_config.clone()) {
-                warning!("Client error: {}", e);
+                debug!("Client error: {}", e);
             }
         }
     }
 }
 
 fn handle_client(conn : TcpStream, config : Arc<Config>) -> anyhow::Result<()> {
+    debug!("New client. Establishing TLS");
     let mut ctx = Context::new(config);
     ctx.establish(conn, None)?;
 
+    debug!("Reading data");
     let mut buffer = [0; 1024];
     ctx.read(&mut buffer)?;
 
     // parse HTTP request
+    debug!("Parsing HTTP request");
     let mut headers = [EMPTY_HEADER; 512];
     let mut req = Request::new(&mut headers);
     let req_status = req.parse(&buffer)?;
@@ -129,35 +134,45 @@ fn handle_client(conn : TcpStream, config : Arc<Config>) -> anyhow::Result<()> {
     //info!("Path: {:?} method: {}", req.path, method);
     //info!("Headers: {:?}", req.headers);
 
-    // authenticate request by checking Authorization header (bearer token)
-    let token = TOKEN.lock().unwrap();
-
-    let auth_header = match req.headers.iter().find(|&h| h.name == "Authorization") {
-        Some(t) => t,
-        None    => return Err(ClientError::MissingAuthenticationHeader.into())
-    };
-
-    if std::str::from_utf8(auth_header.value) != Ok(&format!("Bearer {}", token)) {
-        return Err(ClientError::InvalidToken.into());
-    }
-
     let mut response : Vec<u8> = Vec::new();
 
     // implement API
+    debug!("Serving request");
     match req.path {
         Some(p) if p == "/" && method == "GET"                      => {
-            response.extend_from_slice("HTTP/1.1 200 OK\r\n\r\nHome!\n".as_bytes())
+            response.extend_from_slice("HTTP/1.1 200 OK\r\n\r\n".as_bytes());
+            response.extend_from_slice(webpage::MAIN.as_bytes());
+        }
+        _ if !check_token(&req)                                     => {
+            response.extend_from_slice("HTTP/1.1 401 Unauthorized\r\n\r\n".as_bytes());
         }
         Some(p) if p == "/get-current-temp" && method == "GET"      => {
-            response.extend_from_slice("HTTP/1.1 200 OK\r\n\r\nget-current-temp!\n".as_bytes())
+            response.extend_from_slice("HTTP/1.1 200 OK\r\n\r\nget-current-temp!\n".as_bytes());
         }
         _                                                           => {
-            response.extend_from_slice("HTTP/1.1 400 Bad Request\r\n\r\n".as_bytes())
+            response.extend_from_slice("HTTP/1.1 400 Bad Request\r\n\r\n".as_bytes());
         }
     };
 
+    debug!("Sending response");
     ctx.write(&response)?;
     ctx.flush()?;
 
     Ok(())
+}
+
+fn check_token(req : &Request) -> bool {
+        // authenticate request by checking Authorization header (bearer token)
+        let token = TOKEN.lock().unwrap();
+
+        let auth_header = match req.headers.iter().find(|&h| h.name == "Authorization") {
+            Some(t) => t,
+            None    => return false
+        };
+    
+        if std::str::from_utf8(auth_header.value) != Ok(&format!("Bearer {}", token)) {
+            return false;
+        }
+
+        return true;
 }
