@@ -23,7 +23,7 @@ pub fn read_from_sensor(_data : &[u8]) -> ResultMessage {
         *temp -= 0.1;
     }
 
-    info!(&format!("Temperature: {}", *temp));
+    info!("Temperature: {}", *temp);
     send_actual_temp(&(*temp).to_be_bytes());
     success(None)
 }

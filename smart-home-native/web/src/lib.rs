@@ -14,6 +14,10 @@ use mbedtls::rng::Rdrand as Rng;
 use std::sync::Arc;
 
 use httparse::{EMPTY_HEADER, Request};
+use serde_json::{Value};
+
+mod error;
+use error::ClientError;
 
 lazy_static! {
     static ref INIT: Mutex<bool> = {
@@ -51,7 +55,7 @@ pub fn init_server(data : &[u8]) -> Vec<u8> {
     let listener = match TcpListener::bind(host) {
         Ok(l)   => l,
         Err(e)  => {
-            error!(&format!("Fatal error: {}", e));
+            error!("Fatal error: {}", e);
             return vec!();
         }
     };
@@ -59,12 +63,12 @@ pub fn init_server(data : &[u8]) -> Vec<u8> {
     let (key, cert) = match init_credentials() {
         Ok((k, c))      => (k,c),
         Err(e)          => {
-            error!(&format!("Error with credentials: {}", e));
+            error!("Error with credentials: {}", e);
             return vec!();
         }
     };
 
-    info!(&format!("Web server listening on 0.0.0.0:{}", port));
+    info!("Web server listening on 0.0.0.0:{}", port);
     thread::spawn(move || { start_server(listener, key, cert) });
     *is_init = true;
 
@@ -88,7 +92,7 @@ fn start_server(listener : TcpListener, key : Pk, cert : CertList<Certificate>) 
     for stream in listener.incoming() {
         if let Ok(s) = stream {
             if let Err(e) = handle_client(s, rc_config.clone()) {
-                warning!(&format!("Client error: {}", e));
+                warning!("Client error: {}", e);
             }
         }
     }
@@ -146,9 +150,30 @@ fn handle_client(conn : TcpStream, config : Arc<Config>) -> anyhow::Result<()> {
     let mut req = Request::new(&mut headers);
     let req_status = req.parse(&buffer)?;
 
-    info!(&format!("Request: {:?} path: {:?} status: {:?}", req.method, req.path, req_status));
+    if !req_status.is_complete() {
+        return Err(ClientError::IncompleteHttpRequest.into());
+    }
 
-    let response = String::from("HTTP/1.1 200 OK\r\n\r\nHello!\n");
+    let method = match req.method {
+        Some(m) => m,
+        None    => {
+            return Err(ClientError::MissingMethod.into());
+        }
+    };
+
+    info!("Path: {:?} method: {}", req.path, method);
+
+    let response = match req.path {
+        Some(p) if p == "/" && method == "GET"                      => {
+            String::from("HTTP/1.1 200 OK\r\n\r\nHome!\n")
+        }
+        Some(p) if p == "/get-current-temp" && method == "GET"      => {
+            String::from("HTTP/1.1 200 OK\r\n\r\nget-current-temp!\n")
+        }
+        _                                                           => {
+            String::from("HTTP/1.1 400 Bad Request\r\n\r\n")
+        }
+    };
 
     ctx.write(response.as_bytes())?;
     ctx.flush()?;

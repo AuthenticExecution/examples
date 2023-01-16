@@ -29,7 +29,7 @@ pub fn check_heater(_data : &[u8]) -> ResultMessage {
         *heating_on = true;
     }
 
-    info!(&format!("Heating on: {}", *heating_on));
+    info!("Heating on: {}", *heating_on);
     send_heating_state(&(*heating_on as u16).to_be_bytes());
     success(None)
 }

@@ -20,8 +20,12 @@ sleep 2
 echo "Establishing connections.."
 reactive-tools --verbose connect res.json
 
+echo "Initializing web server"
+./init-webserver.sh
+
 echo "Setup complete"
 
+sleep 3600
 while true
 do
 	sleep 1
