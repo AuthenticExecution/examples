@@ -3,6 +3,8 @@ pub enum ClientError {
     IncompleteHttpRequest,
     MissingMethod,
     InvalidMethod,
+    MissingAuthenticationHeader,
+    InvalidToken,
     MissingBody
 }
 

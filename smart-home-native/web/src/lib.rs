@@ -6,15 +6,16 @@ use std::io::{Read, Write};
 use mbedtls::pk::Pk;
 use mbedtls::ssl::config::{Endpoint, Preset, Transport};
 use mbedtls::ssl::{Config, Context};
-use mbedtls::x509::{Certificate, Time};
-use mbedtls::x509::certificate::Builder;
+use mbedtls::x509::{Certificate};
 use mbedtls::alloc::List as CertList;
-use mbedtls::hash::Type as MdType;
 use mbedtls::rng::Rdrand as Rng;
 use std::sync::Arc;
 
 use httparse::{EMPTY_HEADER, Request};
 use serde_json::{Value};
+
+mod tls;
+use tls::{CERTIFICATE};
 
 mod error;
 use error::ClientError;
@@ -24,12 +25,8 @@ lazy_static! {
         Mutex::new(false)
     };
 
-    static ref PRIVATE_KEY: Mutex<Pk> = {
-        Mutex::new(Pk::generate_rsa(&mut Rng, 2048, 65537).expect("Failed to generate key"))
-    };
-
-    static ref CERTIFICATE: Mutex<Option<Vec<u8>>> = {
-        Mutex::new(None)
+    static ref TOKEN: Mutex<String> = {
+        Mutex::new(String::new())
     };
 }
 
@@ -38,19 +35,28 @@ static HOST_NAME: &str = "node-sgx";
 //@ sm_handler
 pub fn init_server(data : &[u8]) -> Vec<u8> {
     let mut is_init = INIT.lock().unwrap();
+    let mut token = TOKEN.lock().unwrap();
 
     if *is_init {
         error!("init input was already called");
         return vec!();
     }
 
-    if data.len() != 2 {
-        error!("wrong data received (expecting 2 bytes for port)");
+    if data.len() <= 2 {
+        error!("wrong data received (expecting: <port><token>)");
         return vec!();
     }
 
     let port = authentic_execution::data_to_u16(data);
     let host = format!("0.0.0.0:{}", port);
+
+    *token = match std::str::from_utf8(&data[2..]) {
+        Ok(t)   => t.to_string(),
+        Err(e)  => {
+            error!("Bad token: {}", e);
+            return vec!();
+        }
+    };
 
     let listener = match TcpListener::bind(host) {
         Ok(l)   => l,
@@ -60,7 +66,7 @@ pub fn init_server(data : &[u8]) -> Vec<u8> {
         }
     };
 
-    let (key, cert) = match init_credentials() {
+    let (key, cert) = match tls::init_credentials() {
         Ok((k, c))      => (k,c),
         Err(e)          => {
             error!("Error with credentials: {}", e);
@@ -69,8 +75,8 @@ pub fn init_server(data : &[u8]) -> Vec<u8> {
     };
 
     info!("Web server listening on 0.0.0.0:{}", port);
-    thread::spawn(move || { start_server(listener, key, cert) });
     *is_init = true;
+    thread::spawn(move || { start_server(listener, key, cert) });
 
     let cert = CERTIFICATE.lock().unwrap();
     cert.as_ref().unwrap().clone()
@@ -98,46 +104,6 @@ fn start_server(listener : TcpListener, key : Pk, cert : CertList<Certificate>) 
     }
 }
 
-fn init_credentials() -> anyhow::Result<(Pk, CertList<Certificate>)> {
-    let mut buf_key = [0u8; 8192];
-    let mut key = PRIVATE_KEY.lock().unwrap();
-    key.write_private_pem(&mut buf_key)?.unwrap();
-
-    let key  = Pk::from_private_key(&buf_key, None)?;
-    let key1 = Pk::from_private_key(&buf_key, None)?;
-    let key2 = Pk::from_private_key(&buf_key, None)?;
-
-    let cert_bytes = generate_cert(key1, key2)?;
-    let cert = Certificate::from_pem_multiple(&cert_bytes)?;
-
-    let mut certificate = CERTIFICATE.lock().unwrap();
-    certificate.replace(cert_bytes);
-
-    Ok((key, cert))
-}
-
-fn generate_cert(mut key1 : Pk, mut key2 : Pk) -> anyhow::Result<Vec<u8>> {
-    let mut builder = Builder::new();
-    let mut buf_cert = [0u8; 8192];
-
-    let common_name = format!("CN={}\0", HOST_NAME);
-
-    let cert = builder
-        .subject_key(&mut key1)
-        .subject_with_nul(&common_name)?
-        .issuer_key(&mut key2)
-        .issuer_with_nul(&common_name)?
-        .validity(
-            Time::new(2020, 1, 1, 0, 0, 0).unwrap(),
-            Time::new(2030, 12, 31, 23, 59, 59).unwrap(),
-        )?
-        .serial(&[5])?
-        .signature_hash(MdType::Sha256)
-        .write_pem(&mut buf_cert, &mut Rng)?.unwrap();
-
-    Ok(cert.to_vec())
-}
-
 fn handle_client(conn : TcpStream, config : Arc<Config>) -> anyhow::Result<()> {
     let mut ctx = Context::new(config);
     ctx.establish(conn, None)?;
@@ -146,7 +112,7 @@ fn handle_client(conn : TcpStream, config : Arc<Config>) -> anyhow::Result<()> {
     ctx.read(&mut buffer)?;
 
     // parse HTTP request
-    let mut headers = [EMPTY_HEADER; 256];
+    let mut headers = [EMPTY_HEADER; 512];
     let mut req = Request::new(&mut headers);
     let req_status = req.parse(&buffer)?;
 
@@ -154,28 +120,43 @@ fn handle_client(conn : TcpStream, config : Arc<Config>) -> anyhow::Result<()> {
         return Err(ClientError::IncompleteHttpRequest.into());
     }
 
+    // check if method exists
     let method = match req.method {
         Some(m) => m,
-        None    => {
-            return Err(ClientError::MissingMethod.into());
-        }
+        None    => return Err(ClientError::MissingMethod.into())
     };
 
-    info!("Path: {:?} method: {}", req.path, method);
+    //info!("Path: {:?} method: {}", req.path, method);
+    //info!("Headers: {:?}", req.headers);
 
-    let response = match req.path {
+    // authenticate request by checking Authorization header (bearer token)
+    let token = TOKEN.lock().unwrap();
+
+    let auth_header = match req.headers.iter().find(|&h| h.name == "Authorization") {
+        Some(t) => t,
+        None    => return Err(ClientError::MissingAuthenticationHeader.into())
+    };
+
+    if std::str::from_utf8(auth_header.value) != Ok(&format!("Bearer {}", token)) {
+        return Err(ClientError::InvalidToken.into());
+    }
+
+    let mut response : Vec<u8> = Vec::new();
+
+    // implement API
+    match req.path {
         Some(p) if p == "/" && method == "GET"                      => {
-            String::from("HTTP/1.1 200 OK\r\n\r\nHome!\n")
+            response.extend_from_slice("HTTP/1.1 200 OK\r\n\r\nHome!\n".as_bytes())
         }
         Some(p) if p == "/get-current-temp" && method == "GET"      => {
-            String::from("HTTP/1.1 200 OK\r\n\r\nget-current-temp!\n")
+            response.extend_from_slice("HTTP/1.1 200 OK\r\n\r\nget-current-temp!\n".as_bytes())
         }
         _                                                           => {
-            String::from("HTTP/1.1 400 Bad Request\r\n\r\n")
+            response.extend_from_slice("HTTP/1.1 400 Bad Request\r\n\r\n".as_bytes())
         }
     };
 
-    ctx.write(response.as_bytes())?;
+    ctx.write(&response)?;
     ctx.flush()?;
 
     Ok(())

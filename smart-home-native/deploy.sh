@@ -21,7 +21,7 @@ echo "Establishing connections.."
 reactive-tools --verbose connect res.json
 
 echo "Initializing web server"
-./init-webserver.sh
+make init
 
 echo "Setup complete"
 
