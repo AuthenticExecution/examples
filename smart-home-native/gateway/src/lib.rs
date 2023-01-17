@@ -43,7 +43,7 @@ pub fn check_heater(_data : &[u8]) -> ResultMessage {
         let desired_state = *actual_temp < *desired_temp;
 
         if desired_state != *heating_on {
-            info!("Setting thermostat to: {}", desired_state);
+            debug!("Setting thermostat to: {}", desired_state);
             set_heating(&(desired_state as u16).to_be_bytes());
         }
     }

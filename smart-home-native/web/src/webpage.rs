@@ -17,26 +17,77 @@ h1,h2,h3,h4,h5,h6 {font-family:"Segoe UI",sans-serif}
 <label for="token">Token:</label>
 <input type="text" id="token" name="token"><br>
 
-<h2>Temperature</h2>
-<p>Current: <span id=current_temp></span></p>
+<h2>Info</h2>
+<p>Current Temperature: <span id=current_temp></span></p>
+<p>Heating On: <span id=heating_on></span></p>
+<p>Auto Heating: <span id=auto_heating></span></p>
 
-<h2>Light</h2>
+<h2>Actions</h2>
+<button type="button" onclick="toggle_heating()">Toggle Heating</button><br><br>
+
+<label for="desired_temp">Set Desired Temperature:</label>
+<input type="number" id="desired_temp" name="quantity" min="10" max="30" step="0.1" value=18.0>
+<button type="button" onclick="set_desired_temp()">Set</button>
+
+
 
 <script>
-function getCurrentTemperature() {
+var heating_on = false;
+
+function toggle_heating() {
+  let heating = !heating_on;
+  //console.log("Setting heating to " + heating);
+
   $.ajax({
-    url: '/get-current-temp',
+    type: "POST",
+    headers: {"Authorization": "Bearer " + $('#token').val()},
+    url: '/enable-heating',
+    data: JSON.stringify({
+      "enable": heating
+    }),
+    success: function(data) {}
+  });
+}
+
+function set_desired_temp() {
+  let temp = parseFloat($('#desired_temp').val());
+  //console.log("Setting desired temp to " + temp);
+
+  $.ajax({
+    type: "POST",
+    headers: {"Authorization": "Bearer " + $('#token').val()},
+    url: '/set-desired-temp',
+    data: JSON.stringify({
+      "temp": temp
+    }),
+    success: function(data) {}
+  });
+}
+
+function getStatus() {
+  $.ajax({
+    url: '/get-status',
     headers: {"Authorization": "Bearer " + $('#token').val()},
     success: function(data) {
-      console.log("Data: " + data);
-    	$('#current_temp').text(data);
+      let status = JSON.parse(data);
+      //console.log(status);
+    	$('#current_temp').text(status["actual_temp"].toFixed(1) + " °C");
+      $('#heating_on').text(status["heating_on"]);
+
+      if(status["auto_heating"]) {
+        $('#auto_heating').text(status["desired_temp"].toFixed(1) + " °C");
+      } else {
+        $('#auto_heating').text("false");
+      }
+
+      heating_on = status["heating_on"];
     }
   });
-  setTimeout(getCurrentTemperature, 1000);
+  setTimeout(getStatus, 1000);
 }
 
 $(document).ready(function() {
-  setTimeout(getCurrentTemperature, 1000);
+  setTimeout(getStatus, 1000);
 });
 </script>
 </body>

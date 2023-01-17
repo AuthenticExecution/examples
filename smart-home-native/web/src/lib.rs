@@ -134,7 +134,7 @@ fn handle_client(conn : TcpStream, config : Arc<Config>) -> anyhow::Result<()> {
 
     // parse HTTP request
     debug!("Parsing HTTP request");
-    let mut headers = [EMPTY_HEADER; 512];
+    let mut headers = [EMPTY_HEADER; 1024];
     let mut req = Request::new(&mut headers);
     let req_status = req.parse(&buffer)?;
 
@@ -188,10 +188,10 @@ fn handle_client(conn : TcpStream, config : Arc<Config>) -> anyhow::Result<()> {
         // enable/disable heating, disabling automatic heating 
         Some(p) if p == "/enable-heating" && method == "POST"      => {
             match parse_json_body(&buffer[req_status.unwrap()..bytes_read]) {
-                Ok(b) if b["enable"].as_u16().is_some()   => {
-                    let enable = b["enable"].as_u16().unwrap();
+                Ok(b) if b["enable"].as_bool().is_some()   => {
+                    let enable = b["enable"].as_bool().unwrap();
                     response.extend_from_slice("HTTP/1.1 200 OK\r\n\r\n".as_bytes());
-                    enable_heating(&enable.to_be_bytes())
+                    enable_heating(&(enable as u16).to_be_bytes())
                 }
                 _  => response.extend_from_slice(
                     "HTTP/1.1 400 Bad Request\r\n\r\n".as_bytes()

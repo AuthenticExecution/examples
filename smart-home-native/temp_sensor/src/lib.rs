@@ -26,7 +26,7 @@ pub fn read_from_sensor(_data : &[u8]) -> ResultMessage {
         _                           => ()
     }
 
-    info!("Temperature: {}", *temp);
+    debug!("Temperature: {}", *temp);
     send_actual_temp(&(*temp).to_be_bytes());
     success(None)
 }

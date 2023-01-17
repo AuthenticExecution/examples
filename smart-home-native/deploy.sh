@@ -28,7 +28,7 @@ echo "Setup complete"
 while true
 do
 	sleep 1
-    reactive-tools call res.json --module temp_sensor --entry read_from_sensor
+    reactive-tools call res.json --module temp_sensor --entry read_from_sensor > /dev/null 2>&1
     sleep 0.1
-    reactive-tools call res.json --module gateway --entry check_heater
+    reactive-tools call res.json --module gateway --entry check_heater > /dev/null 2>&1
 done
