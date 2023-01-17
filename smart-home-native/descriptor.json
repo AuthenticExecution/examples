@@ -24,6 +24,12 @@
             "name": "node_sancus_2",
             "host": "node-sancus-2",
             "reactive_port": 5000
+        },
+        {
+            "type": "native",
+            "name": "node_sancus_3",
+            "host": "node-sancus-3",
+            "reactive_port": 5000
         }
     ],
     "modules" : [
@@ -46,6 +52,11 @@
             "type": "native",
             "name": "thermostat",
             "node": "node_sancus_2"
+        },
+        {
+            "type": "native",
+            "name": "light_switch",
+            "node": "node_sancus_3"
         }
     ],
     "connections": [
@@ -103,6 +114,27 @@
             "from_output": "send_actual_temp",
             "to_module": "gateway",
             "to_input": "set_actual_temp",
+            "encryption": "spongent"
+        },
+        {
+            "from_module": "web",
+            "from_output": "enable_switch",
+            "to_module": "gateway",
+            "to_input": "enable_switch",
+            "encryption": "aes"
+        },
+        {
+            "from_module": "gateway",
+            "from_output": "set_switch",
+            "to_module": "light_switch",
+            "to_input": "set_switch",
+            "encryption": "spongent"
+        },
+        {
+            "from_module": "light_switch",
+            "from_output": "send_switch_state",
+            "to_module": "gateway",
+            "to_input": "set_switch_state",
             "encryption": "spongent"
         }
     ]

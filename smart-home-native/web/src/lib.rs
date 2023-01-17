@@ -20,6 +20,9 @@ use tls::{CERTIFICATE};
 mod error;
 use error::ClientError;
 
+mod status;
+use status::Status;
+
 mod webpage;
 
 lazy_static! {
@@ -31,8 +34,8 @@ lazy_static! {
         Mutex::new(String::new())
     };
 
-    static ref STATUS: Mutex<String> = {
-        Mutex::new(String::from("{}"))
+    static ref STATUS: Mutex<Status> = {
+        Mutex::new(Status::new())
     };
 }
 
@@ -40,13 +43,14 @@ static HOST_NAME: &str = "node-sgx";
 
 //@ sm_output(set_desired_temp)
 //@ sm_output(enable_heating)
+//@ sm_output(enable_switch)
 
 //@ sm_input
 pub fn set_status(data : &[u8]) {
     let mut status = STATUS.lock().unwrap();
 
-    match std::str::from_utf8(data) {
-        Ok(s)   => *status = s.to_string(),
+    match serde_json::from_slice(data) {
+        Ok(s)   => *status = s,
         Err(e)  => error!("Bad status received: {}", e)
     }
 }
@@ -169,14 +173,23 @@ fn handle_client(conn : TcpStream, config : Arc<Config>) -> anyhow::Result<()> {
         // get current status of heater and temperature sensor
         Some(p) if p == "/get-status" && method == "GET"      => {
             let status = STATUS.lock().unwrap();
-            response.extend_from_slice("HTTP/1.1 200 OK\r\n\r\n".as_bytes());
-            response.extend_from_slice(status.as_bytes());
+
+            match serde_json::to_vec(&*status) {
+                Ok(mut s)   => {
+                    response.extend_from_slice("HTTP/1.1 200 OK\r\n\r\n".as_bytes());
+                    response.append(&mut s);
+                },
+                _       => response.extend_from_slice(
+                    "HTTP/1.1 500 Internal Server Error\r\n\r\n".as_bytes()
+                )
+            }
         }
         // set desired temperature, enabling automatic heating
         Some(p) if p == "/set-desired-temp" && method == "POST"      => {
             match parse_json_body(&buffer[req_status.unwrap()..bytes_read]) {
                 Ok(b) if b["temp"].as_f32().is_some()   => {
                     let temp = b["temp"].as_f32().unwrap();
+
                     response.extend_from_slice("HTTP/1.1 200 OK\r\n\r\n".as_bytes());
                     set_desired_temp(&temp.to_be_bytes());
                 }
@@ -190,8 +203,23 @@ fn handle_client(conn : TcpStream, config : Arc<Config>) -> anyhow::Result<()> {
             match parse_json_body(&buffer[req_status.unwrap()..bytes_read]) {
                 Ok(b) if b["enable"].as_bool().is_some()   => {
                     let enable = b["enable"].as_bool().unwrap();
+
                     response.extend_from_slice("HTTP/1.1 200 OK\r\n\r\n".as_bytes());
                     enable_heating(&(enable as u16).to_be_bytes())
+                }
+                _  => response.extend_from_slice(
+                    "HTTP/1.1 400 Bad Request\r\n\r\n".as_bytes()
+                )
+            }
+        }
+        // enable/disable light switch 
+        Some(p) if p == "/enable-switch" && method == "POST"      => {
+            match parse_json_body(&buffer[req_status.unwrap()..bytes_read]) {
+                Ok(b) if b["enable"].as_bool().is_some()   => {
+                    let enable = b["enable"].as_bool().unwrap();
+
+                    response.extend_from_slice("HTTP/1.1 200 OK\r\n\r\n".as_bytes());
+                    enable_switch(&(enable as u16).to_be_bytes())
                 }
                 _  => response.extend_from_slice(
                     "HTTP/1.1 400 Bad Request\r\n\r\n".as_bytes()
