@@ -10,9 +10,9 @@ use mbedtls::x509::{Certificate};
 use mbedtls::alloc::List as CertList;
 use mbedtls::rng::Rdrand as Rng;
 use std::sync::Arc;
+use json::JsonValue;
 
 use httparse::{EMPTY_HEADER, Request};
-use serde_json::{Value};
 
 mod tls;
 use tls::{CERTIFICATE};
@@ -30,9 +30,26 @@ lazy_static! {
     static ref TOKEN: Mutex<String> = {
         Mutex::new(String::new())
     };
+
+    static ref STATUS: Mutex<String> = {
+        Mutex::new(String::from("{}"))
+    };
 }
 
 static HOST_NAME: &str = "node-sgx";
+
+//@ sm_output(set_desired_temp)
+//@ sm_output(enable_heating)
+
+//@ sm_input
+pub fn set_status(data : &[u8]) {
+    let mut status = STATUS.lock().unwrap();
+
+    match std::str::from_utf8(data) {
+        Ok(s)   => *status = s.to_string(),
+        Err(e)  => error!("Bad status received: {}", e)
+    }
+}
 
 //@ sm_handler
 pub fn init_server(data : &[u8]) -> Vec<u8> {
@@ -99,8 +116,8 @@ fn start_server(listener : TcpListener, key : Pk, cert : CertList<Certificate>) 
 
     for stream in listener.incoming() {
         if let Ok(s) = stream {
-            if let Err(e) = handle_client(s, rc_config.clone()) {
-                debug!("Client error: {}", e);
+            if let Err(_e) = handle_client(s, rc_config.clone()) {
+                debug!("Client error: {}", _e);
             }
         }
     }
@@ -112,8 +129,8 @@ fn handle_client(conn : TcpStream, config : Arc<Config>) -> anyhow::Result<()> {
     ctx.establish(conn, None)?;
 
     debug!("Reading data");
-    let mut buffer = [0; 1024];
-    ctx.read(&mut buffer)?;
+    let mut buffer = [0; 4096];
+    let bytes_read = ctx.read(&mut buffer)?;
 
     // parse HTTP request
     debug!("Parsing HTTP request");
@@ -138,19 +155,51 @@ fn handle_client(conn : TcpStream, config : Arc<Config>) -> anyhow::Result<()> {
 
     // implement API
     debug!("Serving request");
+    
     match req.path {
+        // main page
         Some(p) if p == "/" && method == "GET"                      => {
             response.extend_from_slice("HTTP/1.1 200 OK\r\n\r\n".as_bytes());
             response.extend_from_slice(webpage::MAIN.as_bytes());
         }
+        // all subsequent API calls need to be authenticated
         _ if !check_token(&req)                                     => {
             response.extend_from_slice("HTTP/1.1 401 Unauthorized\r\n\r\n".as_bytes());
         }
-        Some(p) if p == "/get-current-temp" && method == "GET"      => {
-            response.extend_from_slice("HTTP/1.1 200 OK\r\n\r\nget-current-temp!\n".as_bytes());
+        // get current status of heater and temperature sensor
+        Some(p) if p == "/get-status" && method == "GET"      => {
+            let status = STATUS.lock().unwrap();
+            response.extend_from_slice("HTTP/1.1 200 OK\r\n\r\n".as_bytes());
+            response.extend_from_slice(status.as_bytes());
+        }
+        // set desired temperature, enabling automatic heating
+        Some(p) if p == "/set-desired-temp" && method == "POST"      => {
+            match parse_json_body(&buffer[req_status.unwrap()..bytes_read]) {
+                Ok(b) if b["temp"].as_f32().is_some()   => {
+                    let temp = b["temp"].as_f32().unwrap();
+                    response.extend_from_slice("HTTP/1.1 200 OK\r\n\r\n".as_bytes());
+                    set_desired_temp(&temp.to_be_bytes());
+                }
+                _  => response.extend_from_slice(
+                    "HTTP/1.1 400 Bad Request\r\n\r\n".as_bytes()
+                )
+            }
+        }
+        // enable/disable heating, disabling automatic heating 
+        Some(p) if p == "/enable-heating" && method == "POST"      => {
+            match parse_json_body(&buffer[req_status.unwrap()..bytes_read]) {
+                Ok(b) if b["enable"].as_u16().is_some()   => {
+                    let enable = b["enable"].as_u16().unwrap();
+                    response.extend_from_slice("HTTP/1.1 200 OK\r\n\r\n".as_bytes());
+                    enable_heating(&enable.to_be_bytes())
+                }
+                _  => response.extend_from_slice(
+                    "HTTP/1.1 400 Bad Request\r\n\r\n".as_bytes()
+                )
+            }
         }
         _                                                           => {
-            response.extend_from_slice("HTTP/1.1 400 Bad Request\r\n\r\n".as_bytes());
+            response.extend_from_slice("HTTP/1.1 404 Not Found\r\n\r\n".as_bytes());
         }
     };
 
@@ -175,4 +224,10 @@ fn check_token(req : &Request) -> bool {
         }
 
         return true;
+}
+
+fn parse_json_body(body : &[u8]) -> anyhow::Result<JsonValue> {
+    let str_body = std::str::from_utf8(body)?;
+    let json_object = json::parse(str_body)?;
+    Ok(json_object)
 }

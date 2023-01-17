@@ -1,9 +1,7 @@
 #[derive(Debug)]
 pub enum ClientError {
     IncompleteHttpRequest,
-    MissingMethod,
-    InvalidMethod,
-    MissingBody
+    MissingMethod
 }
 
 impl std::fmt::Display for ClientError {

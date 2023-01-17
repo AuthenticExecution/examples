@@ -25,10 +25,10 @@ make init
 
 echo "Setup complete"
 
-sleep 3600
 while true
 do
 	sleep 1
     reactive-tools call res.json --module temp_sensor --entry read_from_sensor
-    reactive-tools call res.json --module thermostat --entry check_heater
+    sleep 0.1
+    reactive-tools call res.json --module gateway --entry check_heater
 done

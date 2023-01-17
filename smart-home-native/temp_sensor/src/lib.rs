@@ -10,6 +10,9 @@ lazy_static! {
     };
 }
 
+const MIN_TEMP : f32 = 14.0;
+const MAX_TEMP : f32 = 30.0;
+
 //@ sm_output(send_actual_temp)
 
 //@ sm_entry
@@ -17,10 +20,10 @@ pub fn read_from_sensor(_data : &[u8]) -> ResultMessage {
     let heating_on = HEATING_ON.lock().unwrap();
     let mut temp = TEMPERATURE.lock().unwrap();
 
-    if *heating_on {
-        *temp += 0.1;
-    } else {
-        *temp -= 0.1;
+    match *heating_on {
+        true if *temp < MAX_TEMP    => *temp += 0.1,
+        false if *temp > MIN_TEMP   => *temp -= 0.1,
+        _                           => ()
     }
 
     info!("Temperature: {}", *temp);
@@ -29,10 +32,10 @@ pub fn read_from_sensor(_data : &[u8]) -> ResultMessage {
 }
 
 //@ sm_input
-pub fn get_heating_state(data : &[u8]) {
+pub fn set_heating_state(data : &[u8]) {
     let mut heating_on = HEATING_ON.lock().unwrap();
 
-    if data.len() < 1 {
+    if data.len() < 2 {
         error!("get_heating_state: invalid data");
         return;
     }

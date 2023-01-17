@@ -10,4 +10,4 @@ edition = "2018"
 mbedtls = { git = "https://github.com/fortanix/rust-mbedtls.git", features = ["rdrand"] }
 anyhow = "1.0.44"
 httparse = "1.8.0"
-serde_json = "1.0.91"
+json = "0.12.4"
