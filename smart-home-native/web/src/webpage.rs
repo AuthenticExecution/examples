@@ -12,7 +12,7 @@ h1,h2,h3,h4,h5,h6 {font-family:"Segoe UI",sans-serif}
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
 <body>
 
-<h1>Welcome home!</h1>
+<h1>Welcome Home!</h1>
 
 <label for="token">Token:</label>
 <input type="text" id="token" name="token"><br>
@@ -21,9 +21,11 @@ h1,h2,h3,h4,h5,h6 {font-family:"Segoe UI",sans-serif}
 <p>Current Temperature: <span id=current_temp></span></p>
 <p>Heating On: <span id=heating_on></span></p>
 <p>Auto Heating: <span id=auto_heating></span></p>
+<p>Light Switch On: <span id=switch_on></span></p>
 
 <h2>Actions</h2>
-<button type="button" onclick="toggle_heating()">Toggle Heating</button><br><br>
+<button type="button" onclick="toggle_heating()">Toggle Heating</button>
+<button type="button" onclick="toggle_switch()">Toggle Light Switch</button><br><br>
 
 <label for="desired_temp">Set Desired Temperature:</label>
 <input type="number" id="desired_temp" name="quantity" min="10" max="30" step="0.1" value=18.0>
@@ -33,6 +35,7 @@ h1,h2,h3,h4,h5,h6 {font-family:"Segoe UI",sans-serif}
 
 <script>
 var heating_on = false;
+var switch_on = false;
 
 function toggle_heating() {
   let heating = !heating_on;
@@ -44,6 +47,21 @@ function toggle_heating() {
     url: '/enable-heating',
     data: JSON.stringify({
       "enable": heating
+    }),
+    success: function(data) {}
+  });
+}
+
+function toggle_switch() {
+  let sw = !switch_on;
+  //console.log("Setting switch to " + sw);
+
+  $.ajax({
+    type: "POST",
+    headers: {"Authorization": "Bearer " + $('#token').val()},
+    url: '/enable-switch',
+    data: JSON.stringify({
+      "enable": sw
     }),
     success: function(data) {}
   });
@@ -73,6 +91,7 @@ function getStatus() {
       //console.log(status);
     	$('#current_temp').text(status["actual_temp"].toFixed(1) + " °C");
       $('#heating_on').text(status["heating_on"]);
+      $('#switch_on').text(status["switch_on"]);
 
       if(status["auto_heating"]) {
         $('#auto_heating').text(status["desired_temp"].toFixed(1) + " °C");
@@ -81,6 +100,7 @@ function getStatus() {
       }
 
       heating_on = status["heating_on"];
+      switch_on = status["switch_on"];
     }
   });
   setTimeout(getStatus, 1000);

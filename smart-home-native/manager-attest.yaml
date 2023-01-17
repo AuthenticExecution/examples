@@ -1,8 +1,0 @@
-sp_privkey: cred/manager_privkey.pem
-ias_cert : cred/ias_root_ca.pem
-enclave_settings : cred/settings.json
-enclave_sig : cred/manager.sig
-enclave_host : manager
-enclave_port : 1234
-aesm_host : aesm-client
-aesm_port : 13741
