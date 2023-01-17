@@ -2,23 +2,22 @@
 
 set -e
 
-# TODO: find a better way
 echo "Waiting until all the EMs are ready.."
-sleep 3
+sleep 10
 
 # deploy
 echo "Deploying modules.."
-reactive-tools --debug deploy descriptor.json --result res.json
+reactive-tools deploy descriptor.json --result res.json
 sleep 2
 
 # attest
 echo "Attesting modules.."
-reactive-tools --verbose attest res.json
+reactive-tools attest res.json
 sleep 2
 
 # connect
 echo "Establishing connections.."
-reactive-tools --verbose connect res.json
+reactive-tools connect res.json
 
 echo "Initializing web server"
 make init
