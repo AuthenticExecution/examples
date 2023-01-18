@@ -2,33 +2,25 @@ version: "3.9"
 
 services:
   node-sancus-1:
-    image: authexec/event-manager-sgx:latest
+    image: authexec/event-manager-sancus:latest
     expose:
-      - "5000-5010"
+      - "6000"
     environment:
-      - EM_PORT=5000
-      - EM_LOG=info
-      - EM_THREADS=16
-      - EM_PERIODIC_TASKS=false
-      - EM_SGX=true
+      - ELF=reactive.elf
+      - PORT=6000
     devices:
-      - "/dev/isgx:/dev/isgx"
-    volumes:
-      - "/var/run/aesmd:/var/run/aesmd"
+      - "/dev/ttyUSB1:/dev/RIOT"
+      - "/dev/ttyUSB0:/dev/UART"
   node-sancus-2:
-    image: authexec/event-manager-sgx:latest
+    image: authexec/event-manager-sancus:latest
     expose:
-      - "5000-5010"
+      - "6000"
     environment:
-      - EM_PORT=5000
-      - EM_LOG=info
-      - EM_THREADS=16
-      - EM_PERIODIC_TASKS=false
-      - EM_SGX=true
+      - ELF=reactive_led.elf
+      - PORT=6000
     devices:
-      - "/dev/isgx:/dev/isgx"
-    volumes:
-      - "/var/run/aesmd:/var/run/aesmd"
+      - "/dev/ttyUSB2:/dev/RIOT"
+      - "/dev/ttyUSB3:/dev/UART"
   node-sancus-3:
     image: authexec/event-manager-sgx:latest
     expose:

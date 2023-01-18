@@ -17,18 +17,20 @@
             "node_key": "9a04aa182d039674708ce807ed914cd153cd9df7805e61742f0ae41294758dd3"
         },
         {
-            "type": "sgx",
+            "type": "sancus",
             "name": "node_sancus_1",
             "host": "node-sancus-1",
-            "reactive_port": 5000,
-            "aesm_host": "aesm-client"
+            "vendor_id": 4660,
+            "vendor_key": "0b7bf3ae40880a8be430d0da34fb76f0",
+            "reactive_port": 6000
         },
         {
-            "type": "sgx",
+            "type": "sancus",
             "name": "node_sancus_2",
             "host": "node-sancus-2",
-            "reactive_port": 5000,
-            "aesm_host": "aesm-client"
+            "vendor_id": 4660,
+            "vendor_key": "0b7bf3ae40880a8be430d0da34fb76f0",
+            "reactive_port": 6000
         },
         {
             "type": "sgx",
@@ -52,25 +54,36 @@
             "node": "node_trustzone"
         },
         {
-            "type": "sgx",
+            "type": "sancus",
             "name": "temp_sensor",
             "node": "node_sancus_1",
-            "vendor_key": "cred/vendor_key.pem",
-            "ra_settings": "cred/settings.json"
+            "files": ["temp_sensor/module.c"]
         },
         {
             "type": "sgx",
             "name": "thermostat",
-            "node": "node_sancus_2",
+            "node": "node_sancus_3",
+            "files": ["thermostat/module.c"],
             "vendor_key": "cred/vendor_key.pem",
             "ra_settings": "cred/settings.json"
         },
         {
-            "type": "sgx",
+            "type": "sancus",
             "name": "light_switch",
-            "node": "node_sancus_3",
-            "vendor_key": "cred/vendor_key.pem",
-            "ra_settings": "cred/settings.json"
+            "node": "node_sancus_2",
+            "files": ["light_switch/module.c"]
+        },
+        {
+            "type": "sancus",
+            "name": "led_driver",
+            "node": "node_sancus_2",
+            "deployed": true,
+            "files": [],
+            "binary": "",
+            "id": 1,
+            "symtab": "",
+            "key": "757ac7bccbb32738ad49d90ac0859f6c",
+            "nonce": 0
         }
     ],
     "connections": [
@@ -149,6 +162,13 @@
             "from_output": "send_switch_state",
             "to_module": "gateway",
             "to_input": "set_switch_state",
+            "encryption": "spongent"
+        },
+        {
+            "name": "init-led",
+            "direct": true,
+            "to_module": "led_driver",
+            "to_input": 0,
             "encryption": "spongent"
         }
     ]

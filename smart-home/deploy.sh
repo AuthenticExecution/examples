@@ -19,6 +19,9 @@ sleep 2
 echo "Establishing connections.."
 reactive-tools --debug connect res.json --connect-in-order
 
+echo "Initializing and attesting MMIO LED.."
+reactive-tools --verbose output res.json --connection init-led --arg 0000
+
 echo "Initializing web server"
 make init
 
@@ -28,7 +31,6 @@ while true
 do
 	sleep 1
     reactive-tools call res.json --module temp_sensor --entry read_from_sensor > /dev/null 2>&1
-    reactive-tools call res.json --module light_switch --entry check_switch > /dev/null 2>&1
     sleep 0.1
     reactive-tools call res.json --module gateway --entry check_heater > /dev/null 2>&1
 done

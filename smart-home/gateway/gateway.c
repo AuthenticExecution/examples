@@ -42,12 +42,14 @@ SM_INPUT(set_heating_state, data, data_len) {
 
 /* received from temp sensor */
 SM_INPUT(set_actual_temp, data, data_len) {
-	if(data_len < 4) {
+	if(data_len < 2) {
 		EMSG("set_actual_temp: invalid data");
 		return;
 	}
 
-	TEE_MemMove(&status.actual_temp, data, 4);
+	uint16_t temp;
+	TEE_MemMove(&temp, data, 2);
+	status.actual_temp = temp / 10.0; // received tmp is multiplied by 10
 	send_status_info();
 }
 
