@@ -7,7 +7,7 @@ typedef struct status {
 } Status;
 
 Status status = { 0.0, 0.0, 0, 0, 0 };
-void send_status_info(TEE_Param params[4]);
+void send_status_info(void);
 
 SM_OUTPUT(set_heating);
 SM_OUTPUT(set_switch);
@@ -22,11 +22,11 @@ SM_ENTRY(check_heater, data, data_len) {
 
 		if(desired_state != status.heating_on) {
 			DMSG("Setting thermostat to: %d", desired_state);
-			OUTPUT(set_heating, (unsigned char *) &desired_state, 2);
+			set_heating((unsigned char *) &desired_state, 2);
 		}
 	}
 
-	send_status_info(params);
+	send_status_info();
 }
 
 /* received from thermostat */
@@ -37,7 +37,7 @@ SM_INPUT(set_heating_state, data, data_len) {
 	}
 
 	TEE_MemMove(&status.heating_on, data, 2);
-	send_status_info(params);
+	send_status_info();
 }
 
 /* received from temp sensor */
@@ -48,7 +48,7 @@ SM_INPUT(set_actual_temp, data, data_len) {
 	}
 
 	TEE_MemMove(&status.actual_temp, data, 4);
-	send_status_info(params);
+	send_status_info();
 }
 
 /* received from light switch */
@@ -59,7 +59,7 @@ SM_INPUT(set_switch_state, data, data_len) {
 	}
 
 	TEE_MemMove(&status.switch_on, data, 2);
-	send_status_info(params);
+	send_status_info();
 }
 
 /* received from web */
@@ -71,7 +71,7 @@ SM_INPUT(set_desired_temp, data, data_len) {
 
 	TEE_MemMove(&status.desired_temp, data, 4);
 	status.auto_heating = 1;
-	send_status_info(params);
+	send_status_info();
 }
 
 SM_INPUT(enable_heating, data, data_len) {
@@ -81,8 +81,8 @@ SM_INPUT(enable_heating, data, data_len) {
 	}
 
 	status.auto_heating = 0;
-	OUTPUT(set_heating, data, data_len);
-	send_status_info(params);
+	set_heating(data, data_len);
+	send_status_info();
 }
 
 SM_INPUT(enable_switch, data, data_len) {
@@ -91,10 +91,10 @@ SM_INPUT(enable_switch, data, data_len) {
 		return;
 	}
 
-	OUTPUT(set_switch, data, data_len);
+	set_switch(data, data_len);
 }
 
-void send_status_info(TEE_Param params[4]) {
+void send_status_info(void) {
 	const int json_size = 256; // 256 bytes should be enough.
 	char json[json_size];
 
@@ -120,5 +120,5 @@ void send_status_info(TEE_Param params[4]) {
 		return;
 	}
 
-	OUTPUT(send_status, (unsigned char *) json, nchars);
+	send_status((unsigned char *) json, nchars);
 }
