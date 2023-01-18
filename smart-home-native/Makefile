@@ -24,7 +24,7 @@ set_temp:
 	curl --cacert cert.pem -i $(WEB_URL)/set-desired-temp -H "Authorization: Bearer $(TOKEN)" -X POST -d  '{"temp" : $(TEMP)}'
 
 enable_switch:
-	curl --cacert cert.pem -i $(WEB_URL)/enable-heating -H "Authorization: Bearer $(TOKEN)" -X POST -d  '{"enable" : true}'
+	curl --cacert cert.pem -i $(WEB_URL)/enable-switch -H "Authorization: Bearer $(TOKEN)" -X POST -d  '{"enable" : true}'
 
 disable_switch:
 	curl --cacert cert.pem -i $(WEB_URL)/enable-switch -H "Authorization: Bearer $(TOKEN)" -X POST -d  '{"enable" : false}'

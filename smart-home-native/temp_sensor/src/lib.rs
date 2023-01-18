@@ -36,7 +36,7 @@ pub fn set_heating_state(data : &[u8]) {
     let mut heating_on = HEATING_ON.lock().unwrap();
 
     if data.len() < 2 {
-        error!("get_heating_state: invalid data");
+        error!("set_heating_state: invalid data");
         return;
     }
 
