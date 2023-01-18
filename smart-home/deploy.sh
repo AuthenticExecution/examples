@@ -3,7 +3,7 @@
 set -e
 
 echo "Waiting until all the EMs are ready.."
-sleep 10
+sleep 20
 
 # deploy
 echo "Deploying modules.."
@@ -17,7 +17,7 @@ sleep 2
 
 # connect
 echo "Establishing connections.."
-reactive-tools connect res.json
+reactive-tools --debug connect res.json --connect-in-order
 
 echo "Initializing web server"
 make init

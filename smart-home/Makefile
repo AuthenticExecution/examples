@@ -30,4 +30,4 @@ disable_switch:
 	curl --cacert cert.pem -i $(WEB_URL)/enable-switch -H "Authorization: Bearer $(TOKEN)" -X POST -d  '{"enable" : false}'
 
 shell:
-	docker exec -it smart-home-native-admin-1 bash
+	docker exec -it smart-home-admin-1 bash

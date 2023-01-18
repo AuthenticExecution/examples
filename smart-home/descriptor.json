@@ -9,11 +9,12 @@
             "aesm_host": "aesm-client"
         },
         {
-            "type": "sgx",
+            "type": "trustzone",
             "name": "node_trustzone",
             "host": "node-trustzone",
-            "reactive_port": 5000,
-            "aesm_host": "aesm-client"
+            "reactive_port": 1236,
+            "vendor_id": 33,
+            "node_key": "9a04aa182d039674708ce807ed914cd153cd9df7805e61742f0ae41294758dd3"
         },
         {
             "type": "sgx",
@@ -46,11 +47,9 @@
             "ra_settings": "cred/settings.json"
         },
         {
-            "type": "sgx",
+            "type": "trustzone",
             "name": "gateway",
-            "node": "node_trustzone",
-            "vendor_key": "cred/vendor_key.pem",
-            "ra_settings": "cred/settings.json"
+            "node": "node_trustzone"
         },
         {
             "type": "sgx",

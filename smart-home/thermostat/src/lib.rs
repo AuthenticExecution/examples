@@ -17,6 +17,6 @@ pub fn set_heating(data : &[u8]) {
         return;
     }
 
-    *heating_on = u16::from_be_bytes([data[0], data[1]]) != 0;
+    *heating_on = u16::from_le_bytes([data[0], data[1]]) != 0;
     send_heating_state(data);
 }
