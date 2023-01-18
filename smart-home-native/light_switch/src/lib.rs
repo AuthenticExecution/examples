@@ -13,7 +13,7 @@ pub fn check_switch(_data : &[u8]) -> ResultMessage {
     let switch_on = SWITCH_ON.lock().unwrap();
 
     debug!("Switch ON: {}", *switch_on);
-    send_switch_state(&(*switch_on as u16).to_be_bytes());
+    send_switch_state(&(*switch_on as u16).to_le_bytes());
     success(None)
 }
 
@@ -26,6 +26,6 @@ pub fn set_switch(data : &[u8]) {
         return;
     }
 
-    *switch_on = u16::from_be_bytes([data[0], data[1]]) != 0;
-    send_switch_state(&(*switch_on as u16).to_be_bytes());
+    *switch_on = u16::from_le_bytes([data[0], data[1]]) != 0;
+    send_switch_state(&(*switch_on as u16).to_le_bytes());
 }

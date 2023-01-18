@@ -6,7 +6,7 @@ lazy_static! {
     };
 
     static ref TEMPERATURE: Mutex<f32> = {
-        Mutex::new(16.0) // initial value
+        Mutex::new(18.0) // initial value
     };
 }
 
@@ -27,7 +27,7 @@ pub fn read_from_sensor(_data : &[u8]) -> ResultMessage {
     }
 
     debug!("Temperature: {}", *temp);
-    send_actual_temp(&(*temp).to_be_bytes());
+    send_actual_temp(&(*temp).to_le_bytes());
     success(None)
 }
 
@@ -40,5 +40,5 @@ pub fn set_heating_state(data : &[u8]) {
         return;
     }
 
-    *heating_on = u16::from_be_bytes([data[0], data[1]]) != 0;
+    *heating_on = u16::from_le_bytes([data[0], data[1]]) != 0;
 }

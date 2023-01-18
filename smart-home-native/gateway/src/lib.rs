@@ -23,7 +23,7 @@ pub fn check_heater(_data : &[u8]) -> ResultMessage {
 
         if desired_state != status.heating_on {
             debug!("Setting thermostat to: {}", desired_state);
-            set_heating(&(desired_state as u16).to_be_bytes());
+            set_heating(&(desired_state as u16).to_le_bytes());
         }
     }
 
@@ -41,7 +41,7 @@ pub fn set_heating_state(data : &[u8]) {
         return;
     }
 
-    status.heating_on = u16::from_be_bytes([data[0], data[1]]) != 0;
+    status.heating_on = u16::from_le_bytes([data[0], data[1]]) != 0;
     send_status_info(&*status);
 }
 
@@ -55,7 +55,7 @@ pub fn set_actual_temp(data : &[u8]) {
         return;
     }
 
-    status.actual_temp = f32::from_be_bytes([data[0], data[1], data[2], data[3]]);
+    status.actual_temp = f32::from_le_bytes([data[0], data[1], data[2], data[3]]);
     send_status_info(&*status);
 }
 
@@ -69,7 +69,7 @@ pub fn set_switch_state(data : &[u8]) {
         return;
     }
 
-    status.switch_on = u16::from_be_bytes([data[0], data[1]]) != 0;
+    status.switch_on = u16::from_le_bytes([data[0], data[1]]) != 0;
     send_status_info(&*status);
 }
 
@@ -83,7 +83,7 @@ pub fn set_desired_temp(data : &[u8]) {
         return;
     }
 
-    status.desired_temp = f32::from_be_bytes([data[0], data[1], data[2], data[3]]);
+    status.desired_temp = f32::from_le_bytes([data[0], data[1], data[2], data[3]]);
     status.auto_heating = true;
     send_status_info(&*status);
 }

@@ -191,7 +191,7 @@ fn handle_client(conn : TcpStream, config : Arc<Config>) -> anyhow::Result<()> {
                     let temp = b["temp"].as_f32().unwrap();
 
                     response.extend_from_slice("HTTP/1.1 200 OK\r\n\r\n".as_bytes());
-                    set_desired_temp(&temp.to_be_bytes());
+                    set_desired_temp(&temp.to_le_bytes());
                 }
                 _  => response.extend_from_slice(
                     "HTTP/1.1 400 Bad Request\r\n\r\n".as_bytes()
@@ -205,7 +205,7 @@ fn handle_client(conn : TcpStream, config : Arc<Config>) -> anyhow::Result<()> {
                     let enable = b["enable"].as_bool().unwrap();
 
                     response.extend_from_slice("HTTP/1.1 200 OK\r\n\r\n".as_bytes());
-                    enable_heating(&(enable as u16).to_be_bytes())
+                    enable_heating(&(enable as u16).to_le_bytes())
                 }
                 _  => response.extend_from_slice(
                     "HTTP/1.1 400 Bad Request\r\n\r\n".as_bytes()
@@ -219,7 +219,7 @@ fn handle_client(conn : TcpStream, config : Arc<Config>) -> anyhow::Result<()> {
                     let enable = b["enable"].as_bool().unwrap();
 
                     response.extend_from_slice("HTTP/1.1 200 OK\r\n\r\n".as_bytes());
-                    enable_switch(&(enable as u16).to_be_bytes())
+                    enable_switch(&(enable as u16).to_le_bytes())
                 }
                 _  => response.extend_from_slice(
                     "HTTP/1.1 400 Bad Request\r\n\r\n".as_bytes()
