@@ -48,11 +48,11 @@ services:
       - "/dev/ttyUSB7:/dev/UART"
   node-trustzone:
     image: authexec/event-manager-trustzone:latest
-    expose:
-      - "1236"
+    ports:
+      - "9000:1236"
     environment:
-      - PORT=1236
-      - IMX=${IMX}
+      - PORT=9000
+      - IMX=1
     volumes:
       - "/opt/optee:/opt/optee"
     devices:
@@ -68,7 +68,7 @@ services:
       - "/var/run/aesmd:/var/run/aesmd"
   admin:
     image: authexec/reactive-tools:latest
-    command: ./deploy.sh ${DESCRIPTOR}
+    command: ./deploy.sh
     depends_on:
       - node-sgx
       - node-sancus-1

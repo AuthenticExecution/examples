@@ -2,14 +2,12 @@
 
 set -e
 
-DESCRIPTOR=$1
-
 echo "Waiting until all the EMs are ready.."
-sleep 20
+sleep 30
 
 # deploy
 echo "Deploying modules.."
-reactive-tools deploy $DESCRIPTOR --result res.json
+reactive-tools deploy descriptor.json --result res.json
 sleep 2
 
 # attest
