@@ -2,12 +2,19 @@
 
 set -e
 
-echo "Waiting until all the EMs are ready.."
-sleep 20
+DESCRIPTOR=$1
+
+if [ "$DESCRIPTOR" = "descriptor.json" ]; then
+    echo "Waiting until all the EMs are ready.."
+    sleep 20
+else
+    echo "Resetting nodes"
+    reactive-tools reset $DESCRIPTOR
+fi
 
 # deploy
 echo "Deploying modules.."
-reactive-tools deploy descriptor.json --result res.json
+reactive-tools deploy $DESCRIPTOR --result res.json
 sleep 2
 
 # attest
