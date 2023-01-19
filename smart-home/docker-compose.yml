@@ -9,8 +9,8 @@ services:
       - ELF=reactive.elf
       - PORT=6000
     devices:
-      - "/dev/ttyUSB1:/dev/RIOT"
-      - "/dev/ttyUSB0:/dev/UART"
+      - "/dev/ttyUSB2:/dev/RIOT"
+      - "/dev/ttyUSB3:/dev/UART"
   node-sancus-2:
     image: authexec/event-manager-sancus:latest
     expose:
@@ -19,22 +19,18 @@ services:
       - ELF=reactive_led.elf
       - PORT=6000
     devices:
-      - "/dev/ttyUSB2:/dev/RIOT"
-      - "/dev/ttyUSB3:/dev/UART"
+      - "/dev/ttyUSB0:/dev/RIOT"
+      - "/dev/ttyUSB1:/dev/UART"
   node-sancus-3:
-    image: authexec/event-manager-sgx:latest
+    image: authexec/event-manager-sancus:latest
     expose:
-      - "5000-5010"
+      - "6000"
     environment:
-      - EM_PORT=5000
-      - EM_LOG=info
-      - EM_THREADS=16
-      - EM_PERIODIC_TASKS=false
-      - EM_SGX=true
+      - ELF=reactive_led.elf
+      - PORT=6000
     devices:
-      - "/dev/isgx:/dev/isgx"
-    volumes:
-      - "/var/run/aesmd:/var/run/aesmd"
+      - "/dev/ttyUSB4:/dev/RIOT"
+      - "/dev/ttyUSB5:/dev/UART"
   node-sgx:
     image: authexec/event-manager-sgx:latest
     expose:

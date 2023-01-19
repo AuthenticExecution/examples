@@ -7,7 +7,7 @@ sleep 20
 
 # deploy
 echo "Deploying modules.."
-reactive-tools --debug deploy descriptor.json --result res.json
+reactive-tools deploy descriptor.json --result res.json
 sleep 2
 
 # attest
@@ -17,10 +17,11 @@ sleep 2
 
 # connect
 echo "Establishing connections.."
-reactive-tools --debug connect res.json --connect-in-order
+reactive-tools connect res.json --connect-in-order
 
-echo "Initializing and attesting MMIO LED.."
-reactive-tools --verbose output res.json --connection init-led --arg 0000
+echo "Initializing and attesting MMIO LEDs.."
+reactive-tools output res.json --connection init-led-2 --arg 0000
+reactive-tools output res.json --connection init-led-3 --arg 0000
 
 echo "Initializing web server"
 make init

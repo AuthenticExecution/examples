@@ -33,11 +33,12 @@
             "reactive_port": 6000
         },
         {
-            "type": "sgx",
+            "type": "sancus",
             "name": "node_sancus_3",
             "host": "node-sancus-3",
-            "reactive_port": 5000,
-            "aesm_host": "aesm-client"
+            "vendor_id": 4660,
+            "vendor_key": "0b7bf3ae40880a8be430d0da34fb76f0",
+            "reactive_port": 6000
         }
     ],
     "modules" : [
@@ -60,9 +61,9 @@
             "files": ["temp_sensor/module.c"]
         },
         {
-            "type": "sgx",
+            "type": "sancus",
             "name": "thermostat",
-            "node": "node_sancus_3",
+            "node": "node_sancus_2",
             "files": ["thermostat/module.c"],
             "vendor_key": "cred/vendor_key.pem",
             "ra_settings": "cred/settings.json"
@@ -70,13 +71,25 @@
         {
             "type": "sancus",
             "name": "light_switch",
-            "node": "node_sancus_2",
+            "node": "node_sancus_3",
             "files": ["light_switch/module.c"]
         },
         {
             "type": "sancus",
-            "name": "led_driver",
+            "name": "led_driver_2",
             "node": "node_sancus_2",
+            "deployed": true,
+            "files": [],
+            "binary": "",
+            "id": 1,
+            "symtab": "",
+            "key": "757ac7bccbb32738ad49d90ac0859f6c",
+            "nonce": 0
+        },
+        {
+            "type": "sancus",
+            "name": "led_driver_3",
+            "node": "node_sancus_3",
             "deployed": true,
             "files": [],
             "binary": "",
@@ -165,10 +178,31 @@
             "encryption": "spongent"
         },
         {
-            "name": "init-led",
+            "name": "init-led-2",
             "direct": true,
-            "to_module": "led_driver",
+            "to_module": "led_driver_2",
             "to_input": 0,
+            "encryption": "spongent"
+        },
+        {
+            "from_module": "thermostat",
+            "from_output": "send_heating_state",
+            "to_module": "led_driver_2",
+            "to_input": 2,
+            "encryption": "spongent"
+        },
+        {
+            "name": "init-led-3",
+            "direct": true,
+            "to_module": "led_driver_3",
+            "to_input": 0,
+            "encryption": "spongent"
+        },
+        {
+            "from_module": "light_switch",
+            "from_output": "send_switch_state",
+            "to_module": "led_driver_3",
+            "to_input": 2,
             "encryption": "spongent"
         }
     ]
