@@ -65,7 +65,7 @@ services:
       - "/var/run/aesmd:/var/run/aesmd"
   admin:
     image: authexec/reactive-tools:latest
-    command: ./deploy.sh
+    command: ./deploy.sh descriptor.json
     depends_on:
       - node-sancus-1
       - node-sancus-2

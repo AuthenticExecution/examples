@@ -6,6 +6,8 @@ TEMP             ?= 18.0
 
 PAYLOAD           = $(shell printf "%x" $(PORT))$(shell echo -n $(TOKEN) | xxd -p)
 
+DESCRIPTOR        = descriptor_local.json
+ADMIN_IMAGE       = authexec/reactive-tools:latest
 SANCUS_IMAGE      = authexec/event-manager-sancus:latest
 SGX_IMAGE         = authexec/event-manager-sgx:latest
 AESM_CLIENT_IMAGE = authexec/aesm-client:latest
@@ -35,6 +37,12 @@ disable_switch:
 
 shell:
 	docker exec -it smart-home-admin-1 bash
+
+deploy:
+	./deploy.sh $(DESCRIPTOR)
+
+run_admin:
+	docker run --rm -it --network=host -v $(shell pwd):/usr/src/app authexec/reactive-tools bash
 
 run_sgx:
 	docker run --rm --detach --network=host -v /var/run/aesmd/:/var/run/aesmd --name aesm-client $(AESM_CLIENT_IMAGE) >/dev/null 2>&1 || true
