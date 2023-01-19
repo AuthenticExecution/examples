@@ -1,41 +1,10 @@
 version: "3.9"
 
 services:
-  node-sancus-1:
-    image: authexec/event-manager-sancus:latest
-    expose:
-      - "6000"
-    environment:
-      - ELF=reactive.elf
-      - PORT=6000
-    devices:
-      - "/dev/ttyUSB2:/dev/RIOT"
-      - "/dev/ttyUSB3:/dev/UART"
-  node-sancus-2:
-    image: authexec/event-manager-sancus:latest
-    expose:
-      - "6000"
-    environment:
-      - ELF=reactive_led.elf
-      - PORT=6000
-    devices:
-      - "/dev/ttyUSB0:/dev/RIOT"
-      - "/dev/ttyUSB1:/dev/UART"
-  node-sancus-3:
-    image: authexec/event-manager-sancus:latest
-    expose:
-      - "6000"
-    environment:
-      - ELF=reactive_led.elf
-      - PORT=6000
-    devices:
-      - "/dev/ttyUSB4:/dev/RIOT"
-      - "/dev/ttyUSB5:/dev/UART"
   node-sgx:
     image: authexec/event-manager-sgx:latest
-    expose:
-      - "5000-5010"
     ports:
+      - "5000-5010:5000-5010"
       - "48879:48879"
     environment:
       - EM_PORT=5000
@@ -47,14 +16,48 @@ services:
       - "/dev/isgx:/dev/isgx"
     volumes:
       - "/var/run/aesmd:/var/run/aesmd"
+  node-sancus-1:
+    image: authexec/event-manager-sancus:latest
+    ports:
+      - "6000:6000"
+    environment:
+      - ELF=reactive.elf
+      - PORT=6000
+    devices:
+      - "/dev/ttyUSB4:/dev/RIOT"
+      - "/dev/ttyUSB5:/dev/UART"
+  node-sancus-2:
+    image: authexec/event-manager-sancus:latest
+    ports:
+      - "7000:7000"
+    environment:
+      - ELF=reactive_led.elf
+      - PORT=7000
+    devices:
+      - "/dev/ttyUSB2:/dev/RIOT"
+      - "/dev/ttyUSB3:/dev/UART"
+  node-sancus-3:
+    image: authexec/event-manager-sancus:latest
+    ports:
+      - "8000:8000"
+    environment:
+      - ELF=reactive_led.elf
+      - PORT=8000
+    devices:
+      - "/dev/ttyUSB6:/dev/RIOT"
+      - "/dev/ttyUSB7:/dev/UART"
   node-trustzone:
     image: authexec/event-manager-trustzone:latest
     expose:
       - "1236"
     environment:
       - PORT=1236
+      - IMX=${IMX}
     volumes:
       - "/opt/optee:/opt/optee"
+    devices:
+      - "/dev/ttyUSB1:/dev/NW"
+      - "/dev/ttyUSB0:/dev/SW"
   aesm-client:
     image: authexec/aesm-client:latest
     expose:
@@ -65,12 +68,12 @@ services:
       - "/var/run/aesmd:/var/run/aesmd"
   admin:
     image: authexec/reactive-tools:latest
-    command: ./deploy.sh descriptor.json
+    command: ./deploy.sh ${DESCRIPTOR}
     depends_on:
+      - node-sgx
       - node-sancus-1
       - node-sancus-2
       - node-sancus-3
-      - node-sgx
       - node-trustzone
       - aesm-client
     volumes:

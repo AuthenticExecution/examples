@@ -4,13 +4,8 @@ set -e
 
 DESCRIPTOR=$1
 
-if [ "$DESCRIPTOR" = "descriptor.json" ]; then
-    echo "Waiting until all the EMs are ready.."
-    sleep 20
-else
-    echo "Resetting nodes"
-    reactive-tools reset $DESCRIPTOR
-fi
+echo "Waiting until all the EMs are ready.."
+sleep 20
 
 # deploy
 echo "Deploying modules.."
