@@ -12,6 +12,7 @@ services:
       - EM_THREADS=16
       - EM_PERIODIC_TASKS=false
       - EM_SGX=true
+      - EM_MEASURE_TIME=true
     devices:
       - "/dev/isgx:/dev/isgx"
     volumes:
@@ -68,7 +69,7 @@ services:
       - "/var/run/aesmd:/var/run/aesmd"
   admin:
     image: authexec/reactive-tools:latest
-    command: ./deploy.sh
+    command: ./deploy.sh ${AUTO}
     depends_on:
       - node-sgx
       - node-sancus-1

@@ -2,6 +2,8 @@
 
 set -e
 
+AUTO=$1
+
 echo "Waiting until all the EMs are ready.."
 sleep 30
 
@@ -28,10 +30,14 @@ make init
 
 echo "Setup complete"
 
-while true
-do
-	sleep 1
-    reactive-tools call res.json --module temp_sensor --entry read_from_sensor > /dev/null 2>&1
-    sleep 0.1
-    reactive-tools call res.json --module gateway --entry check_heater > /dev/null 2>&1
-done
+if [ $AUTO = "1" ]; then
+    while true
+    do
+        sleep 1
+        reactive-tools call res.json --module temp_sensor --entry read_from_sensor > /dev/null 2>&1
+        sleep 0.1
+        reactive-tools call res.json --module gateway --entry check_heater > /dev/null 2>&1
+    done
+else
+    sleep 3600
+fi

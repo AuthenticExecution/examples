@@ -46,7 +46,8 @@
             "name": "web",
             "node": "node_sgx",
             "vendor_key": "cred/vendor_key.pem",
-            "ra_settings": "cred/settings.json"
+            "ra_settings": "cred/settings.json",
+            "features": ["measure_time"]
         },
         {
             "type": "trustzone",
