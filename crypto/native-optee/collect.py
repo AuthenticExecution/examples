@@ -18,30 +18,29 @@ class MeasurementUnit(IntEnum):
         
         raise Exception(f"Invalid measurement unit: {self.name}")
 
-# TODO add TZ regexes
 measurements_regexes = [
     (
-        "SGX encryption",
+        "Native encryption",
         "\[ping\] INFO: handle_output_before_encryption: ([0-9]+) us",
         "\[ping\] INFO: handle_output_after_encryption: ([0-9]+) us",
         MeasurementUnit.US
     ),
     (
-        "SGX decryption",
+        "Native decryption",
         "\[ping\] INFO: handle_input_before_decryption: ([0-9]+) us",
         "\[ping\] INFO: handle_input_after_decryption: ([0-9]+) us",
         MeasurementUnit.US
     ),
-        (
-        "native encryption",
-        "\[pong\] INFO: handle_output_before_encryption: ([0-9]+) us",
-        "\[pong\] INFO: handle_output_after_encryption: ([0-9]+) us",
+    (
+        "TZ encryption",
+        "tz_handle_output_before_encryption: ([0-9]+) us",
+        "tz_handle_output_after_encryption: ([0-9]+) us",
         MeasurementUnit.US
     ),
     (
-        "native decryption",
-        "\[pong\] INFO: handle_input_before_decryption: ([0-9]+) us",
-        "\[pong\] INFO: handle_input_after_decryption: ([0-9]+) us",
+        "TZ decryption",
+        "tz_handle_input_before_decryption: ([0-9]+) us",
+        "tz_handle_input_after_decryption: ([0-9]+) us",
         MeasurementUnit.US
     )
 ]

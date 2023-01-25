@@ -1,0 +1,207 @@
+{
+    "nodes": [
+        {
+            "type": "sgx",
+            "name": "node_sgx",
+            "host": "134.58.46.188",
+            "reactive_port": 5000,
+            "aesm_host": "aesm-client"
+        },
+        {
+            "type": "sancus",
+            "name": "node_sancus_1",
+            "host": "134.58.46.188",
+            "vendor_id": 4660,
+            "vendor_key": "0b7bf3ae40880a8be430d0da34fb76f0",
+            "reactive_port": 6000
+        },
+        {
+            "type": "sancus",
+            "name": "node_sancus_2",
+            "host": "134.58.46.188",
+            "vendor_id": 4660,
+            "vendor_key": "0b7bf3ae40880a8be430d0da34fb76f0",
+            "reactive_port": 7000
+        },
+        {
+            "type": "sancus",
+            "name": "node_sancus_3",
+            "host": "134.58.46.188",
+            "vendor_id": 4660,
+            "vendor_key": "0b7bf3ae40880a8be430d0da34fb76f0",
+            "reactive_port": 8000
+        },
+        {
+            "type": "trustzone",
+            "name": "node_trustzone",
+            "host": "134.58.46.189",
+            "reactive_port": 9000,
+            "vendor_id": 33,
+            "node_key": "9a04aa182d039674708ce807ed914cd153cd9df7805e61742f0ae41294758dd3"
+        }
+    ],
+    "modules" : [
+        {
+            "type": "sgx",
+            "name": "web",
+            "node": "node_sgx",
+            "vendor_key": "cred/vendor_key.pem",
+            "ra_settings": "cred/settings.json",
+            "features": ["measure_time"]
+        },
+        {
+            "type": "trustzone",
+            "name": "gateway",
+            "node": "node_trustzone"
+        },
+        {
+            "type": "sancus",
+            "name": "temp_sensor",
+            "node": "node_sancus_1",
+            "files": ["temp_sensor/module.c"]
+        },
+        {
+            "type": "sancus",
+            "name": "thermostat",
+            "node": "node_sancus_2",
+            "files": ["thermostat/module.c"]
+        },
+        {
+            "type": "sancus",
+            "name": "light_switch",
+            "node": "node_sancus_3",
+            "files": ["light_switch/module.c"]
+        },
+        {
+            "type": "sancus",
+            "name": "led_driver_2",
+            "node": "node_sancus_2",
+            "deployed": true,
+            "files": [],
+            "binary": "",
+            "id": 1,
+            "symtab": "",
+            "key": "757ac7bccbb32738ad49d90ac0859f6c",
+            "nonce": 0
+        },
+        {
+            "type": "sancus",
+            "name": "led_driver_3",
+            "node": "node_sancus_3",
+            "deployed": true,
+            "files": [],
+            "binary": "",
+            "id": 1,
+            "symtab": "",
+            "key": "757ac7bccbb32738ad49d90ac0859f6c",
+            "nonce": 0
+        }
+    ],
+    "connections": [
+        {
+            "name": "init-led-2",
+            "direct": true,
+            "to_module": "led_driver_2",
+            "to_input": 0,
+            "encryption": "spongent"
+        },
+        {
+            "from_module": "thermostat",
+            "from_output": "send_heating_state",
+            "to_module": "led_driver_2",
+            "to_input": 2,
+            "encryption": "spongent"
+        },
+        {
+            "name": "init-led-3",
+            "direct": true,
+            "to_module": "led_driver_3",
+            "to_input": 0,
+            "encryption": "spongent"
+        },
+        {
+            "from_module": "light_switch",
+            "from_output": "send_switch_state",
+            "to_module": "led_driver_3",
+            "to_input": 2,
+            "encryption": "spongent"
+        },
+        {
+            "from_module": "gateway",
+            "from_output": "set_heating",
+            "to_module": "thermostat",
+            "to_input": "set_heating",
+            "encryption": "spongent"
+        },
+        {
+            "from_module": "thermostat",
+            "from_output": "send_heating_state",
+            "to_module": "gateway",
+            "to_input": "set_heating_state",
+            "encryption": "spongent"
+        },
+        {
+            "from_module": "thermostat",
+            "from_output": "send_heating_state",
+            "to_module": "temp_sensor",
+            "to_input": "set_heating_state",
+            "encryption": "spongent"
+        },
+        {
+            "from_module": "temp_sensor",
+            "from_output": "send_actual_temp",
+            "to_module": "gateway",
+            "to_input": "set_actual_temp",
+            "encryption": "spongent"
+        },
+        {
+            "from_module": "gateway",
+            "from_output": "set_switch",
+            "to_module": "light_switch",
+            "to_input": "set_switch",
+            "encryption": "spongent"
+        },
+        {
+            "from_module": "light_switch",
+            "from_output": "send_switch_state",
+            "to_module": "gateway",
+            "to_input": "set_switch_state",
+            "encryption": "spongent"
+        },
+        {
+            "name": "init-server",
+            "direct": true,
+            "to_module": "web",
+            "to_handler": "init_server",
+            "encryption": "aes"
+        },
+        {
+            "from_module": "web",
+            "from_output": "set_desired_temp",
+            "to_module": "gateway",
+            "to_input": "set_desired_temp",
+            "encryption": "aes"
+        },
+        {
+            "from_module": "web",
+            "from_output": "enable_heating",
+            "to_module": "gateway",
+            "to_input": "enable_heating",
+            "encryption": "aes"
+        },
+        {
+            "from_module": "web",
+            "from_output": "enable_switch",
+            "to_module": "gateway",
+            "to_input": "enable_switch",
+            "encryption": "aes"
+        },
+        {
+            "from_module": "gateway",
+            "from_output": "send_status",
+            "to_module": "web",
+            "to_input": "set_status",
+            "encryption": "aes"
+        }
+    ]
+}
