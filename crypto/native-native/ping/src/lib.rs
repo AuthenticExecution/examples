@@ -19,7 +19,7 @@ pub fn start(data : &[u8]) -> ResultMessage {
     // number of bytes is stored in data
     let data_size = u16::from_le_bytes([data[0], data[1]]);
 
-    info!(&format!("starting ping-pong with data size: {}", data_size));
+    info!("starting ping-pong with data size: {}", data_size);
     send_ping(&vec![0; data_size as usize]);
 
     success(None)
