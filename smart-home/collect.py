@@ -32,7 +32,7 @@ measurements_regexes = [
     (
         "TZ AES decryption",
         "tz_handle_input_before_decryption_0: ([0-9]+) us",
-        "tz_handle_input_before_decryption_0: ([0-9]+) us",
+        "tz_handle_input_after_decryption_0: ([0-9]+) us",
         MeasurementUnit.US
     ),
     (
@@ -44,7 +44,7 @@ measurements_regexes = [
     (
         "TZ SPONGENT decryption",
         "tz_handle_input_before_decryption_1: ([0-9]+) us",
-        "tz_handle_input_before_decryption_1: ([0-9]+) us",
+        "tz_handle_input_after_decryption_1: ([0-9]+) us",
         MeasurementUnit.US
     ),
     (
