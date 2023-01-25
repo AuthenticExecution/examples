@@ -2,7 +2,7 @@
 
 set -e
 
-AUTO=$1
+BENCHMARK=$1
 
 echo "Waiting until all the EMs are ready.."
 sleep 30
@@ -30,7 +30,16 @@ make init
 
 echo "Setup complete"
 
-if [ $AUTO = "1" ]; then
+if [ $BENCHMARK = "1" ]; then
+    sleep 5
+    for i in {1..1}
+    do
+        echo "STARTING NEW ITERATION: $i"
+        make enable_switch
+        sleep 2
+    done
+    echo "ALL DONE"
+else
     while true
     do
         sleep 1
@@ -38,6 +47,5 @@ if [ $AUTO = "1" ]; then
         sleep 0.1
         reactive-tools call res.json --module gateway --entry check_heater > /dev/null 2>&1
     done
-else
-    sleep 3600
 fi
+

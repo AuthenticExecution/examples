@@ -4,6 +4,9 @@ PORT             ?= 48879
 TOKEN            ?= secret-token
 TEMP             ?= 18.0
 
+IN               ?= logs
+OUT              ?= out.json
+
 PAYLOAD           = $(shell printf "%x" $(PORT))$(shell echo -n $(TOKEN) | xxd -p)
 
 init:
@@ -29,3 +32,14 @@ disable_switch:
 
 shell:
 	docker exec -it smart-home-admin-1 bash
+
+collect:
+	mkdir -p $(IN)
+	#docker compose up -d --force-recreate
+	#until docker logs $(ADMIN_CONTAINER) 2> /dev/null | grep 'ALL DONE' ; do sleep 5; done
+	#docker compose kill
+	docker cp smart-home-node-trustzone-1:/opt/optee/nw.log $(IN)
+	docker cp smart-home-node-trustzone-1:/opt/optee/sw.log $(IN)
+	docker logs smart-home-node-sgx-1 > $(IN)/sgx.log
+	#docker compose down 
+	python3 collect.py $(IN) $(OUT)

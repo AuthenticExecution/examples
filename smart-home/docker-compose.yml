@@ -69,7 +69,7 @@ services:
       - "/var/run/aesmd:/var/run/aesmd"
   admin:
     image: authexec/reactive-tools:latest
-    command: ./deploy.sh ${AUTO}
+    command: ./deploy.sh ${BENCHMARK}
     depends_on:
       - node-sgx
       - node-sancus-1
