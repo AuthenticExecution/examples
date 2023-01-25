@@ -32,7 +32,7 @@ echo "Setup complete"
 
 if [ $BENCHMARK = "1" ]; then
     sleep 5
-    for i in {1..1}
+    for i in {1..110}
     do
         echo "STARTING NEW ITERATION: $i"
         make enable_switch

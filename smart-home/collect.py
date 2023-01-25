@@ -22,22 +22,72 @@ class MeasurementUnit(IntEnum):
 time_regex = ": [0-9]+ us"
 
 measurements_regexes = [
+    # TZ
     (
-        "Native encryption",
-        "\[ping\] INFO: handle_output_before_encryption: ([0-9]+) us",
-        "\[ping\] INFO: handle_output_after_encryption: ([0-9]+) us",
+        "TZ AES encryption",
+        "tz_handle_output_before_encryption_0: ([0-9]+) us",
+        "tz_handle_output_after_encryption_0: ([0-9]+) us",
         MeasurementUnit.US
     ),
     (
-        "Native decryption",
-        "\[ping\] INFO: handle_input_before_decryption: ([0-9]+) us",
-        "\[ping\] INFO: handle_input_after_decryption: ([0-9]+) us",
+        "TZ AES decryption",
+        "tz_handle_input_before_decryption_0: ([0-9]+) us",
+        "tz_handle_input_before_decryption_0: ([0-9]+) us",
+        MeasurementUnit.US
+    ),
+    (
+        "TZ SPONGENT encryption",
+        "tz_handle_output_before_encryption_1: ([0-9]+) us",
+        "tz_handle_output_after_encryption_1: ([0-9]+) us",
+        MeasurementUnit.US
+    ),
+    (
+        "TZ SPONGENT decryption",
+        "tz_handle_input_before_decryption_1: ([0-9]+) us",
+        "tz_handle_input_before_decryption_1: ([0-9]+) us",
+        MeasurementUnit.US
+    ),
+    (
+        "TZ enter TA",
+        "tz_remote_output_before_dispatch: ([0-9]+) us",
+        "tz_handle_input_before_decryption_[0-9]+: ([0-9]+) us",
+        MeasurementUnit.US
+    ),
+    (
+        "TZ exit TA",
+        "tz_handle_input_after_handler_0: ([0-9]+) us",
+        "tz_remote_output_after_dispatch: ([0-9]+) us",
+        MeasurementUnit.US
+    ),
+    # SGX
+    (
+        "SGX AES encryption",
+        "\[web\] INFO: handle_output_before_encryption: ([0-9]+) us",
+        "\[web\] INFO: handle_output_after_encryption: ([0-9]+) us",
+        MeasurementUnit.US
+    ),
+    (
+        "SGX AES decryption",
+        "\[web\] INFO: handle_input_before_decryption: ([0-9]+) us",
+        "\[web\] INFO: handle_input_after_decryption: ([0-9]+) us",
+        MeasurementUnit.US
+    ),
+    (
+        "SGX enter enclave",
+        "\nremote_output_before_dispatch: ([0-9]+) us",
+        "\[web\] INFO: handle_input_before_decryption: ([0-9]+) us",
+        MeasurementUnit.US
+    ),
+    (
+        "SGX exit enclave",
+        "\[web\] INFO: handle_output_after_encryption: ([0-9]+) us",
+        "module_output_before_dispatch: ([0-9]+) us",
         MeasurementUnit.US
     )
 ]
 
 print("Aggregating logs..")
-all_logs = []
+logs = []
 for filename in os.listdir(logs_dir):
     print(filename)
     file_path = os.path.join(logs_dir, filename)
@@ -46,17 +96,11 @@ for filename in os.listdir(logs_dir):
         with open(file_path, "r", errors="replace") as f:
             file_lines = f.readlines()
 
-        all_logs += list(filter(lambda line : re.search(time_regex, line), file_lines))
+        logs += list(filter(lambda line : re.search(time_regex, line), file_lines))
 
-# sort logs
-all_logs = sorted(all_logs, key=lambda l : int(l.split()[-2]))
-
-with open(output_file, "w") as f:
-    f.writelines(all_logs)
-
-sys.exit(0)
-with open(input_file, "r") as f:
-    logs = f.read()
+# sort and join logs
+logs = sorted(logs, key=lambda l : int(l.split()[-2]))
+logs = "\n".join(logs)
 
 print("Extracting numbers")
 results = {}

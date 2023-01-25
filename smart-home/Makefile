@@ -4,6 +4,7 @@ PORT             ?= 48879
 TOKEN            ?= secret-token
 TEMP             ?= 18.0
 
+ADMIN_CONTAINER  ?= smart-home-admin-1
 IN               ?= logs
 OUT              ?= out.json
 
@@ -35,11 +36,11 @@ shell:
 
 collect:
 	mkdir -p $(IN)
-	#docker compose up -d --force-recreate
-	#until docker logs $(ADMIN_CONTAINER) 2> /dev/null | grep 'ALL DONE' ; do sleep 5; done
-	#docker compose kill
+	docker compose up -d --force-recreate
+	until docker logs $(ADMIN_CONTAINER) 2> /dev/null | grep 'ALL DONE' ; do sleep 5; done
+	docker compose kill
 	docker cp smart-home-node-trustzone-1:/opt/optee/nw.log $(IN)
 	docker cp smart-home-node-trustzone-1:/opt/optee/sw.log $(IN)
 	docker logs smart-home-node-sgx-1 > $(IN)/sgx.log
-	#docker compose down 
+	docker compose down 
 	python3 collect.py $(IN) $(OUT)
