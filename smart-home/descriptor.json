@@ -64,9 +64,7 @@
             "type": "sancus",
             "name": "thermostat",
             "node": "node_sancus_2",
-            "files": ["thermostat/module.c"],
-            "vendor_key": "cred/vendor_key.pem",
-            "ra_settings": "cred/settings.json"
+            "files": ["thermostat/module.c"]
         },
         {
             "type": "sancus",
@@ -101,32 +99,32 @@
     ],
     "connections": [
         {
-            "name": "init-server",
+            "name": "init-led-2",
             "direct": true,
-            "to_module": "web",
-            "to_handler": "init_server",
-            "encryption": "aes"
+            "to_module": "led_driver_2",
+            "to_input": 0,
+            "encryption": "spongent"
         },
         {
-            "from_module": "web",
-            "from_output": "set_desired_temp",
-            "to_module": "gateway",
-            "to_input": "set_desired_temp",
-            "encryption": "aes"
+            "from_module": "thermostat",
+            "from_output": "send_heating_state",
+            "to_module": "led_driver_2",
+            "to_input": 2,
+            "encryption": "spongent"
         },
         {
-            "from_module": "web",
-            "from_output": "enable_heating",
-            "to_module": "gateway",
-            "to_input": "enable_heating",
-            "encryption": "aes"
+            "name": "init-led-3",
+            "direct": true,
+            "to_module": "led_driver_3",
+            "to_input": 0,
+            "encryption": "spongent"
         },
         {
-            "from_module": "gateway",
-            "from_output": "send_status",
-            "to_module": "web",
-            "to_input": "set_status",
-            "encryption": "aes"
+            "from_module": "light_switch",
+            "from_output": "send_switch_state",
+            "to_module": "led_driver_3",
+            "to_input": 2,
+            "encryption": "spongent"
         },
         {
             "from_module": "gateway",
@@ -157,13 +155,6 @@
             "encryption": "spongent"
         },
         {
-            "from_module": "web",
-            "from_output": "enable_switch",
-            "to_module": "gateway",
-            "to_input": "enable_switch",
-            "encryption": "aes"
-        },
-        {
             "from_module": "gateway",
             "from_output": "set_switch",
             "to_module": "light_switch",
@@ -178,32 +169,39 @@
             "encryption": "spongent"
         },
         {
-            "name": "init-led-2",
+            "name": "init-server",
             "direct": true,
-            "to_module": "led_driver_2",
-            "to_input": 0,
-            "encryption": "spongent"
+            "to_module": "web",
+            "to_handler": "init_server",
+            "encryption": "aes"
         },
         {
-            "from_module": "thermostat",
-            "from_output": "send_heating_state",
-            "to_module": "led_driver_2",
-            "to_input": 2,
-            "encryption": "spongent"
+            "from_module": "web",
+            "from_output": "set_desired_temp",
+            "to_module": "gateway",
+            "to_input": "set_desired_temp",
+            "encryption": "aes"
         },
         {
-            "name": "init-led-3",
-            "direct": true,
-            "to_module": "led_driver_3",
-            "to_input": 0,
-            "encryption": "spongent"
+            "from_module": "web",
+            "from_output": "enable_heating",
+            "to_module": "gateway",
+            "to_input": "enable_heating",
+            "encryption": "aes"
         },
         {
-            "from_module": "light_switch",
-            "from_output": "send_switch_state",
-            "to_module": "led_driver_3",
-            "to_input": 2,
-            "encryption": "spongent"
+            "from_module": "web",
+            "from_output": "enable_switch",
+            "to_module": "gateway",
+            "to_input": "enable_switch",
+            "encryption": "aes"
+        },
+        {
+            "from_module": "gateway",
+            "from_output": "send_status",
+            "to_module": "web",
+            "to_input": "set_status",
+            "encryption": "aes"
         }
     ]
 }
