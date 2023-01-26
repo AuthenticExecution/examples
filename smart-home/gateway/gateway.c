@@ -122,5 +122,6 @@ void send_status_info(void) {
 		return;
 	}
 
+	DMSG("JSON status size: %d", nchars);
 	send_status((unsigned char *) json, nchars);
 }
