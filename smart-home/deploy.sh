@@ -2,7 +2,7 @@
 
 set -e
 
-BENCHMARK=$1
+MODE=$1
 
 echo "Waiting until all the EMs are ready.."
 sleep 30
@@ -30,7 +30,7 @@ make init
 
 echo "Setup complete"
 
-if [ $BENCHMARK = "1" ]; then
+if [ $MODE = "benchmark" ]; then
     sleep 5
     for i in {1..110}
     do
@@ -38,14 +38,32 @@ if [ $BENCHMARK = "1" ]; then
         make enable_switch
         sleep 2
     done
-    echo "ALL DONE"
-else
+elif [ $MODE = "update" ]; then
+    sleep 5
+
+    echo "Updating web.."
+    reactive-tools --timing update res.json --module web
+    sleep 5
+
+    echo "Updating gateway.."
+    reactive-tools --timing update res.json --module gateway
+    sleep 5
+
+    echo "Updating sensor.."
+    python switch_node.py res.json sensor node_sancus_4
+    reactive-tools --timing update res.json --module sensor 
+    sleep 5
+elif [ $MODE = "auto" ]; then
     while true
     do
         sleep 1
-        reactive-tools call res.json --module temp_sensor --entry read_from_sensor > /dev/null 2>&1
+        reactive-tools call res.json --module sensor --entry read_from_sensor > /dev/null 2>&1
         sleep 0.1
         reactive-tools call res.json --module gateway --entry check_heater > /dev/null 2>&1
     done
+else
+    echo "sleeping"
+    sleep 3600
 fi
 
+echo "ALL DONE"

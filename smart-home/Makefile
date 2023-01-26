@@ -44,3 +44,7 @@ collect:
 	docker logs smart-home-node-sgx-1 > $(IN)/sgx.log
 	docker compose down 
 	python3 collect.py $(IN) $(OUT)
+
+update:
+	mkdir -p $(IN)
+	python3 update.py $(IN)/update.json 10

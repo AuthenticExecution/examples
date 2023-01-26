@@ -25,8 +25,8 @@ services:
       - ELF=reactive.elf
       - PORT=6000
     devices:
-      - "/dev/ttyUSB4:/dev/RIOT"
-      - "/dev/ttyUSB5:/dev/UART"
+      - "/dev/ttyUSB8:/dev/RIOT"
+      - "/dev/ttyUSB9:/dev/UART"
   node-sancus-2:
     image: authexec/event-manager-sancus:latest
     ports:
@@ -44,6 +44,16 @@ services:
     environment:
       - ELF=reactive_led.elf
       - PORT=8000
+    devices:
+      - "/dev/ttyUSB4:/dev/RIOT"
+      - "/dev/ttyUSB5:/dev/UART"
+  node-sancus-4:
+    image: authexec/event-manager-sancus:latest
+    ports:
+      - "8500:8500"
+    environment:
+      - ELF=reactive.elf
+      - PORT=8500
     devices:
       - "/dev/ttyUSB6:/dev/RIOT"
       - "/dev/ttyUSB7:/dev/UART"
@@ -69,7 +79,7 @@ services:
       - "/var/run/aesmd:/var/run/aesmd"
   admin:
     image: authexec/reactive-tools:latest
-    command: ./deploy.sh ${BENCHMARK}
+    command: ./deploy.sh ${MODE}
     depends_on:
       - node-sgx
       - node-sancus-1
