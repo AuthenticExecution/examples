@@ -14,6 +14,8 @@ use json::JsonValue;
 
 use httparse::{EMPTY_HEADER, Request};
 
+use authentic_execution::measure_time_us;
+
 mod tls;
 use tls::{CERTIFICATE};
 
@@ -53,6 +55,8 @@ pub fn set_status(data : &[u8]) {
         Ok(s)   => *status = s,
         Err(e)  => error!("Bad status received: {}", e)
     }
+
+    measure_time_us("receive_status");
 }
 
 //@ sm_handler
@@ -159,6 +163,7 @@ fn handle_client(conn : TcpStream, config : Arc<Config>) -> anyhow::Result<()> {
 
     // implement API
     debug!("Serving request");
+    measure_time_us("serving_http_request");
     
     match req.path {
         // main page

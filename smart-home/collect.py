@@ -22,6 +22,13 @@ class MeasurementUnit(IntEnum):
 time_regex = ": [0-9]+ us"
 
 measurements_regexes = [
+    # RTT
+    (
+        "RTT",
+        "\[web\] INFO: serving_http_request: ([0-9]+) us",
+        "\[web\] INFO: receive_status: ([0-9]+) us",
+        MeasurementUnit.US
+    ),
     # TZ
     (
         "TZ AES encryption",
