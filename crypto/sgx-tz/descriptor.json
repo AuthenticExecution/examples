@@ -5,13 +5,13 @@
             "name": "node_sgx",
             "host": "134.58.46.188",
             "reactive_port": 5000,
-            "aesm_host": "134.58.46.188"
+            "aesm_host": "aesm-client"
         },
         {
             "type": "trustzone",
             "name": "node_trustzone",
             "host": "134.58.46.189",
-            "reactive_port": 1236,
+            "reactive_port": 6000,
             "vendor_id": 33,
             "node_key": "9a04aa182d039674708ce807ed914cd153cd9df7805e61742f0ae41294758dd3"
         }

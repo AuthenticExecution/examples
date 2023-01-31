@@ -24,13 +24,13 @@ echo "Setup complete"
 sleep 5
 
 echo "STARTING PING-PONG"
-# 8B: 0800 | 64B: 4000 | 512B: 0002 | 4kB: 0010 | 32kB: 0080
+# 8B: 0800 | 64B: 4000 | 256B: 0001 | 512B: 0002 | 2kB: 0008 | 4kB: 0010
 
 for i in {1..110}
 do
    echo "STARTING NEW ITERATION: $i"
-   reactive-tools call res.json --module ping --entry start --arg 0010 
-   sleep 2
+   reactive-tools call res.json --module ping --entry start --arg 0008 
+   sleep 1
 done
 
 echo "ALL DONE"

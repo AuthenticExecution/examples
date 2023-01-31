@@ -33,14 +33,14 @@
           "from_output": "send_ping",
           "to_module": "pong",
           "to_input": "recv_ping",
-          "encryption": "spongent"
+          "encryption": "aes"
       },
       {
           "from_module": "pong",
           "from_output": "send_pong",
           "to_module": "ping",
           "to_input": "recv_pong",
-          "encryption": "spongent"
+          "encryption": "aes"
       },
       {
           "from_module": "ping",

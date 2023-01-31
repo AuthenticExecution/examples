@@ -33,14 +33,14 @@ measurements_regexes = [
     ),
     (
         "TZ encryption",
-        "tz_handle_output_before_encryption: ([0-9]+) us",
-        "tz_handle_output_after_encryption: ([0-9]+) us",
+        "tz_handle_output_before_encryption_[0-9]+: ([0-9]+) us",
+        "tz_handle_output_after_encryption_[0-9]+: ([0-9]+) us",
         MeasurementUnit.US
     ),
     (
         "TZ decryption",
-        "tz_handle_input_before_decryption: ([0-9]+) us",
-        "tz_handle_input_after_decryption: ([0-9]+) us",
+        "tz_handle_input_before_decryption_[0-9]+: ([0-9]+) us",
+        "tz_handle_input_after_decryption_[0-9]+: ([0-9]+) us",
         MeasurementUnit.US
     )
 ]
