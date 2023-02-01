@@ -31,6 +31,12 @@ measurements_regexes = [
     ),
     # TZ
     (
+        "Total Sancus time + TZ exit TA + TZ enter TA + 3 syscalls",
+        "tz_handle_output_after_encryption_1: ([0-9]+) us",
+        "tz_handle_input_before_decryption_1: ([0-9]+) us",
+        MeasurementUnit.US
+    ),
+    (
         "TZ AES encryption",
         "tz_handle_output_before_encryption_0: ([0-9]+) us",
         "tz_handle_output_after_encryption_0: ([0-9]+) us",
