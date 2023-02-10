@@ -24,7 +24,7 @@ lazy_static! {
 pub fn init(_data : &[u8]) -> ResultMessage {
     info!("initializing SGX receiver");
     // trigger generation of keys
-    let _ = RSA_KEY.lock().unwrap();
+    let _unused = RSA_KEY.lock().unwrap();
     success(None)
 }
 
@@ -90,7 +90,7 @@ pub fn start_shipment_complete(_data : &[u8]) {
     ) {
         Ok(_)   => (),
         Err(e)  => {
-            error!(e);
+            error!("{}", e);
             return;
         }
     }

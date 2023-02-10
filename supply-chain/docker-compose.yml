@@ -24,8 +24,8 @@ services:
       - ELF=reactive.elf
       - PORT=6000
     devices:
-      - "/dev/ttyUSB0:/dev/RIOT"
-      - "/dev/ttyUSB1:/dev/UART"
+      - "/dev/ttyUSB2:/dev/RIOT"
+      - "/dev/ttyUSB3:/dev/UART"
   aesm-client:
     image: authexec/aesm-client:latest
     expose:

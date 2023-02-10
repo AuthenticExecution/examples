@@ -31,8 +31,8 @@ lazy_static! {
 pub fn init(_data : &[u8]) -> ResultMessage {
     info!("initializing SGX receiver");
     // trigger generation of keys
-    let _ = RSA_KEY.lock().unwrap();
-    let _ = AES_KEY.lock().unwrap();
+    let _unused1 = RSA_KEY.lock().unwrap();
+    let _unused2 = AES_KEY.lock().unwrap();
     success(None)
 }
 
@@ -99,7 +99,7 @@ pub fn end_sensing(_data : &[u8]) {
     ) {
         Ok(v) => v,
         Err(e) => {
-            error!(e);
+            error!("{}", e);
             return;
         }
     };
@@ -119,7 +119,7 @@ pub fn end_sensing(_data : &[u8]) {
     ) {
         Ok(_)   => (),
         Err(e)  => {
-            error!(e);
+            error!("{}", e);
             return;
         }
     }
@@ -133,7 +133,7 @@ pub fn end_sensing(_data : &[u8]) {
     ) {
         Ok(_)   => (),
         Err(e)  => {
-            error!(e);
+            error!("{}", e);
             return;
         }
     }
