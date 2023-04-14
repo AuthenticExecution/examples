@@ -15,26 +15,35 @@ run: clean
 	docker compose up --remove-orphans --force-recreate
 
 run_simulation: clean
-	screen -A -m -d -S supply-chain-sim scripts/run_sim.sh scripts/run_collect.py $(RESULT) $(SIM_MAX_SIZE) $(SIM_ITERATIONS) $(SIM_IS_SENSOR) &
+	screen -L -Logfile out.log -A -m -d -S supply-chain-sim scripts/run_sim.sh scripts/run_collect.py $(RESULT) $(SIM_MAX_SIZE) $(SIM_ITERATIONS) $(SIM_IS_SENSOR) &
+	@sleep 0.5
+	screen -r supply-chain-sim -X colon "logfile flush 0.1^M"
 
 run_sensor: clean
-	screen -A -m -d -S supply-chain-sim scripts/run_sim.sh scripts/run_collect.py $(RESULT) $(SIM_MAX_SIZE) $(SIM_ITERATIONS) 1 &
+	screen -L -Logfile out.log -A -m -d -S supply-chain-sim scripts/run_sim.sh scripts/run_collect.py $(RESULT) $(SIM_MAX_SIZE) $(SIM_ITERATIONS) 1 &
+	@sleep 0.5
+	screen -r supply-chain-sim -X colon "logfile flush 0.1^M"
 
 run_shipment: clean
-	screen -A -m -d -S supply-chain-sim scripts/run_sim.sh scripts/run_collect.py $(RESULT) 1 $(SIM_ITERATIONS) 0 &
+	screen -L -Logfile out.log -A -m -d -S supply-chain-sim scripts/run_sim.sh scripts/run_collect.py $(RESULT) 1 $(SIM_ITERATIONS) 0 &
+	@sleep 0.5
+	screen -r supply-chain-sim -X colon "logfile flush 0.1^M"
 
 shell:
 	docker exec -it supply-chain-admin-1 bash
 
 clean:
 	docker compose down
-	sudo rm -rf descriptor.json out.csv out.json out.log res.json tee-evaluation.zip tee.png tee.tex data.csv
+	rm -rf descriptor.json out.csv out.json out.log res.json tee-evaluation.zip tee.png tee.tex data.csv
 
 plot:
 	python scripts/plot.py $(RESULT) $(OUT_PLOT_FLD)
 
 shipment:
 	python scripts/shipment.py $(RESULT)
+
+logs:
+	docker compose logs -f
 
 zip:
 	zip -r tee-evaluation.zip receiver_1 receiver_2 sensor_1.c sensor_2.c .env scripts results deploy.sh descriptor_sensing.json descriptor_shipment.json docker-compose.yml Makefile README.md

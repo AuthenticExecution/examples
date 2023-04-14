@@ -21,6 +21,12 @@ nano cred/settings.json
 
 This is needed only when collecting data and/or plotting the results.
 
+**NOTE** the `tikzplotlib` package has a bug that prevents it from generating
+the TEX file  for plots that contain a legend. As of now (version 0.10.1) the
+issue has not been solved yet. To circumvent this problem, it may be necessary
+to apply the fix discussed in this
+[issue](https://github.com/nschloe/tikzplotlib/issues/557).
+
 ```bash
 # We assume that we are running a Python 3 (>= 3.6) environment
 
@@ -60,7 +66,7 @@ make start
 
 ## Data collection and results
 
-### Sensor data
+### Sensing
 
 ```bash
 # Run simulation (stdout printed to out.log)
@@ -77,7 +83,8 @@ make run_sensor SIM_MAX_SIZE=<max_size> SIM_ITERATIONS=<num_iterations> RESULT=<
 make plot RESULT=<data_file> OUT_PLOT_FLD=<out_folder>
 ```
 
-### Start/end shipment
+### Starting and finalizing a shipment
+
 ```bash
 # Run simulation (stdout printed to out.log)
 #
