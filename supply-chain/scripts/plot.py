@@ -90,9 +90,8 @@ print(dfmean)
 
 # Plot
 
-cm = 1/2.54  # centimeters in inches
-fig, ax = plt.subplots(figsize=(8.4*cm, 3.8*cm))
-plt.tight_layout(pad=0.4, w_pad=0.5, h_pad=0.1)
+fig, ax = plt.subplots(figsize=(8.4, 3.8))
+plt.tight_layout(pad=2, w_pad=0.5, h_pad=0.5)
 ax.yaxis.grid(True)
 ax.set_axisbelow(True)
 
