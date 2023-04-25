@@ -33,6 +33,7 @@ shell:
 	docker exec -it supply-chain-admin-1 bash
 
 clean:
+	screen -X -S supply-chain-sim quit || true
 	docker compose down
 	rm -rf descriptor.json out.csv out.json out.log res.json tee-evaluation.zip tee.png tee.tex data.csv
 
