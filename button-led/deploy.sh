@@ -4,7 +4,7 @@ set -e
 
 # TODO: find a better way
 echo "Waiting until all the EMs are ready.."
-sleep 20
+sleep 30
 
 # Attesting the Attestation Manager
 echo "Attesting AM.."
