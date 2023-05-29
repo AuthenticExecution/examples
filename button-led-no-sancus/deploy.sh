@@ -10,6 +10,9 @@ sleep 20
 echo "Attesting AM.."
 python3 run_attester.py
 
+# Wait until AM is ready
+sleep 1
+
 # Initialize the Attestation Manager for the SGX attestation
 echo "Initializing AM.."
 attman-cli --config manager.yaml --request init-sgx --data init_sgx.yaml
