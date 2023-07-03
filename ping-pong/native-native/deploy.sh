@@ -2,6 +2,9 @@
 
 set -e
 
+echo "Wait untill all EMs are running.."
+sleep 30
+
 # deploy
 echo "Deploying modules.."
 reactive-tools --manager deploy descriptor.json --result res.json

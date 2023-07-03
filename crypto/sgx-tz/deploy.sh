@@ -9,7 +9,6 @@ sleep 30
 echo "Deploying modules.."
 reactive-tools deploy descriptor.json --result res.json
 
-# TODO: is it really necessary?
 echo "Waiting until all the modules are up and running.."
 sleep 2
 

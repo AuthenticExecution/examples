@@ -2,7 +2,7 @@
 
 set -e
 
-sleep 5
+sleep 30
 
 # deploy
 echo "Deploying modules.."

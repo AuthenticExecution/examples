@@ -2,13 +2,15 @@
 
 set -e
 
-# TODO: find a better way
 echo "Waiting until all the EMs are ready.."
-sleep 20
+sleep 30
 
 # Attesting the Attestation Manager
 echo "Attesting AM.."
 python3 run_attester.py
+
+# Wait until AM is ready
+sleep 1
 
 # Initialize the Attestation Manager for the SGX attestation
 echo "Initializing AM.."

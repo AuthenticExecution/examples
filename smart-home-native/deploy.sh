@@ -3,7 +3,7 @@
 set -e
 
 echo "Waiting until all the EMs are ready.."
-sleep 10
+sleep 30
 
 # deploy
 echo "Deploying modules.."
