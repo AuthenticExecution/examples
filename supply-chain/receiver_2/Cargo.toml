@@ -8,5 +8,4 @@ edition = "2018"
 
 [dependencies]
 sha2 = "0.10.6"
-mbedtls = { git = "https://github.com/fortanix/rust-mbedtls.git", features = ["rdrand"] }
 json = "0.12.4"

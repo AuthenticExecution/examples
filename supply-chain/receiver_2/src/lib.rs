@@ -1,3 +1,4 @@
+use sgx_attestation::mbedtls;
 use std::sync::Mutex;
 use std::time::{SystemTime, UNIX_EPOCH};
 use mbedtls::pk::Pk;

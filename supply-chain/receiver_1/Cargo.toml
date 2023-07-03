@@ -9,5 +9,4 @@ edition = "2018"
 [dependencies]
 sha2 = "0.10.6"
 aes-gcm = "0.9.3"
-mbedtls = { git = "https://github.com/fortanix/rust-mbedtls.git", features = ["rdrand"] }
 getrandom = { version = "0.2.8", features = ["rdrand"] }

@@ -3,6 +3,7 @@ use std::sync::Mutex;
 use std::net::{TcpListener, TcpStream};
 use std::io::{Read, Write};
 
+use sgx_attestation::mbedtls;
 use mbedtls::pk::Pk;
 use mbedtls::ssl::config::{Endpoint, Preset, Transport};
 use mbedtls::ssl::{Config, Context};
