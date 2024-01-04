@@ -8,12 +8,8 @@ from os.path import join
 file = sys.argv[1]
 out_fldr = sys.argv[2]
 
-# some set of colors for color-blind people. Just uncomment your
-# favorite one (and optionally swap them)
-#colors = ["#1E88E5", "#D81B60"]
-colors = ["#FFC107", "#004D40"]
-#colors = ["#40B0A6", "#E1BE6A"]
-#colors = ["#006CD1", "#994F00"]
+# Set of color-blind friendly colors
+colors = ["#FFC107", "#004D40", "#D81B60"]
 
 def save_tikz(file, width="8.4cm", height="3.8cm"):
     tikzplotlib.save(file, strict=True, axis_width=width, axis_height=height)
@@ -79,10 +75,10 @@ df['sgx'] /= 1000
 
 dfmean = df.groupby('size').mean().reset_index()
 dferr = df.groupby('size').std().reset_index()
+
 # compute 99% CI; 
 dferr['sancus'] *= 2.576
 dferr['sgx'] *= 2.576
-
 #dfmean.rename(columns = {'sancus':'Sancus', 'sgx':'Intel SGX'}, inplace = True)
 ind = dfmean["size"].unique()
 
@@ -96,10 +92,11 @@ ax.yaxis.grid(True)
 ax.set_axisbelow(True)
 
 error_kw = dict(elinewidth=0.25,ecolor='black',capsize=1.5, capthick=0.25)
-plt.bar(ind, dfmean["sancus"], yerr=dferr["sancus"], color=colors[0], error_kw=error_kw, label='Sancus')
-plt.bar(ind, dfmean["sgx"], bottom=dfmean["sancus"], yerr=dferr["sgx"], color=colors[1], error_kw=error_kw, label='Intel SGX')
+plt.errorbar(ind, dfmean["sancus"] + dfmean["sgx"], yerr=dferr["sancus"] + dferr["sgx"], color=colors[2], label='Total', fmt='-o', markersize='4')
+plt.errorbar(ind, dfmean["sancus"], yerr=dferr["sancus"], color=colors[0], label='Sancus', fmt='-o', markersize='4')
+plt.errorbar(ind, dfmean["sgx"], yerr=dferr["sgx"], color=colors[1], label='Intel SGX', fmt='-o', markersize='4')
 
-plt.legend(loc="lower center", ncol=2, bbox_to_anchor=(0.5, 0.87), fontsize=7,
+plt.legend(loc="lower center", ncol=3, bbox_to_anchor=(0.5, 0.99), fontsize=7,
             edgecolor="black", framealpha=1.0, fancybox=False)
 
 plt.ylabel("Time [s]")

@@ -1,8 +1,30 @@
 # Supply chain example
 
+This example is part of the evaluation of the following academic publication:
+
+>Lennart Bader, Jan Pennekamp, Fritz Alder, Gianluca Scopelliti, Klaus Wehrle
+>and Jan Tobias Mühlberg. Securing Sensing in Supply Chains: Opportunities,
+>Building Blocks, and Designs. IEEE Access, 2024.
+
+Reference outputs are available under [results](./results/). This is also the
+same data discussed in the paper.
+
+## Source code
+
+The folder contains two sets of source code:
+
+- `sensor_1.c` and `receiver_1` which contain the code for Sancus (`sensor_1.c`)
+  and the accompanying SGX counterpart (`receiver_1`). This part of the code
+  implements the sensing and the outputs the data that can be seen in the file
+  `results/sensor_data.csv` and is depicted in the Paper as a plot.
+- `sensor_2.c` and `receiver_2` which again contain the code for Sancus (`c`
+  file) and the SGX part (folder with Rust files). This part of the code
+  implements the start/end period of the sensing and its results are stored in
+  the file `results/shipment_data.csv`.
+
 ## Preliminaries
 
-### Running application
+### Pull docker images and set up credentials and keys
 
 ```bash
 # fetch the latest docker images
@@ -17,7 +39,7 @@ cp ../settings_template.json cred/settings.json
 nano cred/settings.json
 ```
 
-### Running scripts
+### Install dependencies
 
 This is needed only when collecting data and/or plotting the results.
 
@@ -38,7 +60,11 @@ pip install -r scripts/requirements.txt
 sudo apt-get update && sudo apt-get install screen
 ```
 
-## Run
+## Run the application
+
+This command deploys the application using Docker Compose and shows the logs in
+foreground. This is *not* mandatory to reproduce the results of our paper, as
+there is a separate script that manages the whole data collection (see below).
 
 ```bash
 # Run application
@@ -49,7 +75,8 @@ make run DESCRIPTOR=<descriptor_file>
 CTRL-C
 ```
 
-## Interact with the application
+It is possible to interact to the application by sending some custom sensor data
+or starting shipments, using the commands below:
 
 ```bash
 # (in a new shell) open the admin console
@@ -64,9 +91,12 @@ make start KB=<num_kb>
 make start
 ```
 
-## Data collection and results
+## Reproduce the results of the paper
 
 ### Sensing
+
+The command below is used to run the simulation. This may take several minutes
+to a few hours to complete.
 
 ```bash
 # Run simulation (stdout printed to out.log)
@@ -75,7 +105,13 @@ make start
 # <num_iterations>: num of iterations for each run
 # <out_file>: desired output file name
 make run_sensor SIM_MAX_SIZE=<max_size> SIM_ITERATIONS=<num_iterations> RESULT=<out_file>
+```
 
+The command below can be used to create the plot shown in Figure 3 of the paper.
+Note that there might be minor differences in the appearance of the plots due to
+some parameters that were configured manually.
+
+```bash
 # Plot data
 #
 # <data_file>: output file from the previous command (CSV)
@@ -83,7 +119,11 @@ make run_sensor SIM_MAX_SIZE=<max_size> SIM_ITERATIONS=<num_iterations> RESULT=<
 make plot RESULT=<data_file> OUT_PLOT_FLD=<out_folder>
 ```
 
+
 ### Starting and finalizing a shipment
+
+The command below is used to run the simulation. This may take several minutes
+to complete.
 
 ```bash
 # Run simulation (stdout printed to out.log)

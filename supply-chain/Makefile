@@ -1,7 +1,7 @@
 KB			   ?= 0
 _DATA_SIZE	   ?= $(shell python -c "print('{:04x}'.format($(KB)))")
 DESCRIPTOR	   ?= descriptor_sensing.json
-RESULT         ?= data.csv
+RESULT         ?= results/sensor_data.csv
 OUT_PLOT_FLD   ?= results
 SIM_MAX_SIZE   ?= 10
 SIM_ITERATIONS ?= 100

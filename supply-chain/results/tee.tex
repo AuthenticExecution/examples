@@ -1,65 +1,193 @@
 % !TEX root = ../paper.tex
-% This file was created with tikzplotlib v0.9.12.
+% This file was created with tikzplotlib v0.10.1.
 \begin{tikzpicture}
 
-\definecolor{color0}{rgb}{0.917647058823529,0.917647058823529,0.949019607843137}
-\definecolor{color1}{rgb}{1,0.756862745098039,0.0274509803921569}
-\definecolor{color2}{rgb}{0,0.301960784313725,0.250980392156863}
+\definecolor{crimson2162796}{RGB}{216,27,96}
+\definecolor{darkgray176}{RGB}{176,176,176}
+\definecolor{darkslategray07764}{RGB}{0,77,64}
+\definecolor{gold2551937}{RGB}{255,193,7}
 
 \begin{axis}[
-clip=false,
-axis background/.style={fill=color0},
-axis line style={white},
-height=8cm,
+height=3.8cm,
 legend cell align={left},
-legend columns=2,
-legend style={/tikz/every even column/.append style={column sep=0.3cm},/tikz/every odd column/.append style={column sep=0.1cm},font=\large,fill opacity=0.8, draw opacity=1, text opacity=1, at={(0.5,1)}, anchor=south, draw=none},
+legend columns=3,
+legend style={/tikz/every even column/.append style={column sep=0.15cm},/tikz/every odd column/.append style={column sep=0.1cm},font=\small,fill opacity=1.0, draw opacity=1, text opacity=1, at={(0.5,0.99)}, anchor=south},
 minor xtick={},
 minor ytick={},
 tick align=outside,
-width=15cm,
-x grid style={white},
-xlabel={Payload Size [kB]},
-xmajorgrids,
-xmajorticks=true,
-xmin=-0.5, xmax=9.5,
-xtick style={color=white!15!black,draw=none},
-xtick={0,1,2,3,4,5,6,7,8,9},
-xticklabels={1,2,3,4,5,6,7,8,9,10},
-y grid style={white},
+tick pos=left,
+width=8.4cm,
+x grid style={darkgray176},
+xlabel={Payload Size [kiB]},
+xmin=0.55, xmax=10.45,
+xtick style={color=black},
+xtick={1,2,3,4,5,6,7,8,9,10},
+y grid style={darkgray176},
 ylabel={Time [s]},
 ymajorgrids,
-ymajorticks=true,
-ymin=0, ymax=10.8925215,
-ytick style={color=white!15!black,draw=none},
-ytick={0,2,4,6,8,10,12}
+ymin=-0.467469869245558, ymax=10.9365190817425,
+ytick style={color=black},
+ytick={1,2,3,4,5,6,7,8,9,10}
 ]
-\draw[draw=white,fill=color1,line width=1pt] (axis cs:-0.25,0) rectangle (axis cs:0.25,1.04712);
-\addlegendimage{ybar,ybar legend,draw=white,fill=color1,line width=1pt}
-\addlegendentry{Sancus}
+\path [draw=crimson2162796, semithick]
+(axis cs:1,1.07114950828973)
+--(axis cs:1,1.14321049171027);
 
-\draw[draw=white,fill=color1,line width=1pt] (axis cs:0.75,0) rectangle (axis cs:1.25,2.06689);
-\draw[draw=white,fill=color1,line width=1pt] (axis cs:1.75,0) rectangle (axis cs:2.25,3.08552);
-\draw[draw=white,fill=color1,line width=1pt] (axis cs:2.75,0) rectangle (axis cs:3.25,4.1015);
-\draw[draw=white,fill=color1,line width=1pt] (axis cs:3.75,0) rectangle (axis cs:4.25,5.12177);
-\draw[draw=white,fill=color1,line width=1pt] (axis cs:4.75,0) rectangle (axis cs:5.25,6.13985);
-\draw[draw=white,fill=color1,line width=1pt] (axis cs:5.75,0) rectangle (axis cs:6.25,7.18321);
-\draw[draw=white,fill=color1,line width=1pt] (axis cs:6.75,0) rectangle (axis cs:7.25,8.18802);
-\draw[draw=white,fill=color1,line width=1pt] (axis cs:7.75,0) rectangle (axis cs:8.25,9.20862);
-\draw[draw=white,fill=color1,line width=1pt] (axis cs:8.75,0) rectangle (axis cs:9.25,10.22638);
-\draw[draw=white,fill=color2,line width=1pt] (axis cs:-0.25,1.04712) rectangle (axis cs:0.25,1.10718);
-\addlegendimage{ybar,ybar legend,draw=white,fill=color2,line width=1pt}
-\addlegendentry{Intel SGX}
+\path [draw=crimson2162796, semithick]
+(axis cs:2,2.10852653412091)
+--(axis cs:2,2.16495346587909);
 
-\draw[draw=white,fill=color2,line width=1pt] (axis cs:0.75,2.06689) rectangle (axis cs:1.25,2.13674);
-\draw[draw=white,fill=color2,line width=1pt] (axis cs:1.75,3.08552) rectangle (axis cs:2.25,3.16622);
-\draw[draw=white,fill=color2,line width=1pt] (axis cs:2.75,4.1015) rectangle (axis cs:3.25,4.19129);
-\draw[draw=white,fill=color2,line width=1pt] (axis cs:3.75,5.12177) rectangle (axis cs:4.25,5.22197);
-\draw[draw=white,fill=color2,line width=1pt] (axis cs:4.75,6.13985) rectangle (axis cs:5.25,6.25039);
-\draw[draw=white,fill=color2,line width=1pt] (axis cs:5.75,7.18321) rectangle (axis cs:6.25,7.30108);
-\draw[draw=white,fill=color2,line width=1pt] (axis cs:6.75,8.18802) rectangle (axis cs:7.25,8.31572);
-\draw[draw=white,fill=color2,line width=1pt] (axis cs:7.75,9.20862) rectangle (axis cs:8.25,9.34621);
-\draw[draw=white,fill=color2,line width=1pt] (axis cs:8.75,10.22638) rectangle (axis cs:9.25,10.37383);
+\path [draw=crimson2162796, semithick]
+(axis cs:3,3.13509755477199)
+--(axis cs:3,3.19734244522802);
+
+\path [draw=crimson2162796, semithick]
+(axis cs:4,4.1536384805017)
+--(axis cs:4,4.2289415194983);
+
+\path [draw=crimson2162796, semithick]
+(axis cs:5,5.18423095657692)
+--(axis cs:5,5.25970904342308);
+
+\path [draw=crimson2162796, semithick]
+(axis cs:6,6.17246886175036)
+--(axis cs:6,6.32831113824964);
+
+\path [draw=crimson2162796, semithick]
+(axis cs:7,7.15267549118284)
+--(axis cs:7,7.44948450881716);
+
+\path [draw=crimson2162796, semithick]
+(axis cs:8,8.27440424991102)
+--(axis cs:8,8.35703575008898);
+
+\path [draw=crimson2162796, semithick]
+(axis cs:9,9.30863731050058)
+--(axis cs:9,9.38378268949942);
+
+\path [draw=crimson2162796, semithick]
+(axis cs:10,10.3295040523934)
+--(axis cs:10,10.4181559476066);
+
+\path [draw=gold2551937, semithick]
+(axis cs:1,1.02025624339947)
+--(axis cs:1,1.07398375660053);
+
+\path [draw=gold2551937, semithick]
+(axis cs:2,2.04814932616396)
+--(axis cs:2,2.08563067383604);
+
+\path [draw=gold2551937, semithick]
+(axis cs:3,3.06364205321783)
+--(axis cs:3,3.10739794678217);
+
+\path [draw=gold2551937, semithick]
+(axis cs:4,4.07632560582615)
+--(axis cs:4,4.12667439417385);
+
+\path [draw=gold2551937, semithick]
+(axis cs:5,5.09597397420145)
+--(axis cs:5,5.14756602579855);
+
+\path [draw=gold2551937, semithick]
+(axis cs:6,6.07157029149672)
+--(axis cs:6,6.20812970850328);
+
+\path [draw=gold2551937, semithick]
+(axis cs:7,7.04516563941438)
+--(axis cs:7,7.32125436058562);
+
+\path [draw=gold2551937, semithick]
+(axis cs:8,8.15504943618694)
+--(axis cs:8,8.22099056381306);
+
+\path [draw=gold2551937, semithick]
+(axis cs:9,9.18041135942058)
+--(axis cs:9,9.23682864057942);
+
+\path [draw=gold2551937, semithick]
+(axis cs:10,10.1915762465552)
+--(axis cs:10,10.2611837534448);
+
+\path [draw=darkslategray07764, semithick]
+(axis cs:1,0.050893264890261)
+--(axis cs:1,0.069226735109739);
+
+\path [draw=darkslategray07764, semithick]
+(axis cs:2,0.060377207956948)
+--(axis cs:2,0.079322792043052);
+
+\path [draw=darkslategray07764, semithick]
+(axis cs:3,0.0714555015541593)
+--(axis cs:3,0.0899444984458407);
+
+\path [draw=darkslategray07764, semithick]
+(axis cs:4,0.0773128746755505)
+--(axis cs:4,0.10226712532445);
+
+\path [draw=darkslategray07764, semithick]
+(axis cs:5,0.0882569823754715)
+--(axis cs:5,0.112143017624528);
+
+\path [draw=darkslategray07764, semithick]
+(axis cs:6,0.100898570253643)
+--(axis cs:6,0.120181429746357);
+
+\path [draw=darkslategray07764, semithick]
+(axis cs:7,0.107509851768464)
+--(axis cs:7,0.128230148231536);
+
+\path [draw=darkslategray07764, semithick]
+(axis cs:8,0.11935481372408)
+--(axis cs:8,0.13604518627592);
+
+\path [draw=darkslategray07764, semithick]
+(axis cs:9,0.12822595108)
+--(axis cs:9,0.14695404892);
+
+\path [draw=darkslategray07764, semithick]
+(axis cs:10,0.137927805838119)
+--(axis cs:10,0.156972194161881);
+
+\addplot [thin, crimson2162796, mark=*, mark size=2, mark options={solid}]
+table {%
+1 1.10718
+2 2.13674
+3 3.16622
+4 4.19129
+5 5.22197
+6 6.25039
+7 7.30108
+8 8.31572
+9 9.34621
+10 10.37383
+};
+\addplot [thin, gold2551937, mark=*, mark size=2, mark options={solid}]
+table {%
+1 1.04712
+2 2.06689
+3 3.08552
+4 4.1015
+5 5.12177
+6 6.13985
+7 7.18321
+8 8.18802
+9 9.20862
+10 10.22638
+};
+\addplot [thin, darkslategray07764, mark=*, mark size=2, mark options={solid}]
+table {%
+1 0.06006
+2 0.06985
+3 0.0807
+4 0.08979
+5 0.1002
+6 0.11054
+7 0.11787
+8 0.1277
+9 0.13759
+10 0.14745
+};
 \end{axis}
 
 \end{tikzpicture}
