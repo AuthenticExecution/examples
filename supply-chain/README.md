@@ -1,13 +1,17 @@
 # Supply chain example
 
-This example is part of the evaluation of the following academic publication:
+This example is part of the evaluation of the following [academic
+publication](https://ieeexplore.ieee.org/document/10382521):
 
->Lennart Bader, Jan Pennekamp, Fritz Alder, Gianluca Scopelliti, Klaus Wehrle
->and Jan Tobias Mühlberg. Securing Sensing in Supply Chains: Opportunities,
->Building Blocks, and Designs. IEEE Access, 2024.
+>J. Pennekamp, F. Alder, L. Bader, G. Scopelliti, K. Wehrle and J. T. Mühlberg,
+>"Securing Sensing in Supply Chains: Opportunities, Building Blocks, and
+>Designs," in IEEE Access, doi: 10.1109/ACCESS.2024.3350778.
 
 Reference outputs are available under [results](./results/). This is also the
 same data discussed in the paper.
+
+More info on the code artifacts of this publication are available
+[here](https://github.com/COMSYS/secure-sensing).
 
 ## Source code
 
